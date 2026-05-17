@@ -3,16 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Begin Your Wasiyyah</title>
+<title>Begin Your Wasiyyah — buildmywasiyyah.com</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2327500A'/><text x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-size='20' fill='%23C8B56A'>و</text></svg>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--g50:#EAF3DE;--g100:#C0DD97;--g200:#97C459;--g600:#3B6D11;--g800:#27500A;--a50:#FAEEDA;--a100:#FAC775;--a200:#EF9F27;--a400:#BA7517;--gr50:#F1EFE8;--gr100:#D3D1C7;--gr600:#5F5E5A;--gr800:#444441;--white:#fff;--border:rgba(0,0,0,0.1);--gold:#C8B56A;--cream:#FEFCF5;--dg:#1C3A10}
+html{scroll-behavior:smooth}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--gr50);color:var(--gr800);min-height:100vh}
-body.large-text *{font-size:110%!important}
-body.high-contrast{background:#000;color:#fff}body.high-contrast .section-card,body.high-contrast .top-bar{background:#111;border-color:#444}
+html.large-text{font-size:120%}html.large-text input,html.large-text select,html.large-text textarea,html.large-text button{font-size:1rem}
+html.high-contrast body{background:#000;color:#fff}html.high-contrast .section-card,html.high-contrast .top-bar{background:#111;border-color:#444}
 .a11y-bar{position:fixed;bottom:1.5rem;left:1.5rem;z-index:300;display:flex;flex-direction:column;gap:8px}
 .a11y-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--g600);background:var(--white);color:var(--g600);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,0.12);font-weight:700;font-family:inherit;position:relative}
 .a11y-btn:hover{background:var(--g600);color:white}
@@ -22,7 +24,7 @@ body.high-contrast{background:#000;color:#fff}body.high-contrast .section-card,b
 .logo{display:flex;align-items:center;gap:8px;text-decoration:none}
 .logo-box{width:30px;height:30px;background:var(--g600);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:500}
 .logo-name{font-size:15px;font-weight:500;color:var(--g800)}
-.save-indicator{font-size:12px;color:var(--g600);display:flex;align-items:center;gap:5px;background:var(--g50);padding:4px 10px;border-radius:20px}
+.save-indicator{font-size:12px;color:var(--g600);display:flex;align-items:center;gap:5px;background:var(--g50);padding:4px 10px;border-radius:20px;transition:background 0.4s}
 .progress-wrap{background:var(--white);border-bottom:0.5px solid var(--border);padding:1.25rem 2rem}
 .progress-steps{display:flex;align-items:center;max-width:700px;margin:0 auto}
 .step-pill{display:flex;align-items:center;gap:6px;flex:1}
@@ -132,17 +134,6 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 .pdf-feat-sm.yes{color:var(--g800)}.pdf-feat-sm.no{color:var(--gr100);text-decoration:line-through}
 .btn-pdf-free{background:var(--g600);color:white;border:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;width:100%;margin-top:1rem;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px}.btn-pdf-free:hover{background:var(--g800)}.btn-pdf-free:disabled{background:var(--gr100);cursor:not-allowed}
 .btn-pdf-prem{background:var(--g800);color:var(--a100);border:1px solid var(--a400);padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;width:100%;margin-top:1rem;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px}.btn-pdf-prem:hover{background:var(--dg);color:white}
-.ai-bubble{position:fixed;bottom:2rem;right:2rem;z-index:200}
-.ai-btn{width:52px;height:52px;border-radius:50%;background:var(--g600);color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 2px 12px rgba(0,0,0,0.15)}.ai-btn:hover{background:var(--g800)}
-.ai-chat{position:absolute;bottom:64px;right:0;width:300px;background:var(--white);border:0.5px solid var(--border);border-radius:14px;overflow:hidden;display:none}.ai-chat.open{display:block}
-.ai-chat-header{background:var(--g800);color:white;padding:12px 16px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px}
-.ai-messages{height:220px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:10px}
-.ai-msg{font-size:13px;line-height:1.6;padding:8px 12px;border-radius:8px;max-width:92%}
-.ai-msg.assistant{background:var(--g50);color:var(--g800);align-self:flex-start}
-.ai-msg.user{background:var(--g600);color:white;align-self:flex-end}
-.ai-input-wrap{border-top:0.5px solid var(--border);padding:10px;display:flex;gap:8px}
-.ai-input{flex:1;border:1px solid var(--gr100);border-radius:6px;padding:7px 10px;font-size:13px;outline:none;font-family:inherit}.ai-input:focus{border-color:var(--g200)}
-.ai-send{background:var(--g600);color:white;border:none;border-radius:6px;padding:7px 12px;cursor:pointer;font-size:13px}
 @media(max-width:600px){
   .top-bar{padding:1rem}.progress-wrap{padding:1rem}
   .form-wrap{padding:0 1rem 5rem}.two-col{grid-template-columns:1fr}.three-col{grid-template-columns:1fr 1fr}
@@ -212,6 +203,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
     <div class="daleel-source">Narrated by Ibn Umar رضي الله عنه, from the Prophet ﷺ. Sahih Bukhari 2738 and Sahih Muslim 1627.</div>
   </div>
 
+  <div id="validationMsg0" style="display:none;background:#FCEAEA;border:1px solid #F0B0B0;border-radius:10px;padding:1rem 1.25rem;font-size:13px;color:#7A1C1C;margin-bottom:1.25rem;line-height:1.7"></div>
   <!-- REQUIRED FIELDS NOTE -->
   <div style="background:var(--gr50);border-radius:8px;padding:0.75rem 1rem;margin-bottom:1.5rem;font-size:12px;color:var(--gr600)">Fields marked <span style="background:#FCEAEA;color:#A32D2D;padding:1px 6px;border-radius:8px;border:1px solid #F0B0B0;font-weight:500;font-size:10px">required</span> must be completed before you can continue.</div>
 
@@ -288,7 +280,6 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
     </div>
   </div>
 
-  <div id="validationMsg0" style="display:none;background:#FCEAEA;border:1px solid #F0B0B0;border-radius:8px;padding:0.75rem 1rem;font-size:13px;color:#7A1C1C;margin-bottom:1rem"></div>
   <div class="nav-btns"><div></div><button class="btn-next" onclick="validateAndGoTo(1)">Continue <i class="ti ti-arrow-right"></i></button></div>
 </div>
 
@@ -654,7 +645,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
           <div class="pdf-feat-sm yes"><i class="ti ti-check" style="color:var(--g600);font-size:12px"></i>Numbered legal clauses</div>
           <div class="pdf-feat-sm yes"><i class="ti ti-check" style="color:var(--g600);font-size:12px"></i>Letter to executor</div>
           <button class="btn-pdf-prem" onclick="payAndDownload()"><i class="ti ti-crown"></i> Pay A$10 and download</button>
-          <div style="font-size:11px;color:var(--gr600);margin-top:6px">Charged in AUD via Buy Me a Coffee. Your bank converts to your local currency.</div>
+          <div style="font-size:11px;color:var(--gr600);margin-top:6px" id="premLocalEquiv">Charged in Australian Dollars (A$10) via Buy Me a Coffee. Your bank converts to your local currency.</div>
         </div>
       </div>
     </div>
@@ -684,9 +675,14 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
     <div style="background:var(--a50);border:1px solid var(--a100);border-radius:10px;padding:1.25rem;margin-bottom:1.25rem">
       <div style="font-size:14px;font-weight:500;color:var(--g800);margin-bottom:0.4rem"><i class="ti ti-heart" style="color:var(--a400);margin-right:5px"></i>Support this work</div>
       <div style="font-size:13px;color:var(--gr600);line-height:1.6;margin-bottom:0.875rem">This tool is free because it was built for the sake of Allah. If it helped you and you are able, a donation may become a sadaqah jariyah for you.</div>
-      <a href="https://buymeacoffee.com/YOUR_USERNAME" target="_blank" rel="noopener noreferrer" style="background:var(--a400);color:white;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:6px"><i class="ti ti-heart"></i> Donate</a>
+      <a href="https://buymeacoffee.com/wasiyyah" target="_blank" rel="noopener noreferrer" style="background:var(--a400);color:white;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:6px"><i class="ti ti-heart"></i> Donate</a>
     </div>
 
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.25rem;margin-bottom:1.25rem;text-align:left">
+      <div style="font-size:13px;font-weight:500;color:var(--g800);margin-bottom:6px;display:flex;align-items:center;gap:6px"><i class="ti ti-printer" style="color:var(--g600)"></i>Print a reference card</div>
+      <div style="font-size:12px;color:var(--gr600);margin-bottom:0.875rem;line-height:1.6">A small card with your reference number, date and executor details — keep it with your physical wasiyyah documents.</div>
+      <button onclick="printSummaryCard()" style="background:transparent;border:1px solid var(--g200);color:var(--g600);padding:7px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:5px"><i class="ti ti-printer"></i> Print reference card</button>
+    </div>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
       <button onclick="returnToEdit()" style="background:var(--g600);color:white;border:none;padding:10px 24px;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px"><i class="ti ti-edit"></i>Edit my wasiyyah</button>
       <a href="index.html" style="color:var(--gr600);font-size:14px;text-decoration:none;padding:10px 24px;border:1px solid var(--gr100);border-radius:8px;display:inline-flex;align-items:center;gap:6px"><i class="ti ti-home"></i>Return home</a>
@@ -698,21 +694,13 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 
 <!-- ACCESSIBILITY BAR -->
 <div class="a11y-bar">
-  <button class="a11y-btn" onclick="document.body.classList.toggle('large-text')" aria-label="Larger text"><span>A+</span><span class="a11y-tip">Larger text</span></button>
-  <button class="a11y-btn" onclick="document.body.classList.toggle('high-contrast')" aria-label="High contrast"><i class="ti ti-contrast"></i><span class="a11y-tip">High contrast</span></button>
+  <button class="a11y-btn" id="btnLargeText" onclick="toggleLargeText()" aria-label="Larger text"><span>A+</span><span class="a11y-tip">Larger text</span></button>
+  <button class="a11y-btn" id="btnHighContrast" onclick="toggleHighContrast()" aria-label="High contrast"><i class="ti ti-contrast"></i><span class="a11y-tip">High contrast</span></button>
 </div>
 
-<!-- AI ASSISTANT -->
-<div class="ai-bubble">
-  <div class="ai-chat" id="aiChat">
-    <div class="ai-chat-header"><i class="ti ti-message-circle"></i>Islamic guide</div>
-    <div class="ai-messages" id="aiMessages"><div class="ai-msg assistant">As-salamu alaykum. Ask me anything about your wasiyyah, inheritance rulings, or any Islamic question you have.</div></div>
-    <div class="ai-input-wrap">
-      <input class="ai-input" id="aiInput" type="text" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendAI()">
-      <button class="ai-send" onclick="sendAI()" aria-label="Send"><i class="ti ti-send"></i></button>
-    </div>
+    
   </div>
-  <button class="ai-btn" onclick="toggleAI()" aria-label="Open Islamic guide"><i class="ti ti-message-circle"></i></button>
+  
 </div>
 
 <!-- Hidden PDF render container -->
@@ -734,6 +722,44 @@ var refNum='WSY-'+new Date().getFullYear()+'-'+Math.random().toString(36).substr
 var labels=['Personal','Obligations','Rights','Assets','Funeral','Messages'];
 var pcts=[16,33,50,66,83,100];
 
+// PRINT SUMMARY CARD
+function printSummaryCard(){
+  var name=v('fullName')||'Not provided';
+  var exec=v('executorName')||'Not provided';
+  var execContact=v('executorContact')||'';
+  var date=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  var w=window.open('','_blank','width=400,height=300');
+  w.document.write('<html><head><title>Wasiyyah Reference Card</title><style>body{font-family:Georgia,serif;padding:24px;max-width:380px;margin:0 auto;color:#1C3A10;border:2px solid #C8B56A}h2{font-size:14px;color:#1C3A10;border-bottom:1px solid #C8B56A;padding-bottom:8px;margin-bottom:12px;letter-spacing:1px;text-transform:uppercase}table{width:100%;font-size:12px;border-collapse:collapse}td{padding:5px 0;vertical-align:top}td:first-child{color:#8A7A5A;width:120px}p{font-size:10px;color:#8A7A5A;margin-top:16px;text-align:center;font-style:italic}</style></head><body>');
+  w.document.write('<h2>Wasiyyah — Reference Card</h2>');
+  w.document.write('<table>');
+  w.document.write('<tr><td>Reference</td><td><strong>'+refNum+'</strong></td></tr>');
+  w.document.write('<tr><td>Full name</td><td>'+name+'</td></tr>');
+  w.document.write('<tr><td>Date written</td><td>'+date+'</td></tr>');
+  w.document.write('<tr><td>Executor</td><td>'+exec+(execContact?' — '+execContact:'')+'</td></tr>');
+  w.document.write('<tr><td>Location</td><td>'+(userLocation||'Not recorded')+'</td></tr>');
+  w.document.write('</table>');
+  w.document.write('<p>Keep this card with your wasiyyah documents. buildmywasiyyah.com</p>');
+  w.document.write('</body></html>');
+  w.document.close();
+  w.print();
+}
+
+// ACCESSIBILITY
+function toggleLargeText(){
+  document.documentElement.classList.toggle('large-text');
+  var btn=document.getElementById('btnLargeText');
+  if(btn)btn.style.background=document.documentElement.classList.contains('large-text')?'var(--g600)':'';
+  if(btn)btn.style.color=document.documentElement.classList.contains('large-text')?'white':'';
+  try{localStorage.setItem('w_a11y_large',document.documentElement.classList.contains('large-text')?'1':'0');}catch(e){}
+}
+function toggleHighContrast(){
+  document.documentElement.classList.toggle('high-contrast');
+  var btn=document.getElementById('btnHighContrast');
+  if(btn)btn.style.background=document.documentElement.classList.contains('high-contrast')?'var(--g600)':'';
+  if(btn)btn.style.color=document.documentElement.classList.contains('high-contrast')?'white':'';
+  try{localStorage.setItem('w_a11y_contrast',document.documentElement.classList.contains('high-contrast')?'1':'0');}catch(e){}
+}
+
 // NAVIGATION
 function goTo(n){
   document.getElementById('sec'+current).classList.remove('active');
@@ -747,7 +773,7 @@ function goTo(n){
   var nd=document.getElementById('dot'+current);nd.classList.remove('todo','done');nd.classList.add('active');nd.innerHTML=(current+1).toString();
   var nl=document.getElementById('lbl'+current);nl.classList.add('active');nl.style.display='block';
   document.getElementById('progressFill').style.width=pcts[current]+'%';
-  document.getElementById('progressText').textContent='Section '+(current+1)+' of 6';
+  document.getElementById('progressText').textContent='Section '+(current+1)+' of 6 — '+pcts[current]+'% complete';
   window.scrollTo(0,0);
   autoSave();
 }
@@ -755,16 +781,27 @@ function goTo(n){
 // VALIDATE SECTION 1 BEFORE PROCEEDING
 function validateAndGoTo(n){
   var msgs=[];
-  var gender=rv('gender');if(!gender)msgs.push('Please select your gender.');
-  var name=v('fullName').trim();if(!name)msgs.push('Please enter your full name.');
-  var shahadah=rv('shahadah');if(!shahadah)msgs.push('Please confirm your shahadah to proceed.');
-  var mind=rv('soundmind');if(!mind)msgs.push('Please confirm you are writing this of sound mind and free will.');
-  var exec=v('executorName').trim();if(!exec)msgs.push('Please name at least one executor.');
+  // Check gender
+  var genderChecked=document.querySelector('input[name="gender"]:checked');
+  if(!genderChecked)msgs.push('Please select your gender.');
+  // Check full name
+  var nameEl=document.getElementById('fullName');
+  if(!nameEl||!nameEl.value.trim())msgs.push('Please enter your full legal name.');
+  // Check shahadah
+  var shahadahChecked=document.querySelector('input[name="shahadah"]:checked');
+  if(!shahadahChecked)msgs.push('Please confirm your declaration of faith by selecting the option below it.');
+  // Check sound mind
+  var mindChecked=document.querySelector('input[name="soundmind"]:checked');
+  if(!mindChecked)msgs.push('Please confirm you are writing this of sound mind and free will.');
+  // Check executor
+  var execEl=document.getElementById('executorName');
+  if(!execEl||!execEl.value.trim())msgs.push('Please name at least one executor.');
+
   var msgEl=document.getElementById('validationMsg0');
   if(msgs.length>0){
-    msgEl.innerHTML='Please complete the following before continuing:<br><br>'+msgs.map(function(m){return '&bull; '+m;}).join('<br>');
+    msgEl.innerHTML='<strong>Please complete the following before continuing:</strong><br><br>'+msgs.map(function(m){return '&bull; '+m;}).join('<br>');
     msgEl.style.display='block';
-    msgEl.scrollIntoView({behavior:'smooth',block:'nearest'});
+    window.scrollTo({top:0,behavior:'smooth'});
     return;
   }
   msgEl.style.display='none';
@@ -830,7 +867,6 @@ function fixText(text){if(!text)return text;text=text.trim();text=text.charAt(0)
 function toggleHelp(id){document.getElementById(id).classList.toggle('open');}
 function toggleField(id,show){document.getElementById(id).style.display=show?'block':'none';}
 function selectRadio(el){var name=el.querySelector('input').name;document.querySelectorAll('input[name="'+name+'"]').forEach(function(r){r.closest('.radio-opt').classList.remove('selected');});el.classList.add('selected');}
-function toggleAI(){document.getElementById('aiChat').classList.toggle('open');}
 function toggleSkipCalc(){skipCalc=document.getElementById('skipCalcCheck').checked;updateNextBtn();}
 function updateNextBtn(){var btn=document.getElementById('sec3NextBtn');btn.disabled=!(calcDone||skipCalc);}
 
@@ -840,7 +876,12 @@ function autoSave(){
     localStorage.setItem('wasiyyah_data',JSON.stringify(gatherData()));
     localStorage.setItem('wasiyyah_ref',refNum);
     var t=new Date();
-    document.getElementById('saveText').textContent='Saved at '+t.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
+    var d=t.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+    var tm=t.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('saveText').textContent='Saved '+d+' at '+tm;
+    var ind=document.getElementById('saveIndicator');
+    ind.style.background='var(--g100)';
+    setTimeout(function(){ind.style.background='var(--g50)';},600);
   }catch(e){}
 }
 
@@ -873,7 +914,20 @@ function v(id){var el=document.getElementById(id);return el?el.value:'';}
 function rv(name){var el=document.querySelector('input[name="'+name+'"]:checked');return el?el.value:'';}
 
 function checkForSaved(){
-  try{if(localStorage.getItem('wasiyyah_data'))document.getElementById('editBanner').style.display='block';}catch(e){}
+  try{
+    var raw=localStorage.getItem('wasiyyah_data');
+    if(raw){
+      document.getElementById('editBanner').style.display='block';
+      try{
+        var d=JSON.parse(raw);
+        if(d.saved){
+          var dt=new Date(d.saved);
+          var note=document.getElementById('lastSavedNote');
+          if(note)note.textContent='Last updated: '+dt.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+' at '+dt.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
+        }
+      }catch(e){}
+    }
+  }catch(e){}
 }
 
 function loadSavedData(){
@@ -1167,9 +1221,114 @@ function generatePDF(){
 }
 
 function payAndDownload(){
-  window.open('https://buymeacoffee.com/YOUR_USERNAME/extras','_blank','width=600,height=700');
-  setTimeout(function(){if(confirm('Once payment is complete, click OK to download your premium PDF.'))generatePDF();},2000);
-  try{var p=parseInt(localStorage.getItem('w_premium')||'0');localStorage.setItem('w_premium',p+1);}catch(e){}
+  try{localStorage.setItem('wasiyyah_premium_pending','true');}catch(e){}
+  window.location.href='https://buymeacoffee.com/wasiyyah/e/539190';
+}
+
+function generatePremiumPDF(){
+  var btn=document.querySelector('.btn-pdf-prem');
+  var orig=btn?btn.innerHTML:'';
+  if(btn){btn.disabled=true;btn.innerHTML='Generating your document...';}
+  var cur=(document.getElementById('currency')&&document.getElementById('currency').value)||'USD';
+  var fmt=function(n){return cur+' '+n.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  var bAmt=parseFloat((document.getElementById('bequestAmt')||{}).value)||0;
+  var distEstate=Math.max(0,netEstate-bAmt);
+  var g=function(id){var el=document.getElementById(id);return el?fixText(el.value):'';};
+  var heirRows='';
+  calcShares.forEach(function(s){
+    var amt=s.type==='fixed'?s.num/s.den*distEstate:s.amt||0;
+    var fracLabel=s.type==='fixed'?fracStr(s.num,s.den)+' of estate':s.detail||'Residuary';
+    var extra='';
+    if(s.sons>0&&s.daughters>0){extra='<tr style="background:#F7F2E4"><td colspan="2" style="padding:5px 9px;font-size:9px;font-style:italic;color:#5A4A2A;border:1px solid #E8DDB5;padding-left:18px">Each son: '+fmt(s.sonAmt)+'</td><td style="padding:5px 9px;border:1px solid #E8DDB5"></td><td style="padding:5px 9px;border:1px solid #E8DDB5"></td></tr><tr style="background:#F7F2E4"><td colspan="2" style="padding:5px 9px;font-size:9px;font-style:italic;color:#5A4A2A;border:1px solid #E8DDB5;padding-left:18px">Each daughter: '+fmt(s.daughterAmt)+'</td><td style="padding:5px 9px;border:1px solid #E8DDB5"></td><td style="padding:5px 9px;border:1px solid #E8DDB5"></td></tr>';}
+    heirRows+='<tr><td style="padding:5px 9px;border:1px solid #E8DDB5;color:#2A1F0A">'+s.name+'</td><td style="padding:5px 9px;border:1px solid #E8DDB5;color:#2A1F0A">'+fracLabel+'</td><td style="padding:5px 9px;border:1px solid #E8DDB5;color:#2A1F0A;font-weight:500">'+fmt(amt)+'</td><td style="padding:5px 9px;border:1px solid #E8DDB5;font-size:9px;color:#8A7A5A">'+s.daleel+'</td></tr>'+extra;
+  });
+  var ghuslStr=[g('ghusl1'),g('ghusl2'),g('ghusl3')].filter(Boolean).join(', ')||'Not specified';
+  var janazahStr=[g('janazah1'),g('janazah2'),g('janazah3')].filter(Boolean).join(', ')||'Not specified';
+  var execStr=g('executorName')+(g('executorContact')?' ('+g('executorContact')+')':'');
+  if(g('executor2Name'))execStr+=' | Backup: '+g('executor2Name')+(g('executor2Contact')?' ('+g('executor2Contact')+')':'');
+  if(g('executor3Name'))execStr+=' | Third: '+g('executor3Name')+(g('executor3Contact')?' ('+g('executor3Contact')+')':'');
+
+  var coverHtml='<div style="width:794px;min-height:1123px;background:#1C3A10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 60px;font-family:Georgia,serif">'
+    +'<div style="font-size:36px;color:#C8B56A;letter-spacing:4px;margin-bottom:20px">&#x628;&#x650;&#x633;&#x652;&#x645;&#x650; &#x627;&#x644;&#x644;&#x651;&#x647;&#x650; &#x627;&#x644;&#x631;&#x651;&#x62D;&#x652;&#x645;&#x670;&#x646;&#x650; &#x627;&#x644;&#x631;&#x651;&#x62D;&#x650;&#x64A;&#x645;&#x650;</div>'
+    +'<div style="width:180px;height:1px;background:#C8B56A;margin:0 auto 24px;opacity:0.5"></div>'
+    +'<div style="font-size:13px;color:#C8B56A;letter-spacing:6px;text-transform:uppercase;margin-bottom:8px">Wasiyyah</div>'
+    +'<div style="font-size:10px;color:#9DB88A;letter-spacing:4px;text-transform:uppercase;margin-bottom:32px">Islamic Will and Testament</div>'
+    +'<div style="width:180px;height:1px;background:#C8B56A;margin:0 auto 36px;opacity:0.5"></div>'
+    +'<div style="font-size:18px;color:#F5ECD0;font-family:Georgia,serif;margin-bottom:10px">'+g('fullName')+'</div>'
+    +'<div style="font-size:11px;color:#9DB88A;margin-bottom:28px">'+g('nationality')+(g('country')?' — '+g('country'):'')+'</div>'
+    +'<div style="font-size:10px;color:#6A8A60;font-style:italic;line-height:1.8;max-width:440px;margin:0 auto 36px">Prepared in accordance with the Quran and Sunnah upon the understanding of the Salaf al-Salih</div>'
+    +'<div style="width:180px;height:1px;background:#C8B56A;margin:0 auto 18px;opacity:0.5"></div>'
+    +'<div style="font-family:monospace;font-size:9px;color:#C8B56A;letter-spacing:2px;border:1px solid #C8B56A;padding:4px 16px;display:inline-block;margin-bottom:10px">'+refNum+'</div>'
+    +'<div style="font-size:10px;color:#4A6A40">'+nowStr()+'</div>'
+    +'</div>';
+
+  var bodyHtml='<div style="width:794px;background:#FEFCF5;padding:52px 58px;font-family:Georgia,serif;font-size:12px;color:#2A1F0A">'
+  +'<div style="margin-bottom:20px"><div style="font-size:8px;font-weight:600;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1.5px solid #C8B56A;padding-bottom:5px;margin-bottom:12px;font-family:sans-serif">Clause 1 — Personal Declaration</div>'
+  +'<div style="background:#F2EDD5;border-left:3px solid #C8B56A;padding:10px 14px;font-size:11px;color:#1C3A10;line-height:1.9;margin-bottom:10px;font-family:sans-serif">I, <strong>'+g('fullName')+'</strong>, testify that there is no god worthy of worship except Allah, and that Muhammad is His messenger. I write this wasiyyah of my own free will, in a sound state of mind, under no compulsion.</div>'
+  +'<table style="width:100%;font-size:10px;border-collapse:collapse;font-family:sans-serif">'
+  +'<tr><td style="padding:4px 8px;color:#8A7A5A;min-width:140px">Date of birth</td><td style="padding:4px 8px;color:#2A1F0A">'+g('dob')+'</td><td style="padding:4px 8px;color:#8A7A5A">Nationality</td><td style="padding:4px 8px;color:#2A1F0A">'+g('nationality')+'</td></tr>'
+  +'<tr><td style="padding:4px 8px;color:#8A7A5A">Country</td><td style="padding:4px 8px;color:#2A1F0A">'+g('country')+'</td><td style="padding:4px 8px;color:#8A7A5A">Method</td><td style="padding:4px 8px;color:#2A1F0A">'+madhabNames[madhab]+'</td></tr>'
+  +'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top">Executor(s)</td><td colspan="3" style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+execStr+'</td></tr>'
+  +(userLocation?'<tr><td style="padding:4px 8px;color:#8A7A5A">Location</td><td colspan="3" style="padding:4px 8px;color:#2A1F0A">'+userLocation+'</td></tr>':'')
+  +'</table></div>'
+  +'<div style="margin-bottom:20px"><div style="font-size:8px;font-weight:600;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1.5px solid #C8B56A;padding-bottom:5px;margin-bottom:12px;font-family:sans-serif">Clause 2 — Religious Obligations</div>'
+  +(g('salahText')||g('sawmText')||g('zakatText')||g('hajjText')||g('otherObligations')?'<table style="width:100%;font-size:10px;border-collapse:collapse;font-family:sans-serif">'+(g('salahText')?'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top;min-width:140px">Missed prayers</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+g('salahText')+'</td></tr>':'')+(g('sawmText')?'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top">Missed fasts</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+g('sawmText')+'</td></tr>':'')+(g('zakatText')?'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top">Unpaid zakat</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+g('zakatText')+'</td></tr>':'')+(g('hajjText')?'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top">Hajj</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+g('hajjText')+'</td></tr>':'')+(g('otherObligations')?'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top">Other</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+g('otherObligations')+'</td></tr>':'')+'</table>':'<div style="font-size:10px;color:#8A7A5A;font-style:italic;font-family:sans-serif">The testator declares no outstanding religious obligations at the time of writing this wasiyyah.</div>')
+  +'</div>'
+  +'<div style="margin-bottom:20px"><div style="font-size:8px;font-weight:600;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1.5px solid #C8B56A;padding-bottom:5px;margin-bottom:12px;font-family:sans-serif">Clause 3 — Rights of People</div>'
+  +(g('debtsText')||g('owedText')||g('amanahText')||g('wrongText')?'<table style="width:100%;font-size:10px;border-collapse:collapse;font-family:sans-serif">'+(g('debtsText')?'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top;min-width:140px">Debts I owe</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+g('debtsText')+'</td></tr>':'')+(g('owedText')?'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top">Owed to me</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+g('owedText')+'</td></tr>':'')+(g('amanahText')?'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top">Amanah</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+g('amanahText')+'</td></tr>':'')+(g('wrongText')?'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top">Forgiveness</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+g('wrongText')+'</td></tr>':'')+'</table>':'<div style="font-size:10px;color:#8A7A5A;font-style:italic;font-family:sans-serif">The testator declares no outstanding rights of people, debts, or amanah at the time of writing this wasiyyah.</div>')
+  +'</div>'
+  +'<div style="margin-bottom:20px"><div style="font-size:8px;font-weight:600;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1.5px solid #C8B56A;padding-bottom:5px;margin-bottom:12px;font-family:sans-serif">Clause 4 — Inheritance Distribution'+(netEstate>0?' — Net Estate: '+fmt(netEstate):'')+'</div>'
+  +(calcShares.length>0?'<table style="width:100%;border-collapse:collapse;font-size:10px;font-family:sans-serif"><thead><tr style="background:#1C3A10"><th style="padding:6px 9px;text-align:left;border:1px solid #C8B56A;color:#C8B56A;font-weight:500">Heir</th><th style="padding:6px 9px;text-align:left;border:1px solid #C8B56A;color:#C8B56A;font-weight:500">Share</th><th style="padding:6px 9px;text-align:left;border:1px solid #C8B56A;color:#C8B56A;font-weight:500">Amount</th><th style="padding:6px 9px;text-align:left;border:1px solid #C8B56A;color:#C8B56A;font-weight:500">Evidence</th></tr></thead><tbody>'+heirRows+'</tbody></table>'+(bAmt>0?'<div style="font-size:10px;color:#2A1F0A;margin-top:8px;font-family:sans-serif">Bequest: '+fmt(bAmt)+(g('bequestRecipient')?' to '+g('bequestRecipient'):'')+'</div>':''):'<div style="font-size:10px;color:#8A7A5A;font-style:italic;font-family:sans-serif">No inheritance distribution recorded.</div>')
+  +'</div>'
+  +'<div style="margin-bottom:20px"><div style="font-size:8px;font-weight:600;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1.5px solid #C8B56A;padding-bottom:5px;margin-bottom:12px;font-family:sans-serif">Clause 5 — Funeral and Burial Instructions</div>'
+  +'<div style="background:#F2EDD5;border-left:3px solid #C8B56A;padding:9px 13px;font-size:10px;color:#1C3A10;line-height:1.9;margin-bottom:10px;font-family:sans-serif">Binding instructions: No wailing. No bid\'ah. No extravagance. No mixing of men and women. No photographs of the deceased. Hasten the janazah.</div>'
+  +'<table style="width:100%;font-size:10px;border-collapse:collapse;font-family:sans-serif">'
+  +'<tr><td style="padding:4px 8px;color:#8A7A5A;min-width:140px;vertical-align:top">Ghusl</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+ghuslStr+'</td></tr>'
+  +'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top">Janazah prayer</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+janazahStr+'</td></tr>'
+  +(g('burialLocation')?'<tr><td style="padding:4px 8px;color:#8A7A5A">Burial location</td><td style="padding:4px 8px;color:#2A1F0A">'+g('burialLocation')+'</td></tr>':'')
+  +(g('sadaqahRequest')?'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top">Sadaqah jariyah</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+g('sadaqahRequest')+'</td></tr>':'')
+  +(g('funeralOther')?'<tr><td style="padding:4px 8px;color:#8A7A5A;vertical-align:top">Other wishes</td><td style="padding:4px 8px;color:#2A1F0A;line-height:1.7">'+g('funeralOther')+'</td></tr>':'')
+  +'</table></div>'
+  +((g('msgSpouse')||g('msgChildren')||g('msgParents')||g('msgFamily')||g('msgFinal'))?'<div style="margin-bottom:20px"><div style="font-size:8px;font-weight:600;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1.5px solid #C8B56A;padding-bottom:5px;margin-bottom:12px;font-family:sans-serif">Clause 6 — Messages to Loved Ones</div>'+(g('msgSpouse')?'<div style="border:1px solid #E8DDB5;padding:8px 12px;margin-bottom:8px;background:#FEFCF5;font-family:sans-serif"><div style="font-size:8px;color:#1C3A10;font-weight:600;text-transform:uppercase;margin-bottom:4px">To my spouse</div><div style="font-size:10px;color:#2A1F0A;font-style:italic;line-height:1.8">'+g('msgSpouse')+'</div></div>':'')+(g('msgChildren')?'<div style="border:1px solid #E8DDB5;padding:8px 12px;margin-bottom:8px;background:#FEFCF5;font-family:sans-serif"><div style="font-size:8px;color:#1C3A10;font-weight:600;text-transform:uppercase;margin-bottom:4px">To my children</div><div style="font-size:10px;color:#2A1F0A;font-style:italic;line-height:1.8">'+g('msgChildren')+'</div></div>':'')+(g('msgParents')?'<div style="border:1px solid #E8DDB5;padding:8px 12px;margin-bottom:8px;background:#FEFCF5;font-family:sans-serif"><div style="font-size:8px;color:#1C3A10;font-weight:600;text-transform:uppercase;margin-bottom:4px">To my parents</div><div style="font-size:10px;color:#2A1F0A;font-style:italic;line-height:1.8">'+g('msgParents')+'</div></div>':'')+(g('msgFamily')?'<div style="border:1px solid #E8DDB5;padding:8px 12px;margin-bottom:8px;background:#FEFCF5;font-family:sans-serif"><div style="font-size:8px;color:#1C3A10;font-weight:600;text-transform:uppercase;margin-bottom:4px">To my family</div><div style="font-size:10px;color:#2A1F0A;font-style:italic;line-height:1.8">'+g('msgFamily')+'</div></div>':'')+(g('msgFinal')?'<div style="border:1px solid #E8DDB5;padding:8px 12px;margin-bottom:8px;background:#FEFCF5;font-family:sans-serif"><div style="font-size:8px;color:#1C3A10;font-weight:600;text-transform:uppercase;margin-bottom:4px">Final reminder</div><div style="font-size:10px;color:#2A1F0A;font-style:italic;line-height:1.8">'+g('msgFinal')+'</div></div>':'')+'</div>':'')
+  +'<div style="margin-bottom:24px;border-top:1.5px solid #C8B56A;padding-top:16px;font-family:sans-serif">'
+  +'<div style="font-size:8px;font-weight:600;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px">Letter to Executor</div>'
+  +'<div style="font-size:10px;color:#2A1F0A;line-height:1.9;font-style:italic;font-family:Georgia,serif;border:1px solid #E8DDB5;padding:12px 16px;background:#FEFCF5">'
+  +'Dear '+g('executorName')+',<br><br>I have appointed you as the executor of this wasiyyah because I trust your character, your integrity, and your commitment to the deen of Allah. I ask you to carry out what is written in this document with sincerity, patience, and fairness to all who are named within it, as an act of worship to Allah and as a final act of kindness to me.<br><br>Please ensure my religious obligations are addressed first, then debts settled, then my estate distributed as recorded in Clause 4 in accordance with Shariah inheritance law. If uncertain about anything, consult a qualified Islamic scholar before proceeding.<br><br>I ask Allah to reward you abundantly for fulfilling this trust. May He make it easy for you and for my family, and may He have mercy on us all.<br><br>Your brother/sister in Islam,<br>'+g('fullName')
+  +'</div></div>'
+  +'<div style="margin-top:20px;padding-top:16px;border-top:1.5px solid #C8B56A;font-family:sans-serif">'
+  +'<div style="font-size:8px;font-weight:600;color:#1C3A10;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Signatures and Witnesses</div>'
+  +'<div style="font-size:9px;color:#2A1F0A;margin-bottom:14px">Testator: _________________________________ &nbsp;&nbsp;&nbsp; Date: _______________</div>'
+  +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">'
+  +'<div style="border-top:1px solid #C8B56A;padding-top:8px"><div style="font-size:8px;color:#8A7A5A">Witness 1 full name</div><div style="border-bottom:1px dotted #C8B56A;height:20px;margin:4px 0 8px"></div><div style="font-size:8px;color:#8A7A5A">Signature</div><div style="border-bottom:1px dotted #C8B56A;height:20px;margin:4px 0 8px"></div><div style="font-size:8px;color:#8A7A5A">Date</div><div style="border-bottom:1px dotted #C8B56A;height:20px;margin:4px 0"></div></div>'
+  +'<div style="border-top:1px solid #C8B56A;padding-top:8px"><div style="font-size:8px;color:#8A7A5A">Witness 2 full name</div><div style="border-bottom:1px dotted #C8B56A;height:20px;margin:4px 0 8px"></div><div style="font-size:8px;color:#8A7A5A">Signature</div><div style="border-bottom:1px dotted #C8B56A;height:20px;margin:4px 0 8px"></div><div style="font-size:8px;color:#8A7A5A">Date</div><div style="border-bottom:1px dotted #C8B56A;height:20px;margin:4px 0"></div></div>'
+  +'</div>'
+  +'<div style="font-size:8px;color:#C8B56A;text-align:center;margin-top:16px;padding-top:12px;border-top:0.5px solid #E8DDB5;line-height:1.6">This document does not constitute legal advice. Have it witnessed and consult a local attorney if required.<br>buildmywasiyyah.com — Built upon the Quran and Sunnah upon the understanding of the Salaf al-Salih — '+refNum+'</div>'
+  +'</div>'
+  +'</div>';
+
+  var container=document.getElementById('freePdfDoc');
+  container.style.width='794px';container.style.padding='0';container.style.fontFamily='Georgia,serif';
+  container.innerHTML=coverHtml+bodyHtml;
+  container.style.left='0';container.style.zIndex='9999';
+
+  setTimeout(function(){
+    html2canvas(container,{scale:2,useCORS:true,backgroundColor:'#1C3A10',logging:false}).then(function(canvas){
+      container.style.left='-9999px';container.style.zIndex='';container.style.padding='48px 52px';
+      var imgData=canvas.toDataURL('image/png');
+      var pdf=new jspdf.jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+      var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+      var iw=pw,ih=canvas.height*(iw/canvas.width);
+      var pages=Math.ceil(ih/ph);
+      for(var i=0;i<pages;i++){if(i>0)pdf.addPage();pdf.addImage(imgData,'PNG',0,-(i*ph),iw,ih);}
+      pdf.save('My-Premium-Wasiyyah-'+new Date().getFullYear()+'.pdf');
+      try{var p=parseInt(localStorage.getItem('w_premium')||'0');localStorage.setItem('w_premium',p+1);}catch(e){}
+      if(btn){btn.disabled=false;btn.innerHTML='<i class="ti ti-download"></i> Download again';}
+    }).catch(function(){
+      container.style.left='-9999px';container.style.padding='48px 52px';
+      if(btn){btn.disabled=false;btn.innerHTML=orig;}
+      alert('PDF generation failed. Please try again.');
+    });
+  },300);
 }
 
 // REVIEW
@@ -1191,30 +1350,91 @@ function submitCompletionReview(){
   document.getElementById('cReviewSuccess').style.display='block';document.getElementById('cReviewText').value='';
 }
 
-// AI
-function sendAI(){
-  var input=document.getElementById('aiInput');var q=input.value.trim();if(!q)return;
-  var msgs=document.getElementById('aiMessages');
-  msgs.innerHTML+='<div class="ai-msg user">'+q+'</div>';
-  msgs.innerHTML+='<div class="ai-msg assistant" id="aiTyping">Thinking...</div>';
-  msgs.scrollTop=msgs.scrollHeight;input.value='';
-  fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,
-      system:'You are a knowledgeable Islamic guide specialising in wasiyyah (Islamic wills), inheritance (fara\'id) and related fiqh. You follow the Quran and Sunnah upon the understanding of the Salaf al-Salih. Always provide evidence from Quran or authentic Sunnah. Be concise, warm and clear. Do not give legal advice. Remind users to consult a qualified attorney for legal matters. Keep responses to 2 to 4 sentences.',
-      messages:[{role:'user',content:q}]})
-  }).then(function(r){return r.json();}).then(function(d){
-    var reply=d.content&&d.content[0]?d.content[0].text:'Please consult a qualified Islamic scholar for detailed rulings.';
-    document.getElementById('aiTyping').textContent=reply;msgs.scrollTop=msgs.scrollHeight;
-  }).catch(function(){document.getElementById('aiTyping').textContent='Could not connect right now. Please try again.';});
-}
 
 // INIT
 window.addEventListener('load',function(){
   checkForSaved();updateTotal();updateNextBtn();
   var savedMadhab=rv('madhab');
   if(savedMadhab&&madhabNames[savedMadhab]){madhab=savedMadhab;document.getElementById('madhabLabel').textContent=madhabNames[savedMadhab];}
-  // Gender-based spouse display default
   document.getElementById('rowHusband').style.display='none';
+  // Live exchange rate for premium price display
+  (function(){
+    var BASE_AUD=10;
+    var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';
+    var tzMap={'Australia':'AUD','America':'USD','Europe':'EUR','Asia/Karachi':'PKR','Asia/Riyadh':'SAR','Asia/Dubai':'AED','Asia/Cairo':'EGP','Asia/Dhaka':'BDT','Asia/Kuala':'MYR','Asia/Jakarta':'IDR','Africa':'USD','Pacific':'USD'};
+    var cur='USD';
+    Object.keys(tzMap).forEach(function(k){if(tz.indexOf(k)>-1)cur=tzMap[k];});
+    var priceEl=document.getElementById('premCompletionPrice');
+    var noteEl=document.getElementById('premLocalEquiv');
+    if(cur==='AUD')return;
+    fetch('https://open.er-api.com/v6/latest/AUD')
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(d&&d.rates&&d.rates[cur]){
+          var amt=BASE_AUD*d.rates[cur];
+          var syms={'USD':'$','EUR':'€','GBP':'£','PKR':'₨','SAR':'﷼','AED':'د.إ','EGP':'£E','BDT':'৳','MYR':'RM','IDR':'Rp'};
+          var s=syms[cur]||cur+' ';
+          var formatted=s+(amt<100?amt.toFixed(2):Math.round(amt).toLocaleString());
+          if(noteEl)noteEl.textContent='Approximately '+formatted+' '+cur+' at today's rate. Payment is charged in Australian Dollars (A$10) via Buy Me a Coffee — your bank converts automatically.';
+        }
+      }).catch(function(){});
+  })();
+
+  // Auto-detect country and pre-fill currency + country field
+  (function(){
+    var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';
+    var tzCountry={
+      'Australia':'Australia','Asia/Cairo':'Egypt','Asia/Riyadh':'Saudi Arabia',
+      'Asia/Dubai':'United Arab Emirates','Asia/Karachi':'Pakistan','Asia/Dhaka':'Bangladesh',
+      'Asia/Kuala_Lumpur':'Malaysia','Asia/Jakarta':'Indonesia','Asia/Kolkata':'India',
+      'Europe/London':'United Kingdom','America/New_York':'United States',
+      'America/Chicago':'United States','America/Los_Angeles':'United States',
+      'America/Toronto':'Canada','Europe/Paris':'France','Europe/Berlin':'Germany',
+      'Africa/Lagos':'Nigeria','Africa/Nairobi':'Kenya','Africa/Johannesburg':'South Africa',
+      'Asia/Istanbul':'Turkey','Asia/Tehran':'Iran','Asia/Baghdad':'Iraq',
+      'Asia/Amman':'Jordan','Africa/Casablanca':'Morocco','Africa/Algiers':'Algeria',
+      'Africa/Tunis':'Tunisia','Africa/Tripoli':'Libya'
+    };
+    var tzCurrency={
+      'Australia':'AUD','Asia/Cairo':'EGP','Asia/Riyadh':'SAR','Asia/Dubai':'AED',
+      'Asia/Karachi':'PKR','Asia/Dhaka':'BDT','Asia/Kuala_Lumpur':'MYR',
+      'Asia/Jakarta':'IDR','Asia/Kolkata':'INR','Europe/London':'GBP',
+      'America/New_York':'USD','America/Chicago':'USD','America/Los_Angeles':'USD',
+      'America/Toronto':'CAD','Europe/Paris':'EUR','Europe/Berlin':'EUR',
+      'Africa/Lagos':'NGN','Africa/Nairobi':'KES','Africa/Johannesburg':'ZAR',
+      'Asia/Istanbul':'TRY','Asia/Amman':'JOD','Africa/Casablanca':'MAD'
+    };
+    var detectedCountry='',detectedCurrency='USD';
+    Object.keys(tzCountry).forEach(function(k){if(tz===k||tz.startsWith(k)){detectedCountry=tzCountry[k];}});
+    Object.keys(tzCurrency).forEach(function(k){if(tz===k||tz.startsWith(k)){detectedCurrency=tzCurrency[k];}});
+    // Pre-fill country if field is empty
+    var countryEl=document.getElementById('country');
+    if(countryEl&&!countryEl.value&&detectedCountry)countryEl.value=detectedCountry;
+    // Pre-select currency
+    var curEl=document.getElementById('currency');
+    if(curEl&&detectedCurrency){
+      for(var i=0;i<curEl.options.length;i++){
+        if(curEl.options[i].value===detectedCurrency){curEl.selectedIndex=i;break;}
+      }
+    }
+    // Restore accessibility preferences
+    try{
+      if(localStorage.getItem('w_a11y_large')==='1'){document.documentElement.classList.add('large-text');var lb=document.getElementById('btnLargeText');if(lb){lb.style.background='var(--g600)';lb.style.color='white';}}
+      if(localStorage.getItem('w_a11y_contrast')==='1'){document.documentElement.classList.add('high-contrast');var cb=document.getElementById('btnHighContrast');if(cb){cb.style.background='var(--g600)';cb.style.color='white';}}
+    }catch(e){}
+  })();
+
+  var params=new URLSearchParams(window.location.search);
+  var pending=false;
+  try{pending=localStorage.getItem('wasiyyah_premium_pending')==='true';}catch(e){}
+  if(params.get('premium')==='true'&&pending){
+    try{localStorage.removeItem('wasiyyah_premium_pending');}catch(e){}
+    loadSavedData();
+    setTimeout(function(){
+      showComplete();
+      setTimeout(function(){generatePremiumPDF();},600);
+    },400);
+  }
 });
 </script>
 
