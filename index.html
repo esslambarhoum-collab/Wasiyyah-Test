@@ -232,7 +232,7 @@ footer{padding:2rem;text-align:center;font-size:13px;color:var(--gr600);border-t
   <div class="counter-section">
     <div class="counter-num" id="mainCounter">0</div>
     <div style="font-size:15px;color:var(--gr600);margin-bottom:0.5rem">Wasiyyahs completed worldwide</div>
-    <div style="font-size:13px;color:var(--gr600);font-style:italic">Updated in real time from actual completions on this device</div>
+    <div style="font-size:13px;color:var(--gr600);font-style:italic">Updated in real time from completions worldwide</div>
     <div class="counter-grid">
       <div class="counter-box"><div class="counter-box-num" id="todayCounter">0</div><div class="counter-box-label">Completed today</div></div>
       <div class="counter-box"><div class="counter-box-num" id="premiumCounter">0</div><div class="counter-box-label">Premium documents</div></div>
@@ -412,17 +412,32 @@ function proceedToWasiyyah(){if(document.getElementById('disclaimerCheck').check
 document.getElementById('disclaimerModal').addEventListener('click',function(e){if(e.target===this)this.classList.add('hidden');});
 document.getElementById('sampleModal').addEventListener('click',function(e){if(e.target===this)this.classList.add('hidden');});
 
-// COUNTER — real data only, starts at 0
+// COUNTER — reads from Supabase for global total
 (function(){
-  var t=parseInt(localStorage.getItem('w_count')||'0');
-  var p=parseInt(localStorage.getItem('w_premium')||'0');
-  var r=0;try{r=JSON.parse(localStorage.getItem('wasiyyah_reviews')||'[]').length;}catch(e){}
-  var todayKey='w_today_'+new Date().toISOString().split('T')[0];
-  var td=parseInt(localStorage.getItem(todayKey)||'0');
-  document.getElementById('mainCounter').textContent=t.toLocaleString();
-  document.getElementById('todayCounter').textContent=td;
-  document.getElementById('premiumCounter').textContent=p;
-  document.getElementById('reviewCounter').textContent=r;
+  var SUPABASE_URL = 'https://ubrijniaoffswuxhyzyw.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVicmlqbmlhb2Zmc3d1eGh5enl3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwMDg4MjQsImV4cCI6MjA5NDU4NDgyNH0.t8Y8dsjGLeM1hHB3T2IeAhD_qqzq8CsAmsRj2MnG8Rc';
+  var mainEl=document.getElementById('mainCounter');
+  var todayEl=document.getElementById('todayCounter');
+  var premEl=document.getElementById('premiumCounter');
+  var revEl=document.getElementById('reviewCounter');
+  function animateCount(el,target){
+    if(target===0){el.textContent='0';return;}
+    var start=0,step=Math.ceil(target/60);
+    var timer=setInterval(function(){start+=step;if(start>=target){start=target;clearInterval(timer);}el.textContent=start.toLocaleString();},20);
+  }
+  if(!SUPABASE_URL||!SUPABASE_ANON_KEY){
+    mainEl.textContent='0';todayEl.textContent='0';premEl.textContent='0';revEl.textContent='0';return;
+  }
+  fetch(SUPABASE_URL+'/rest/v1/wasiyyah_counter?select=count,today_count,premium_count,review_count&limit=1',{
+    headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+SUPABASE_ANON_KEY}
+  }).then(function(r){return r.json();}).then(function(data){
+    if(data&&data[0]){
+      animateCount(mainEl,data[0].count||0);
+      animateCount(todayEl,data[0].today_count||0);
+      animateCount(premEl,data[0].premium_count||0);
+      animateCount(revEl,data[0].review_count||0);
+    }
+  }).catch(function(){mainEl.textContent='0';todayEl.textContent='0';premEl.textContent='0';revEl.textContent='0';});
 })();
 
 // PREMIUM PRICE — live exchange rate A$10 AUD base

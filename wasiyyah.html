@@ -776,9 +776,37 @@ function showComplete(){
   document.getElementById('completeScreen').style.display='block';
   document.getElementById('progressFill').style.width='100%';
   document.getElementById('progressText').textContent='Wasiyyah complete, alhamdulillah';
-  try{var c=parseInt(localStorage.getItem('w_count')||'0');localStorage.setItem('w_count',c+1);}catch(e){}
+  // Increment global Supabase counter — only sends the number 1, nothing else
+  incrementGlobalCounter();
   window.scrollTo(0,0);
   autoSave();
+}
+
+function incrementGlobalCounter(){
+  // ── SUPABASE CONFIG ──────────────────────────────────────────────
+  // Replace these two values with your own from the Supabase dashboard
+  var SUPABASE_URL = 'https://ubrijniaoffswuxhyzyw.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVicmlqbmlhb2Zmc3d1eGh5enl3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwMDg4MjQsImV4cCI6MjA5NDU4NDgyNH0.t8Y8dsjGLeM1hHB3T2IeAhD_qqzq8CsAmsRj2MnG8Rc';
+  // ────────────────────────────────────────────────────────────────
+
+  // Guard: if not configured yet, fall back to localStorage only
+  if(!SUPABASE_URL||!SUPABASE_ANON_KEY){
+    try{var c=parseInt(localStorage.getItem('w_count')||'0');localStorage.setItem('w_count',c+1);}catch(e){}
+    return;
+  }
+
+  // Call the Supabase RPC function that increments the counter by 1
+  fetch(SUPABASE_URL+'/rest/v1/rpc/increment_wasiyyah_count', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer '+SUPABASE_ANON_KEY
+    },
+    body: JSON.stringify({})
+  }).catch(function(){
+    // If network fails, silently fall back — the completion still works
+  });
 }
 
 function returnToEdit(){
