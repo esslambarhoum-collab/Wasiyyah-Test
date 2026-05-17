@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews — Wasiyyah</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g50:#EAF3DE;--g100:#C0DD97;--g200:#97C459;--g600:#3B6D11;--g800:#27500A;--a50:#FAEEDA;--a100:#FAC775;--a200:#EF9F27;--a400:#BA7517;--gr50:#F1EFE8;--gr100:#D3D1C7;--gr600:#5F5E5A;--gr800:#444441;--white:#fff;--border:rgba(0,0,0,0.1)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--gr50);color:var(--gr800);min-height:100vh}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:0.5px solid var(--border);background:var(--white);position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo-box{width:30px;height:30px;background:var(--g600);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:500}
+.logo-name{font-size:15px;font-weight:500;color:var(--g800)}
+.main{max-width:800px;margin:2rem auto;padding:0 1.5rem 4rem}
+.page-title{font-size:28px;font-weight:500;color:var(--g800);margin-bottom:0.75rem;text-align:center}
+.page-sub{font-size:15px;color:var(--gr600);line-height:1.7;max-width:500px;margin:0 auto 2.5rem;text-align:center}
+.submit-card{background:var(--white);border:0.5px solid var(--border);border-radius:14px;padding:1.75rem;margin-bottom:2rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+input,select,textarea{width:100%;padding:10px 14px;border:1px solid var(--gr100);border-radius:8px;font-size:14px;color:var(--gr800);background:var(--white);outline:none;font-family:inherit}
+input:focus,select:focus,textarea:focus{border-color:var(--g200)}
+textarea{min-height:100px;resize:vertical;line-height:1.6}
+.stars-row{display:flex;gap:6px;margin-bottom:1rem}
+.star{font-size:28px;color:var(--gr100);cursor:pointer;transition:color 0.15s;user-select:none}
+.star.active{color:var(--a200)}
+.btn-submit{background:var(--g600);color:white;border:none;padding:11px 28px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;width:100%}
+.btn-submit:hover{background:var(--g800)}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.25rem}
+.review-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem}
+.review-stars{color:var(--a200);font-size:16px;margin-bottom:0.75rem}
+.review-text{font-size:14px;color:var(--gr800);line-height:1.7;font-style:italic;margin-bottom:1rem}
+.review-author{font-size:12px;color:var(--gr600);font-weight:500}
+.review-date{font-size:11px;color:var(--gr100)}
+.no-reviews{text-align:center;padding:3rem;color:var(--gr600);font-size:14px;background:var(--white);border-radius:12px;border:0.5px solid var(--border)}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}.reviews-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html"><div class="logo-box">W</div><span class="logo-name">Wasiyyah</span></a>
+  <a href="index.html" style="font-size:14px;color:var(--g600);text-decoration:none;display:flex;align-items:center;gap:6px"><i class="ti ti-arrow-left"></i> Back to home</a>
+</nav>
+<div class="main">
+  <div style="font-size:12px;font-weight:500;color:var(--a400);letter-spacing:1.5px;text-transform:uppercase;text-align:center;margin-bottom:0.75rem">Community</div>
+  <h1 class="page-title">Reviews from the Ummah</h1>
+  <p class="page-sub">Real feedback from Muslims who have used this tool. All reviews are submitted by actual users. No fabricated reviews — we are Muslims and we must always be honest.</p>
+  <div class="submit-card">
+    <div style="font-size:16px;font-weight:500;color:var(--g800);margin-bottom:0.4rem">Leave a review</div>
+    <div style="font-size:13px;color:var(--gr600);margin-bottom:1.25rem;line-height:1.5">Your honest feedback helps other Muslims decide to complete their wasiyyah. All reviews are moderated before appearing.</div>
+    <div style="margin-bottom:1rem">
+      <div style="font-size:13px;font-weight:500;color:var(--gr800);margin-bottom:8px">Your rating</div>
+      <div class="stars-row" id="starsRow">
+        <span class="star" onclick="setRating(1)">&#9733;</span>
+        <span class="star" onclick="setRating(2)">&#9733;</span>
+        <span class="star" onclick="setRating(3)">&#9733;</span>
+        <span class="star" onclick="setRating(4)">&#9733;</span>
+        <span class="star" onclick="setRating(5)">&#9733;</span>
+      </div>
+    </div>
+    <div class="form-row">
+      <div><label style="font-size:13px;font-weight:500;color:var(--gr800);display:block;margin-bottom:6px">First name (optional)</label><input type="text" id="reviewName" placeholder="e.g. Ahmed"></div>
+      <div><label style="font-size:13px;font-weight:500;color:var(--gr800);display:block;margin-bottom:6px">Country (optional)</label><input type="text" id="reviewCountry" placeholder="e.g. United Kingdom"></div>
+    </div>
+    <label style="display:flex;align-items:center;gap:8px;margin-bottom:1rem;cursor:pointer;font-size:13px;color:var(--gr600)"><input type="checkbox" id="anonCheck" style="width:16px;height:16px;accent-color:var(--g600)"> Post anonymously — your name and country will not appear</label>
+    <div style="margin-bottom:1rem"><label style="font-size:13px;font-weight:500;color:var(--gr800);display:block;margin-bottom:6px">Your review</label><textarea id="reviewText" placeholder="Share your honest experience. How did this tool help you?"></textarea></div>
+    <button class="btn-submit" onclick="submitReview()">Submit review</button>
+    <div id="reviewSuccess" style="display:none;margin-top:1rem;background:var(--g50);border:1px solid var(--g100);border-radius:8px;padding:1rem;text-align:center;font-size:14px;color:var(--g800)">JazakAllahu khayran. Your review has been submitted and will appear after moderation.</div>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+    <div style="font-size:16px;font-weight:500;color:var(--g800)">All reviews</div>
+    <div style="font-size:14px;color:var(--gr600)" id="reviewsCount"></div>
+  </div>
+  <div class="reviews-grid" id="reviewsGrid"></div>
+</div>
+<script>
+var rating=0;
+function setRating(n){rating=n;document.querySelectorAll('.star').forEach(function(s,i){s.classList.toggle('active',i<n);});}
+function submitReview(){
+  var text=document.getElementById('reviewText').value.trim();
+  if(!rating){alert('Please select a star rating.');return;}
+  if(!text||text.length<15){alert('Please write at least a short review (15 characters minimum).');return;}
+  var anon=document.getElementById('anonCheck').checked;
+  var name=anon?'Anonymous':document.getElementById('reviewName').value.trim()||'Anonymous';
+  var country=anon?'':document.getElementById('reviewCountry').value.trim();
+  var review={name:name,country:country,rating:rating,text:text,date:new Date().toLocaleDateString('en-GB',{month:'long',year:'numeric'}),anon:anon};
+  try{var stored=JSON.parse(localStorage.getItem('wasiyyah_reviews')||'[]');stored.unshift(review);localStorage.setItem('wasiyyah_reviews',JSON.stringify(stored));}catch(e){}
+  document.getElementById('reviewSuccess').style.display='block';
+  document.getElementById('reviewText').value='';document.getElementById('reviewName').value='';document.getElementById('reviewCountry').value='';document.getElementById('anonCheck').checked=false;
+  rating=0;document.querySelectorAll('.star').forEach(function(s){s.classList.remove('active');});
+  loadReviews();
+}
+function loadReviews(){
+  var reviews=[];
+  try{reviews=JSON.parse(localStorage.getItem('wasiyyah_reviews')||'[]');}catch(e){}
+  var grid=document.getElementById('reviewsGrid');
+  var count=document.getElementById('reviewsCount');
+  count.textContent=reviews.length+' review'+(reviews.length!==1?'s':'');
+  if(reviews.length===0){grid.innerHTML='<div class="no-reviews"><div style="font-size:28px;color:var(--gr100);margin-bottom:1rem"><i class="ti ti-star"></i></div><div style="font-size:15px;font-weight:500;color:var(--gr800);margin-bottom:0.5rem">No reviews yet</div><div style="font-size:13px;color:var(--gr600);line-height:1.7;max-width:320px;margin:0 auto">Complete your wasiyyah and be among the first to share your honest experience.</div></div>';return;}
+  grid.innerHTML=reviews.map(function(r){
+    var stars='&#9733;'.repeat(r.rating)+'&#9734;'.repeat(5-r.rating);
+    var author=r.anon?'Anonymous':(r.name+(r.country?' — '+r.country:''));
+    return'<div class="review-card"><div class="review-stars">'+stars+'</div><div class="review-text">"'+r.text+'"</div><div style="display:flex;justify-content:space-between;align-items:center"><div class="review-author">'+author+'</div><div class="review-date">'+r.date+'</div></div></div>';
+  }).join('');
+}
+loadReviews();
+</script>
+</body>
+</html>

@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Begin Your Wasiyyah</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g50:#EAF3DE;--g100:#C0DD97;--g200:#97C459;--g600:#3B6D11;--g800:#27500A;--a50:#FAEEDA;--a100:#FAC775;--a200:#EF9F27;--a400:#BA7517;--gr50:#F1EFE8;--gr100:#D3D1C7;--gr600:#5F5E5A;--gr800:#444441;--white:#fff;--border:rgba(0,0,0,0.1);--gold:#C8B56A;--cream:#FEFCF5;--dg:#1C3A10}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--gr50);color:var(--gr800);min-height:100vh}
+body.large-text *{font-size:110%!important}
+body.high-contrast{background:#000;color:#fff}body.high-contrast .section-card,body.high-contrast .top-bar{background:#111;border-color:#444}
+.a11y-bar{position:fixed;bottom:1.5rem;left:1.5rem;z-index:300;display:flex;flex-direction:column;gap:8px}
+.a11y-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--g600);background:var(--white);color:var(--g600);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,0.12);font-weight:700;font-family:inherit;position:relative}
+.a11y-btn:hover{background:var(--g600);color:white}
+.a11y-tip{position:absolute;left:52px;background:var(--g800);color:white;padding:3px 8px;border-radius:4px;font-size:11px;white-space:nowrap;display:none;font-weight:400}
+.a11y-btn:hover .a11y-tip{display:block}
+.top-bar{background:var(--white);border-bottom:0.5px solid var(--border);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo-box{width:30px;height:30px;background:var(--g600);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:500}
+.logo-name{font-size:15px;font-weight:500;color:var(--g800)}
+.save-indicator{font-size:12px;color:var(--g600);display:flex;align-items:center;gap:5px;background:var(--g50);padding:4px 10px;border-radius:20px}
+.progress-wrap{background:var(--white);border-bottom:0.5px solid var(--border);padding:1.25rem 2rem}
+.progress-steps{display:flex;align-items:center;max-width:700px;margin:0 auto}
+.step-pill{display:flex;align-items:center;gap:6px;flex:1}
+.step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0;transition:all 0.3s}
+.step-dot.done{background:var(--g600);color:white}
+.step-dot.active{background:var(--g800);color:white;outline:3px solid var(--g100);outline-offset:2px}
+.step-dot.todo{background:var(--gr50);color:var(--gr600);border:1.5px solid var(--gr100)}
+.step-label{font-size:11px;color:var(--gr600);white-space:nowrap;display:none}
+.step-label.active{color:var(--g800);font-weight:500;display:block}
+.step-line{flex:1;height:2px;background:var(--gr100);margin:0 4px;transition:background 0.3s}
+.step-line.done{background:var(--g200)}
+.progress-bar-bg{height:4px;background:var(--gr100);border-radius:2px;margin-top:10px;max-width:700px;margin-left:auto;margin-right:auto}
+.progress-bar-fill{height:4px;background:var(--g600);border-radius:2px;transition:width 0.4s}
+.progress-text{font-size:12px;color:var(--gr600);text-align:right;margin-top:4px;max-width:700px;margin-left:auto;margin-right:auto}
+.form-wrap{max-width:680px;margin:2rem auto;padding:0 1.5rem 8rem}
+.badge-private{display:inline-flex;align-items:center;gap:5px;background:var(--g50);border:1px solid var(--g100);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--g600);margin-bottom:1rem}
+.section-card{background:var(--white);border:0.5px solid var(--border);border-radius:14px;padding:2rem;margin-bottom:1rem;display:none}
+.section-card.active{display:block}
+.section-icon{width:42px;height:42px;background:var(--g50);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--g600);margin-bottom:1rem}
+.section-title{font-size:20px;font-weight:500;color:var(--g800);margin-bottom:0.4rem}
+.section-sub{font-size:14px;color:var(--gr600);line-height:1.6;margin-bottom:1.75rem}
+.daleel-box{background:var(--g50);border-left:3px solid var(--g200);border-radius:0 8px 8px 0;padding:0.875rem 1rem;margin-bottom:1.5rem}
+.daleel-text{font-size:13px;color:var(--g800);font-style:italic;line-height:1.7}
+.daleel-source{font-size:12px;color:var(--a400);margin-top:4px;font-weight:500}
+.field-group{margin-bottom:1.5rem}
+.field-label{font-size:14px;font-weight:500;color:var(--gr800);margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.field-hint{font-size:12px;color:var(--gr600);margin-bottom:8px;line-height:1.5}
+.badge-recommended{background:var(--a50);color:var(--a400);font-size:10px;font-weight:500;padding:2px 7px;border-radius:10px;border:1px solid var(--a100);flex-shrink:0}
+.badge-required{background:#FCEAEA;color:#A32D2D;font-size:10px;font-weight:500;padding:2px 7px;border-radius:10px;border:1px solid #F0B0B0;flex-shrink:0}
+.badge-optional{background:var(--gr50);color:var(--gr600);font-size:10px;font-weight:500;padding:2px 7px;border-radius:10px;border:1px solid var(--gr100);flex-shrink:0}
+.help-btn{width:18px;height:18px;border-radius:50%;background:var(--g50);border:1px solid var(--g100);color:var(--g600);font-size:11px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:500}
+.help-btn:hover{background:var(--g100)}
+.help-panel{background:var(--a50);border:1px solid var(--a100);border-radius:10px;padding:1rem 1.25rem;margin-top:8px;display:none;margin-bottom:10px}
+.help-panel.open{display:block}
+.help-panel-title{font-size:13px;font-weight:500;color:var(--a400);margin-bottom:4px}
+.help-panel-text{font-size:13px;color:#633806;line-height:1.7}
+.warning-box{background:#FCEAEA;border:1px solid #F0B0B0;border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;font-size:13px;color:#7A1C1C;line-height:1.7;font-weight:500}
+input[type=text],input[type=date],input[type=number],input[type=email],select,textarea{width:100%;padding:10px 14px;border:1px solid var(--gr100);border-radius:8px;font-size:14px;color:var(--gr800);background:var(--white);outline:none;font-family:inherit;transition:border-color 0.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--g200)}
+input.invalid{border-color:#F0B0B0!important;background:#FCEAEA}
+textarea{resize:vertical;min-height:80px;line-height:1.6}
+.radio-group{display:flex;flex-direction:column;gap:8px}
+.radio-opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border:1px solid var(--gr100);border-radius:8px;cursor:pointer;transition:all 0.2s}
+.radio-opt:hover{border-color:var(--g100);background:var(--g50)}
+.radio-opt.selected{border-color:var(--g200);background:var(--g50)}
+.radio-opt input[type=radio]{accent-color:var(--g600);width:16px;height:16px;margin-top:2px;flex-shrink:0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem}
+.nav-btns{display:flex;align-items:center;justify-content:space-between;margin-top:2rem;padding-top:1.5rem;border-top:0.5px solid var(--border)}
+.btn-back{background:transparent;color:var(--gr600);border:1px solid var(--gr100);padding:10px 24px;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit}.btn-back:hover{background:var(--gr50)}
+.btn-next{background:var(--g600);color:white;border:none;padding:10px 28px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:8px;transition:all 0.2s}.btn-next:hover{background:var(--g800)}
+.btn-next:disabled{background:var(--gr100);color:var(--gr600);cursor:not-allowed}
+.madhab-notice{display:flex;align-items:center;justify-content:space-between;background:var(--g50);border:1px solid var(--g100);border-radius:10px;padding:.875rem 1rem;margin-bottom:1.25rem;gap:12px;flex-wrap:wrap}
+.madhab-notice-text{font-size:13px;color:var(--g800);flex:1}
+.switch-btn{background:transparent;border:1px solid var(--g200);color:var(--g600);padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer;white-space:nowrap;font-family:inherit}
+.madhab-switcher{background:var(--gr50);border:1px solid var(--gr100);border-radius:10px;padding:1rem;margin-bottom:1.25rem;display:none}
+.madhab-switcher.open{display:block}
+.madhab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:8px}
+.madhab-opt{padding:8px 12px;border:1px solid var(--gr100);border-radius:8px;cursor:pointer;font-size:13px;color:var(--gr800);text-align:center;transition:all 0.2s;font-family:inherit}
+.madhab-opt:hover{border-color:var(--g100);background:var(--g50)}
+.madhab-opt.calc-active{border-color:var(--g600);background:var(--g50);color:var(--g800);font-weight:500}
+.calc-family-section{margin-bottom:1.25rem}
+.calc-family-title{font-size:13px;font-weight:500;color:var(--g800);margin-bottom:8px;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
+.counter-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--gr50)}
+.counter-label{font-size:13px;color:var(--gr800)}
+.counter-ctrl{display:flex;align-items:center;gap:10px}
+.cnt-btn{width:28px;height:28px;border-radius:6px;border:1px solid var(--gr100);background:var(--white);color:var(--gr800);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit}
+.cnt-btn:hover{background:var(--g50);border-color:var(--g100)}
+.cnt-val{font-size:14px;font-weight:500;color:var(--g800);min-width:20px;text-align:center}
+.asset-row{display:grid;grid-template-columns:1fr auto 120px;gap:8px;align-items:center;margin-bottom:8px}
+.asset-row input{margin:0}
+.remove-btn{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:var(--white);color:var(--gr600);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px}
+.remove-btn:hover{background:#FCEBEB;border-color:#F09595;color:#A32D2D}
+.add-asset-btn{background:transparent;border:1px dashed var(--g100);color:var(--g600);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;width:100%;margin-top:4px;font-family:inherit}
+.add-asset-btn:hover{background:var(--g50)}
+.estate-total-row{display:flex;align-items:center;justify-content:space-between;margin-top:.75rem;padding:.875rem 1rem;background:var(--g50);border-radius:8px}
+.estate-net-row{display:flex;align-items:center;justify-content:space-between;margin-top:.75rem;padding:.875rem 1rem;background:var(--g800);border-radius:8px}
+.calc-btn{background:var(--g600);color:white;border:none;padding:12px 28px;border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;width:100%;font-family:inherit;margin-top:1.25rem;display:flex;align-items:center;justify-content:center;gap:8px}
+.calc-btn:hover{background:var(--g800)}
+.estate-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:1.25rem}
+.estate-box{background:var(--gr50);border-radius:8px;padding:.875rem;text-align:center}
+.heir-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:0.5px solid var(--gr50);gap:8px}
+.heir-row:last-child{border-bottom:none}
+.heir-name{font-size:14px;font-weight:500;color:var(--g800)}
+.heir-fraction{font-size:12px;color:var(--g600);margin-top:2px}
+.heir-daleel{font-size:11px;color:var(--gr600);margin-top:2px;font-style:italic}
+.heir-amount{text-align:right}
+.heir-val{font-size:15px;font-weight:500;color:var(--g800)}
+.heir-pct{font-size:12px;color:var(--gr600)}
+.heir-bar-wrap{width:60px;height:5px;background:var(--gr100);border-radius:3px;margin-top:4px;margin-left:auto}
+.heir-bar{height:5px;background:var(--g600);border-radius:3px}
+.bequest-warning{background:var(--a50);border:1px solid var(--a100);border-radius:8px;padding:.75rem 1rem;font-size:13px;color:#633806;line-height:1.6;margin-bottom:1rem}
+.skip-calc-row{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:var(--gr50);border:1px solid var(--gr100);border-radius:8px;margin-top:1rem;cursor:pointer}
+.skip-calc-row input{width:16px;height:16px;accent-color:var(--g600);flex-shrink:0;margin-top:2px}
+.funeral-notice{background:var(--g50);border:1px solid var(--g100);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.5rem}
+.export-import-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.export-import-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn-export{background:transparent;border:1px solid var(--g200);color:var(--g600);padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:5px}.btn-export:hover{background:var(--g50)}
+.btn-import-label{background:transparent;border:1px solid var(--g200);color:var(--g600);padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:5px}.btn-import-label:hover{background:var(--g50)}
+.edit-banner{background:var(--white);border:0.5px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;text-align:center;display:none}
+.star-btn{font-size:28px;color:var(--gr100);cursor:pointer;transition:color 0.15s;background:none;border:none;padding:0}
+.star-btn.active{color:var(--a200)}
+.pdf-options{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+.pdf-option{border:0.5px solid var(--border);border-radius:12px;padding:1.25rem;background:var(--white)}
+.pdf-option.premium{border:1.5px solid var(--a400)}
+.pdf-feat-sm{font-size:12px;color:var(--gr600);padding:3px 0;display:flex;align-items:center;gap:6px}
+.pdf-feat-sm.yes{color:var(--g800)}.pdf-feat-sm.no{color:var(--gr100);text-decoration:line-through}
+.btn-pdf-free{background:var(--g600);color:white;border:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;width:100%;margin-top:1rem;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px}.btn-pdf-free:hover{background:var(--g800)}.btn-pdf-free:disabled{background:var(--gr100);cursor:not-allowed}
+.btn-pdf-prem{background:var(--g800);color:var(--a100);border:1px solid var(--a400);padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;width:100%;margin-top:1rem;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px}.btn-pdf-prem:hover{background:var(--dg);color:white}
+.ai-bubble{position:fixed;bottom:2rem;right:2rem;z-index:200}
+.ai-btn{width:52px;height:52px;border-radius:50%;background:var(--g600);color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 2px 12px rgba(0,0,0,0.15)}.ai-btn:hover{background:var(--g800)}
+.ai-chat{position:absolute;bottom:64px;right:0;width:300px;background:var(--white);border:0.5px solid var(--border);border-radius:14px;overflow:hidden;display:none}.ai-chat.open{display:block}
+.ai-chat-header{background:var(--g800);color:white;padding:12px 16px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px}
+.ai-messages{height:220px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:10px}
+.ai-msg{font-size:13px;line-height:1.6;padding:8px 12px;border-radius:8px;max-width:92%}
+.ai-msg.assistant{background:var(--g50);color:var(--g800);align-self:flex-start}
+.ai-msg.user{background:var(--g600);color:white;align-self:flex-end}
+.ai-input-wrap{border-top:0.5px solid var(--border);padding:10px;display:flex;gap:8px}
+.ai-input{flex:1;border:1px solid var(--gr100);border-radius:6px;padding:7px 10px;font-size:13px;outline:none;font-family:inherit}.ai-input:focus{border-color:var(--g200)}
+.ai-send{background:var(--g600);color:white;border:none;border-radius:6px;padding:7px 12px;cursor:pointer;font-size:13px}
+@media(max-width:600px){
+  .top-bar{padding:1rem}.progress-wrap{padding:1rem}
+  .form-wrap{padding:0 1rem 5rem}.two-col{grid-template-columns:1fr}.three-col{grid-template-columns:1fr 1fr}
+  .section-card{padding:1.5rem 1.25rem}.pdf-options{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="logo" href="index.html">
+    <div class="logo-box">W</div>
+    <span class="logo-name">Wasiyyah</span>
+  </a>
+  <div class="save-indicator" id="saveIndicator">
+    <i class="ti ti-shield-check" style="font-size:13px"></i>
+    <span id="saveText">Your data stays on your device only</span>
+  </div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-steps">
+    <div class="step-pill"><div class="step-dot active" id="dot0">1</div><div class="step-label active" id="lbl0">Personal</div></div>
+    <div class="step-line" id="line0"></div>
+    <div class="step-pill"><div class="step-dot todo" id="dot1">2</div><div class="step-label" id="lbl1">Obligations</div></div>
+    <div class="step-line" id="line1"></div>
+    <div class="step-pill"><div class="step-dot todo" id="dot2">3</div><div class="step-label" id="lbl2">Rights</div></div>
+    <div class="step-line" id="line2"></div>
+    <div class="step-pill"><div class="step-dot todo" id="dot3">4</div><div class="step-label" id="lbl3">Assets</div></div>
+    <div class="step-line" id="line3"></div>
+    <div class="step-pill"><div class="step-dot todo" id="dot4">5</div><div class="step-label" id="lbl4">Funeral</div></div>
+    <div class="step-line" id="line4"></div>
+    <div class="step-pill"><div class="step-dot todo" id="dot5">6</div><div class="step-label" id="lbl5">Messages</div></div>
+  </div>
+  <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:16%"></div></div>
+  <div class="progress-text" id="progressText">Section 1 of 6</div>
+</div>
+
+<div class="form-wrap">
+
+<div class="badge-private"><i class="ti ti-lock" style="font-size:12px"></i>Everything you write stays on your device only. Nothing is sent to any server.</div>
+
+<div class="edit-banner" id="editBanner">
+  <div style="font-size:16px;font-weight:500;color:var(--g800);margin-bottom:0.4rem">Welcome back</div>
+  <div style="font-size:13px;color:var(--gr600);margin-bottom:1.25rem;line-height:1.6">We found a saved wasiyyah on this device. Would you like to continue editing it, or start a new one?</div>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <button onclick="loadSavedData()" style="background:var(--g600);color:white;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px"><i class="ti ti-edit"></i>Continue editing</button>
+    <button onclick="clearAndStart()" style="background:transparent;color:var(--g600);border:1px solid var(--g100);padding:10px 24px;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit">Start fresh</button>
+  </div>
+</div>
+
+<div class="export-import-bar">
+  <div style="font-size:13px;color:var(--gr600)"><i class="ti ti-device-floppy" style="font-size:13px;vertical-align:-2px;margin-right:5px;color:var(--g600)"></i>Progress saves automatically on your device</div>
+  <div class="export-import-actions">
+    <button class="btn-export" onclick="exportData()"><i class="ti ti-download" style="font-size:13px"></i>Export backup</button>
+    <label class="btn-import-label"><i class="ti ti-upload" style="font-size:13px"></i>Import backup<input type="file" accept=".json" style="display:none" onchange="importData(event)"></label>
+  </div>
+</div>
+
+<!-- SECTION 1: PERSONAL -->
+<div class="section-card active" id="sec0">
+  <div class="section-icon"><i class="ti ti-user"></i></div>
+  <div class="section-title">Personal declaration</div>
+  <div class="section-sub">Begin your wasiyyah in the name of Allah. This section establishes who you are and records your declaration of faith and sound mind.</div>
+  <div class="daleel-box">
+    <div class="daleel-text">"It is not permissible for any Muslim who has something to bequeath to sleep for two nights without having his last will and testament written and kept ready with him."</div>
+    <div class="daleel-source">Narrated by Ibn Umar رضي الله عنه, from the Prophet ﷺ. Sahih Bukhari 2738 and Sahih Muslim 1627.</div>
+  </div>
+
+  <!-- REQUIRED FIELDS NOTE -->
+  <div style="background:var(--gr50);border-radius:8px;padding:0.75rem 1rem;margin-bottom:1.5rem;font-size:12px;color:var(--gr600)">Fields marked <span style="background:#FCEAEA;color:#A32D2D;padding:1px 6px;border-radius:8px;border:1px solid #F0B0B0;font-weight:500;font-size:10px">required</span> must be completed before you can continue.</div>
+
+  <div class="field-group">
+    <div class="field-label">Gender <span class="badge-required">required</span></div>
+    <div class="field-hint">Used to show the correct spouse field in the inheritance calculator</div>
+    <div class="radio-group">
+      <label class="radio-opt" onclick="selectRadio(this);setGender('male');autoSave()"><input type="radio" name="gender" value="male" id="genderMale"><span class="radio-label" style="font-size:14px;color:var(--gr800)">Male</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);setGender('female');autoSave()"><input type="radio" name="gender" value="female" id="genderFemale"><span class="radio-label" style="font-size:14px;color:var(--gr800)">Female</span></label>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Full legal name <span class="badge-required">required</span></div>
+    <input type="text" id="fullName" placeholder="e.g. Abdullah Yusuf Al-Farsi" oninput="autoCapitalise(this);autoSave()" autocomplete="name">
+  </div>
+
+  <div class="two-col">
+    <div class="field-group"><div class="field-label">Date of birth</div><input type="date" id="dob" oninput="autoSave()"></div>
+    <div class="field-group"><div class="field-label">Nationality</div><input type="text" id="nationality" placeholder="e.g. Australian" oninput="autoCapitalise(this);autoSave()"></div>
+  </div>
+  <div class="field-group"><div class="field-label">Country of residence</div><input type="text" id="country" placeholder="e.g. Egypt" oninput="autoCapitalise(this);autoSave()"></div>
+
+  <div class="field-group">
+    <div class="field-label">Declaration of faith <span class="badge-required">required</span> <button class="help-btn" onclick="toggleHelp('h-shahadah')" aria-label="Help">?</button></div>
+    <div class="help-panel" id="h-shahadah"><div class="help-panel-title">Why include the shahadah?</div><div class="help-panel-text">Beginning the wasiyyah with the shahadah is the Sunnah. It establishes clearly that this is an Islamic will written by a Muslim, and it is a beautiful and fitting way to open this document.</div></div>
+    <div style="background:var(--g50);border:1px solid var(--g100);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;text-align:center">
+      <div style="font-size:22px;color:var(--g600);margin-bottom:6px;letter-spacing:1px">أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ</div>
+      <div style="font-size:13px;color:var(--g800);font-style:italic">I testify that there is no god worthy of worship except Allah, and I testify that Muhammad is the messenger of Allah.</div>
+    </div>
+    <div class="radio-group">
+      <label class="radio-opt" onclick="selectRadio(this);autoSave()"><input type="radio" name="shahadah" value="yes"><span style="font-size:14px;color:var(--gr800)">I declare this shahadah and begin my wasiyyah as a Muslim upon tawheed</span></label>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Sound mind declaration <span class="badge-required">required</span></div>
+    <div class="radio-group">
+      <label class="radio-opt" onclick="selectRadio(this);autoSave()"><input type="radio" name="soundmind" value="yes"><span style="font-size:14px;color:var(--gr800)">I write this wasiyyah of my own free will, in a sound state of mind, under no compulsion</span></label>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Islamic approach <button class="help-btn" onclick="toggleHelp('h-madhab')" aria-label="Help">?</button></div>
+    <div class="help-panel" id="h-madhab"><div class="help-panel-title">For the inheritance calculator only</div><div class="help-panel-text">Your selection here is used only for the Fara'id inheritance calculator in Section 4. The differences between the four madhabs on inheritance are minor in most cases. All rulings are based on the Quran and authentic Sunnah regardless of which you select.</div></div>
+    <div class="field-hint">Choose the method you follow — used only for the inheritance calculator. The differences between the four madhabs are minor.</div>
+    <div class="radio-group">
+      <label class="radio-opt" onclick="selectRadio(this);autoSave()"><input type="radio" name="madhab" value="salafi"><span style="font-size:14px;color:var(--gr800)">Quran and Sunnah upon the understanding of the Salaf al-Salih</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);autoSave()"><input type="radio" name="madhab" value="hanafi"><span style="font-size:14px;color:var(--gr800)">Hanafi</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);autoSave()"><input type="radio" name="madhab" value="maliki"><span style="font-size:14px;color:var(--gr800)">Maliki</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);autoSave()"><input type="radio" name="madhab" value="shafi"><span style="font-size:14px;color:var(--gr800)">Shafi'i</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);autoSave()"><input type="radio" name="madhab" value="hanbali"><span style="font-size:14px;color:var(--gr800)">Hanbali</span></label>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Primary executor <span class="badge-required">required</span> <button class="help-btn" onclick="toggleHelp('h-exec')" aria-label="Help">?</button></div>
+    <div class="help-panel" id="h-exec"><div class="help-panel-title">What is an executor?</div><div class="help-panel-text">The executor is the person you trust to carry out the instructions in your wasiyyah after you pass. They do not inherit from you — they simply oversee that your wishes are fulfilled. Name a backup in case the first is unable to serve.</div></div>
+    <div class="field-hint">The person you trust most to carry out your wasiyyah</div>
+    <div class="two-col" style="margin-bottom:8px">
+      <input type="text" id="executorName" placeholder="Full name" oninput="autoCapitalise(this);autoSave()">
+      <input type="text" id="executorContact" placeholder="Phone or email" oninput="autoSave()">
+    </div>
+    <div class="field-label" style="margin-top:1rem">Backup executor <span class="badge-recommended">recommended</span></div>
+    <div class="field-hint">Named in case your primary executor has passed or is unavailable</div>
+    <div class="two-col" style="margin-bottom:8px">
+      <input type="text" id="executor2Name" placeholder="Full name" oninput="autoCapitalise(this);autoSave()">
+      <input type="text" id="executor2Contact" placeholder="Phone or email" oninput="autoSave()">
+    </div>
+    <div class="field-label" style="margin-top:1rem">Third executor <span class="badge-optional">optional</span></div>
+    <div class="two-col">
+      <input type="text" id="executor3Name" placeholder="Full name" oninput="autoCapitalise(this);autoSave()">
+      <input type="text" id="executor3Contact" placeholder="Phone or email" oninput="autoSave()">
+    </div>
+  </div>
+
+  <div id="validationMsg0" style="display:none;background:#FCEAEA;border:1px solid #F0B0B0;border-radius:8px;padding:0.75rem 1rem;font-size:13px;color:#7A1C1C;margin-bottom:1rem"></div>
+  <div class="nav-btns"><div></div><button class="btn-next" onclick="validateAndGoTo(1)">Continue <i class="ti ti-arrow-right"></i></button></div>
+</div>
+
+<!-- SECTION 2: OBLIGATIONS -->
+<div class="section-card" id="sec1">
+  <div class="section-icon"><i class="ti ti-moon"></i></div>
+  <div class="section-title">Religious obligations</div>
+  <div class="section-sub">Before any wealth is distributed, address what you owe to Allah. These debts come before all others.</div>
+  <div class="daleel-box">
+    <div class="daleel-text">"The debt owed to Allah is most deserving to be paid."</div>
+    <div class="daleel-source">Narrated by Ibn Abbas رضي الله عنه, from the Prophet ﷺ. Sahih Bukhari 1953.</div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Missed prayers (Qaza Salah) <span class="badge-recommended">recommended</span> <button class="help-btn" onclick="toggleHelp('h-salah')" aria-label="Help">?</button></div>
+    <div class="help-panel" id="h-salah"><div class="help-panel-title">About missed prayers</div><div class="help-panel-text">Addressing missed prayers in your wasiyyah is recommended, not obligatory. If you missed obligatory prayers during your life, note an estimate here and instruct your family to give sadaqah on your behalf as a gesture of sincerity before Allah. The scholars have differed on the ruling of qaza salah after death, but making an effort to address it shows sincere repentance and concern for one's account with Allah.</div></div>
+    <div class="radio-group" style="margin-bottom:10px">
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('salahDetail',true);autoSave()"><input type="radio" name="missedSalah" value="yes"><span style="font-size:14px;color:var(--gr800)">Yes, I have missed prayers I wish to address</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('salahDetail',false);autoSave()"><input type="radio" name="missedSalah" value="no"><span style="font-size:14px;color:var(--gr800)">No, alhamdulillah</span></label>
+    </div>
+    <div id="salahDetail" style="display:none"><textarea id="salahText" placeholder="Estimate of missed prayers and your instructions for your family regarding sadaqah on your behalf..." oninput="autoSave()"></textarea></div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Missed fasts (Qaza Sawm) <span class="badge-recommended">recommended</span> <button class="help-btn" onclick="toggleHelp('h-sawm')" aria-label="Help">?</button></div>
+    <div class="help-panel" id="h-sawm"><div class="help-panel-title">About missed fasts</div><div class="help-panel-text">If you have missed Ramadan fasts without making them up, your family may fast on your behalf, or pay fidyah — feeding one poor person for each missed day from your estate. Both are established in the Sunnah.</div></div>
+    <div class="daleel-box" style="margin-bottom:0.75rem">
+      <div class="daleel-text">"Whoever dies and has fasts to make up, his heir should fast on his behalf."</div>
+      <div class="daleel-source">Narrated by Aisha رضي الله عنها, from the Prophet ﷺ. Sahih Bukhari 1952 and Sahih Muslim 1147.</div>
+    </div>
+    <div class="radio-group" style="margin-bottom:10px">
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('sawmDetail',true);autoSave()"><input type="radio" name="missedSawm" value="yes"><span style="font-size:14px;color:var(--gr800)">Yes, I have missed fasts</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('sawmDetail',false);autoSave()"><input type="radio" name="missedSawm" value="no"><span style="font-size:14px;color:var(--gr800)">No, alhamdulillah</span></label>
+    </div>
+    <div id="sawmDetail" style="display:none"><textarea id="sawmText" placeholder="Estimate of missed fasts. Your family may fast on your behalf, or pay fidyah from your estate for each missed day..." oninput="autoSave()"></textarea></div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Unpaid Zakat <span class="badge-recommended">recommended</span> <button class="help-btn" onclick="toggleHelp('h-zakat')" aria-label="Help">?</button></div>
+    <div class="help-panel" id="h-zakat"><div class="help-panel-title">About unpaid zakat</div><div class="help-panel-text">If you believe you owe unpaid zakat from previous years, instruct your executor to pay it from your estate before distribution. Zakat is a right of the poor upon your wealth, and is treated as a debt owed to Allah.</div></div>
+    <div class="daleel-box" style="margin-bottom:0.75rem">
+      <div class="daleel-text">"The debt owed to Allah is most deserving to be paid."</div>
+      <div class="daleel-source">Narrated by Ibn Abbas رضي الله عنه, from the Prophet ﷺ. Sahih Bukhari 1953.</div>
+    </div>
+    <div class="radio-group" style="margin-bottom:10px">
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('zakatDetail',true);autoSave()"><input type="radio" name="zakat" value="yes"><span style="font-size:14px;color:var(--gr800)">Yes, I have unpaid zakat</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('zakatDetail',false);autoSave()"><input type="radio" name="zakat" value="no"><span style="font-size:14px;color:var(--gr800)">No, alhamdulillah</span></label>
+    </div>
+    <div id="zakatDetail" style="display:none"><textarea id="zakatText" placeholder="Estimated amount and instructions for your executor to pay from your estate before distribution..." oninput="autoSave()"></textarea></div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Hajj obligation <button class="help-btn" onclick="toggleHelp('h-hajj')" aria-label="Help">?</button></div>
+    <div class="help-panel" id="h-hajj"><div class="help-panel-title">About the Hajj obligation</div><div class="help-panel-text">Hajj is obligatory once in a lifetime for every Muslim who is able financially and physically. If you were able but did not perform it, your executor may arrange for a Hajj badal (proxy Hajj) to be performed on your behalf from your estate.</div></div>
+    <div class="daleel-box" style="margin-bottom:0.75rem">
+      <div class="daleel-text">"Hajj may be performed on behalf of the deceased."</div>
+      <div class="daleel-source">Narrated by Ibn Abbas رضي الله عنه, from the Prophet ﷺ. Sahih Bukhari 1852.</div>
+    </div>
+    <div class="radio-group" style="margin-bottom:10px">
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('hajjDetail',false);autoSave()"><input type="radio" name="hajj" value="done"><span style="font-size:14px;color:var(--gr800)">I have performed Hajj, alhamdulillah</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('hajjDetail',true);autoSave()"><input type="radio" name="hajj" value="pending"><span style="font-size:14px;color:var(--gr800)">I was able but have not yet performed Hajj</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('hajjDetail',false);autoSave()"><input type="radio" name="hajj" value="unable"><span style="font-size:14px;color:var(--gr800)">I was not financially or physically able</span></label>
+    </div>
+    <div id="hajjDetail" style="display:none"><textarea id="hajjText" placeholder="Instructions for Hajj badal from your estate. Include estimated cost and any preferred arrangements..." oninput="autoSave()"></textarea></div>
+  </div>
+
+  <div class="field-group"><div class="field-label">Any other religious obligations <span class="badge-optional">optional</span></div><div class="field-hint">Kaffarah, unfulfilled vows (nadhr), any other matters on your conscience</div><textarea id="otherObligations" placeholder="Describe any other obligations you wish to address..." oninput="autoSave()"></textarea></div>
+  <div class="nav-btns"><button class="btn-back" onclick="goTo(0)"><i class="ti ti-arrow-left"></i> Back</button><button class="btn-next" onclick="goTo(2)">Continue <i class="ti ti-arrow-right"></i></button></div>
+</div>
+
+<!-- SECTION 3: RIGHTS -->
+<div class="section-card" id="sec2">
+  <div class="section-icon"><i class="ti ti-users"></i></div>
+  <div class="section-title">Rights of people (Huquq al-Ibad)</div>
+  <div class="section-sub">These are the rights others hold over you. They are among the most serious matters a Muslim must address before leaving this world.</div>
+  <div class="daleel-box">
+    <div class="daleel-text">"Whoever has wronged his brother with regard to his honour or anything else, let him seek his pardon today, before there is no dinar or dirham — if he has good deeds, they will be taken from him equal to his wrong, and if he has no good deeds, some of his brother's sins will be loaded upon him."</div>
+    <div class="daleel-source">Narrated by Abu Hurairah رضي الله عنه, from the Prophet ﷺ. Sahih Bukhari 2449.</div>
+  </div>
+  <div class="warning-box" style="display:flex;align-items:flex-start;gap:10px">
+    <i class="ti ti-alert-triangle" style="font-size:18px;flex-shrink:0;margin-top:2px"></i>
+    <div>If you have wronged anyone in this life — whether in wealth, in words, in action, or in anything else — go and address it now, while you are still alive. Do not leave it for your family to handle after you are gone. Seeking forgiveness while alive is far better and is what the Prophet ﷺ commanded.</div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Debts you owe</div>
+    <div class="radio-group" style="margin-bottom:10px">
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('debtsDetail',true);autoSave()"><input type="radio" name="debts" value="yes"><span style="font-size:14px;color:var(--gr800)">Yes, I owe debts to people</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('debtsDetail',false);autoSave()"><input type="radio" name="debts" value="no"><span style="font-size:14px;color:var(--gr800)">No debts, alhamdulillah</span></label>
+    </div>
+    <div id="debtsDetail" style="display:none"><textarea id="debtsText" placeholder="List each person, amount owed, and any relevant context. These will be paid from your estate before inheritance is distributed..." oninput="autoSave()"></textarea></div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Debts owed to you</div>
+    <div class="radio-group" style="margin-bottom:10px">
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('owedDetail',true);autoSave()"><input type="radio" name="owed" value="yes"><span style="font-size:14px;color:var(--gr800)">Yes, people owe me money</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('owedDetail',false);autoSave()"><input type="radio" name="owed" value="no"><span style="font-size:14px;color:var(--gr800)">No</span></label>
+    </div>
+    <div id="owedDetail" style="display:none"><textarea id="owedText" placeholder="List each person and amount owed. Indicate whether you wish your executor to collect it or whether you forgive it..." oninput="autoSave()"></textarea></div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Amanah (items held in trust)</div>
+    <div class="radio-group" style="margin-bottom:10px">
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('amanahDetail',true);autoSave()"><input type="radio" name="amanah" value="yes"><span style="font-size:14px;color:var(--gr800)">Yes, I hold things that belong to others</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('amanahDetail',false);autoSave()"><input type="radio" name="amanah" value="no"><span style="font-size:14px;color:var(--gr800)">No</span></label>
+    </div>
+    <div id="amanahDetail" style="display:none"><textarea id="amanahText" placeholder="Describe what you hold and who it belongs to, so your executor can return it to the right person..." oninput="autoSave()"></textarea></div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Anyone you have wronged</div>
+    <div class="field-hint">Go to them now while you are alive, if at all possible. This section is for recording instructions for your family if you were unable to.</div>
+    <div class="radio-group" style="margin-bottom:10px">
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('wrongDetail',true);autoSave()"><input type="radio" name="wronged" value="yes"><span style="font-size:14px;color:var(--gr800)">Yes, I wish to record instructions for my family on this</span></label>
+      <label class="radio-opt" onclick="selectRadio(this);toggleField('wrongDetail',false);autoSave()"><input type="radio" name="wronged" value="no"><span style="font-size:14px;color:var(--gr800)">No</span></label>
+    </div>
+    <div id="wrongDetail" style="display:none"><textarea id="wrongText" placeholder="Describe the situation and your instructions. Ask your family to approach the person on your behalf, seek forgiveness, and offer what is owed if relevant..." oninput="autoSave()"></textarea></div>
+  </div>
+
+  <div class="nav-btns"><button class="btn-back" onclick="goTo(1)"><i class="ti ti-arrow-left"></i> Back</button><button class="btn-next" onclick="goTo(3)">Continue <i class="ti ti-arrow-right"></i></button></div>
+</div>
+
+<!-- SECTION 4: ASSETS / CALCULATOR -->
+<div class="section-card" id="sec3">
+  <div class="section-icon"><i class="ti ti-calculator"></i></div>
+  <div class="section-title">Asset distribution and inheritance</div>
+  <div class="section-sub">Enter your family structure and estate. The Fara'id calculator divides your estate according to Shariah inheritance law, with the Quranic evidence for each share.</div>
+  <div class="daleel-box">
+    <div class="daleel-text">"Allah instructs you regarding your children: for the male, what is equal to the share of two females..."</div>
+    <div class="daleel-source">Surah An-Nisa 4:11 and 4:12.</div>
+  </div>
+
+  <div class="madhab-notice">
+    <div class="madhab-notice-text"><i class="ti ti-info-circle" style="font-size:14px;vertical-align:-2px;margin-right:5px;color:var(--g600)"></i>Calculating according to: <strong id="madhabLabel">Quran and Sunnah upon the understanding of the Salaf al-Salih</strong></div>
+    <button class="switch-btn" onclick="toggleSwitcher()">Switch</button>
+  </div>
+  <div class="madhab-switcher" id="madhabSwitcher">
+    <div style="font-size:13px;font-weight:500;color:var(--gr600);margin-bottom:6px">This selection is for the calculator only. The differences between the four madhabs are minor in most inheritance cases.</div>
+    <div class="madhab-grid">
+      <div class="madhab-opt calc-active" onclick="setMadhab('salafi',this)">Salaf (Quran and Sunnah)</div>
+      <div class="madhab-opt" onclick="setMadhab('hanafi',this)">Hanafi</div>
+      <div class="madhab-opt" onclick="setMadhab('maliki',this)">Maliki</div>
+      <div class="madhab-opt" onclick="setMadhab('shafi',this)">Shafi'i</div>
+      <div class="madhab-opt" onclick="setMadhab('hanbali',this)">Hanbali</div>
+    </div>
+  </div>
+
+  <!-- SPOUSE — shown based on gender -->
+  <div class="calc-family-section">
+    <div class="calc-family-title">Spouse</div>
+    <div id="rowWives" class="counter-row"><div><div class="counter-label">Wife (wives)</div><div style="font-size:11px;color:var(--gr600);margin-top:2px">Maximum 4, share equally</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('wives',-1)">−</button><div class="cnt-val" id="wives-val">0</div><button class="cnt-btn" onclick="change('wives',1)">+</button></div></div>
+    <div id="rowHusband" class="counter-row" style="display:none"><div><div class="counter-label">Husband</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('husband',-1)">−</button><div class="cnt-val" id="husband-val">0</div><button class="cnt-btn" onclick="change('husband',1)">+</button></div></div>
+  </div>
+
+  <div class="calc-family-section">
+    <div class="calc-family-title">Children</div>
+    <div class="counter-row"><div><div class="counter-label">Sons</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('sons',-1)">−</button><div class="cnt-val" id="sons-val">0</div><button class="cnt-btn" onclick="change('sons',1)">+</button></div></div>
+    <div class="counter-row"><div><div class="counter-label">Daughters</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('daughters',-1)">−</button><div class="cnt-val" id="daughters-val">0</div><button class="cnt-btn" onclick="change('daughters',1)">+</button></div></div>
+  </div>
+
+  <div class="calc-family-section">
+    <div class="calc-family-title">Parents</div>
+    <div class="counter-row"><div><div class="counter-label">Father</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('father',-1)">−</button><div class="cnt-val" id="father-val">0</div><button class="cnt-btn" onclick="change('father',1)">+</button></div></div>
+    <div class="counter-row"><div><div class="counter-label">Mother</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('mother',-1)">−</button><div class="cnt-val" id="mother-val">0</div><button class="cnt-btn" onclick="change('mother',1)">+</button></div></div>
+  </div>
+
+  <div class="calc-family-section">
+    <div class="calc-family-title">Grandparents (if parents are deceased)</div>
+    <div class="counter-row"><div><div class="counter-label">Paternal grandfather</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('pgf',-1)">−</button><div class="cnt-val" id="pgf-val">0</div><button class="cnt-btn" onclick="change('pgf',1)">+</button></div></div>
+    <div class="counter-row"><div><div class="counter-label">Paternal grandmother</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('pgm',-1)">−</button><div class="cnt-val" id="pgm-val">0</div><button class="cnt-btn" onclick="change('pgm',1)">+</button></div></div>
+    <div class="counter-row"><div><div class="counter-label">Maternal grandmother</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('mgm',-1)">−</button><div class="cnt-val" id="mgm-val">0</div><button class="cnt-btn" onclick="change('mgm',1)">+</button></div></div>
+  </div>
+
+  <div class="calc-family-section">
+    <div class="calc-family-title">Siblings (if parents are deceased)</div>
+    <div class="counter-row"><div><div class="counter-label">Full brothers</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('fb',-1)">−</button><div class="cnt-val" id="fb-val">0</div><button class="cnt-btn" onclick="change('fb',1)">+</button></div></div>
+    <div class="counter-row"><div><div class="counter-label">Full sisters</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('fs',-1)">−</button><div class="cnt-val" id="fs-val">0</div><button class="cnt-btn" onclick="change('fs',1)">+</button></div></div>
+    <div class="counter-row"><div><div class="counter-label">Paternal half-brothers</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('phb',-1)">−</button><div class="cnt-val" id="phb-val">0</div><button class="cnt-btn" onclick="change('phb',1)">+</button></div></div>
+    <div class="counter-row"><div><div class="counter-label">Paternal half-sisters</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('phs',-1)">−</button><div class="cnt-val" id="phs-val">0</div><button class="cnt-btn" onclick="change('phs',1)">+</button></div></div>
+    <div class="counter-row"><div><div class="counter-label">Maternal half-siblings</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('mhs',-1)">−</button><div class="cnt-val" id="mhs-val">0</div><button class="cnt-btn" onclick="change('mhs',1)">+</button></div></div>
+  </div>
+
+  <div class="calc-family-section">
+    <div class="calc-family-title">Grandchildren (if children are deceased)</div>
+    <div class="counter-row"><div><div class="counter-label">Grandsons (through son)</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('gs',-1)">−</button><div class="cnt-val" id="gs-val">0</div><button class="cnt-btn" onclick="change('gs',1)">+</button></div></div>
+    <div class="counter-row"><div><div class="counter-label">Granddaughters (through son)</div></div><div class="counter-ctrl"><button class="cnt-btn" onclick="change('gd',-1)">−</button><div class="cnt-val" id="gd-val">0</div><button class="cnt-btn" onclick="change('gd',1)">+</button></div></div>
+  </div>
+
+  <div style="border-top:0.5px solid var(--border);padding-top:1.5rem;margin-top:0.5rem">
+    <div class="calc-family-title" style="border:none;margin-bottom:1rem">Estate value</div>
+    <div class="field-group">
+      <label style="font-size:13px;font-weight:500;color:var(--gr800);margin-bottom:6px;display:block">Currency</label>
+      <select id="currency" onchange="updateTotal()">
+        <option value="AED">AED — UAE Dirham</option><option value="AFN">AFN — Afghan Afghani</option><option value="ALL">ALL — Albanian Lek</option><option value="AMD">AMD — Armenian Dram</option><option value="ANG">ANG — Netherlands Antillean Guilder</option><option value="AOA">AOA — Angolan Kwanza</option><option value="ARS">ARS — Argentine Peso</option><option value="AUD">AUD — Australian Dollar</option><option value="AWG">AWG — Aruban Florin</option><option value="AZN">AZN — Azerbaijani Manat</option><option value="BAM">BAM — Bosnia-Herzegovina Convertible Mark</option><option value="BBD">BBD — Barbadian Dollar</option><option value="BDT">BDT — Bangladeshi Taka</option><option value="BGN">BGN — Bulgarian Lev</option><option value="BHD">BHD — Bahraini Dinar</option><option value="BND">BND — Brunei Dollar</option><option value="BOB">BOB — Bolivian Boliviano</option><option value="BRL">BRL — Brazilian Real</option><option value="BSD">BSD — Bahamian Dollar</option><option value="BWP">BWP — Botswana Pula</option><option value="BYN">BYN — Belarusian Ruble</option><option value="BZD">BZD — Belize Dollar</option><option value="CAD">CAD — Canadian Dollar</option><option value="CHF">CHF — Swiss Franc</option><option value="CLP">CLP — Chilean Peso</option><option value="CNY">CNY — Chinese Yuan</option><option value="COP">COP — Colombian Peso</option><option value="CRC">CRC — Costa Rican Colón</option><option value="CUP">CUP — Cuban Peso</option><option value="CVE">CVE — Cape Verdean Escudo</option><option value="CZK">CZK — Czech Koruna</option><option value="DJF">DJF — Djiboutian Franc</option><option value="DKK">DKK — Danish Krone</option><option value="DOP">DOP — Dominican Peso</option><option value="DZD">DZD — Algerian Dinar</option><option value="EGP">EGP — Egyptian Pound</option><option value="ERN">ERN — Eritrean Nakfa</option><option value="ETB">ETB — Ethiopian Birr</option><option value="EUR">EUR — Euro</option><option value="FJD">FJD — Fijian Dollar</option><option value="GBP">GBP — British Pound</option><option value="GEL">GEL — Georgian Lari</option><option value="GHS">GHS — Ghanaian Cedi</option><option value="GMD">GMD — Gambian Dalasi</option><option value="GNF">GNF — Guinean Franc</option><option value="GTQ">GTQ — Guatemalan Quetzal</option><option value="GYD">GYD — Guyanaese Dollar</option><option value="HKD">HKD — Hong Kong Dollar</option><option value="HNL">HNL — Honduran Lempira</option><option value="HRK">HRK — Croatian Kuna</option><option value="HTG">HTG — Haitian Gourde</option><option value="HUF">HUF — Hungarian Forint</option><option value="IDR">IDR — Indonesian Rupiah</option><option value="ILS">ILS — Israeli New Shekel</option><option value="INR">INR — Indian Rupee</option><option value="IQD">IQD — Iraqi Dinar</option><option value="IRR">IRR — Iranian Rial</option><option value="ISK">ISK — Icelandic Króna</option><option value="JMD">JMD — Jamaican Dollar</option><option value="JOD">JOD — Jordanian Dinar</option><option value="JPY">JPY — Japanese Yen</option><option value="KES">KES — Kenyan Shilling</option><option value="KGS">KGS — Kyrgystani Som</option><option value="KHR">KHR — Cambodian Riel</option><option value="KMF">KMF — Comorian Franc</option><option value="KRW">KRW — South Korean Won</option><option value="KWD">KWD — Kuwaiti Dinar</option><option value="KYD">KYD — Cayman Islands Dollar</option><option value="KZT">KZT — Kazakhstani Tenge</option><option value="LAK">LAK — Laotian Kip</option><option value="LBP">LBP — Lebanese Pound</option><option value="LKR">LKR — Sri Lankan Rupee</option><option value="LYD">LYD — Libyan Dinar</option><option value="MAD">MAD — Moroccan Dirham</option><option value="MDL">MDL — Moldovan Leu</option><option value="MKD">MKD — Macedonian Denar</option><option value="MMK">MMK — Myanmar Kyat</option><option value="MNT">MNT — Mongolian Tugrik</option><option value="MOP">MOP — Macanese Pataca</option><option value="MRO">MRO — Mauritanian Ouguiya</option><option value="MUR">MUR — Mauritian Rupee</option><option value="MVR">MVR — Maldivian Rufiyaa</option><option value="MWK">MWK — Malawian Kwacha</option><option value="MXN">MXN — Mexican Peso</option><option value="MYR">MYR — Malaysian Ringgit</option><option value="MZN">MZN — Mozambican Metical</option><option value="NAD">NAD — Namibian Dollar</option><option value="NGN">NGN — Nigerian Naira</option><option value="NIO">NIO — Nicaraguan Córdoba</option><option value="NOK">NOK — Norwegian Krone</option><option value="NPR">NPR — Nepalese Rupee</option><option value="NZD">NZD — New Zealand Dollar</option><option value="OMR">OMR — Omani Rial</option><option value="PAB">PAB — Panamanian Balboa</option><option value="PEN">PEN — Peruvian Sol</option><option value="PGK">PGK — Papua New Guinean Kina</option><option value="PHP">PHP — Philippine Peso</option><option value="PKR">PKR — Pakistani Rupee</option><option value="PLN">PLN — Polish Zloty</option><option value="PYG">PYG — Paraguayan Guarani</option><option value="QAR">QAR — Qatari Rial</option><option value="RON">RON — Romanian Leu</option><option value="RSD">RSD — Serbian Dinar</option><option value="RUB">RUB — Russian Ruble</option><option value="RWF">RWF — Rwandan Franc</option><option value="SAR">SAR — Saudi Riyal</option><option value="SBD">SBD — Solomon Islands Dollar</option><option value="SCR">SCR — Seychellois Rupee</option><option value="SDG">SDG — Sudanese Pound</option><option value="SEK">SEK — Swedish Krona</option><option value="SGD">SGD — Singapore Dollar</option><option value="SLL">SLL — Sierra Leonean Leone</option><option value="SOS">SOS — Somali Shilling</option><option value="SRD">SRD — Surinamese Dollar</option><option value="STD">STD — São Tomé and Príncipe Dobra</option><option value="SVC">SVC — Salvadoran Colón</option><option value="SYP">SYP — Syrian Pound</option><option value="SZL">SZL — Swazi Lilangeni</option><option value="THB">THB — Thai Baht</option><option value="TJS">TJS — Tajikistani Somoni</option><option value="TMT">TMT — Turkmenistani Manat</option><option value="TND">TND — Tunisian Dinar</option><option value="TOP">TOP — Tongan Paʻanga</option><option value="TRY">TRY — Turkish Lira</option><option value="TTD">TTD — Trinidad and Tobago Dollar</option><option value="TWD">TWD — New Taiwan Dollar</option><option value="TZS">TZS — Tanzanian Shilling</option><option value="UAH">UAH — Ukrainian Hryvnia</option><option value="UGX">UGX — Ugandan Shilling</option><option value="USD" selected>USD — US Dollar</option><option value="UYU">UYU — Uruguayan Peso</option><option value="UZS">UZS — Uzbekistan Som</option><option value="VEF">VEF — Venezuelan Bolívar</option><option value="VND">VND — Vietnamese Dong</option><option value="VUV">VUV — Vanuatu Vatu</option><option value="WST">WST — Samoan Tala</option><option value="XAF">XAF — CFA Franc BEAC</option><option value="XCD">XCD — East Caribbean Dollar</option><option value="XOF">XOF — CFA Franc BCEAO</option><option value="YER">YER — Yemeni Rial</option><option value="ZAR">ZAR — South African Rand</option><option value="ZMW">ZMW — Zambian Kwacha</option><option value="ZWL">ZWL — Zimbabwean Dollar</option>
+      </select>
+    </div>
+    <div id="assetList"><div class="asset-row"><input type="text" placeholder="Asset description (e.g. home, car, savings)"><button class="remove-btn" onclick="removeAsset(this)" aria-label="Remove"><i class="ti ti-x" style="font-size:13px"></i></button><input type="number" placeholder="Value" min="0" oninput="updateTotal();autoSave()"></div></div>
+    <button class="add-asset-btn" onclick="addAsset()"><i class="ti ti-plus" style="font-size:13px;vertical-align:-2px;margin-right:4px"></i>Add another asset</button>
+    <div class="estate-total-row"><span style="font-size:14px;font-weight:500;color:var(--g800)">Total estate</span><span style="font-size:17px;font-weight:500;color:var(--g800)" id="totalDisplay">0.00</span></div>
+    <div class="field-group" style="margin-top:1rem">
+      <label style="font-size:13px;font-weight:500;color:var(--gr800);margin-bottom:6px;display:block">Funeral and burial expenses <span class="badge-optional" style="vertical-align:middle;margin-left:6px">optional estimate</span></label>
+      <input type="number" placeholder="Estimated amount — deducted before inheritance is divided" min="0" id="funeralCost" oninput="updateTotal();autoSave()" style="margin-bottom:10px">
+      <label style="font-size:13px;font-weight:500;color:var(--gr800);margin-bottom:6px;display:block">Outstanding debts (to be deducted from estate)</label>
+      <input type="number" placeholder="Total debts to be paid from estate before distribution" min="0" id="debtTotal" oninput="updateTotal();autoSave()">
+    </div>
+    <div class="estate-net-row"><span style="font-size:14px;font-weight:500;color:white">Net distributable estate</span><span style="font-size:17px;font-weight:500;color:var(--g100)" id="netDisplay">0.00</span></div>
+  </div>
+
+  <button class="calc-btn" onclick="calculate()">Calculate inheritance shares <i class="ti ti-arrow-right"></i></button>
+
+  <label class="skip-calc-row" style="cursor:pointer" onclick="toggleSkipCalc()">
+    <input type="checkbox" id="skipCalcCheck">
+    <span style="font-size:13px;color:var(--gr600);line-height:1.5">I do not have assets to distribute, or I prefer to continue without using the calculator. I understand this section will be left blank in my document.</span>
+  </label>
+
+  <div id="resultsCard" style="display:none;margin-top:1.5rem;border-top:0.5px solid var(--border);padding-top:1.5rem">
+    <div style="font-size:16px;font-weight:500;color:var(--g800);margin-bottom:4px">Inheritance shares</div>
+    <div style="font-size:12px;color:var(--gr600);margin-bottom:1.25rem" id="resultsMadhabNote"></div>
+    <div class="estate-summary-grid" id="estateSummary"></div>
+    <div id="heirRows"></div>
+    <div id="noHeirs" style="display:none;background:var(--gr50);border-radius:10px;padding:1.5rem;text-align:center;font-size:14px;color:var(--gr600)">No eligible heirs found. Please review the family details above.</div>
+    <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:0.5px solid var(--border)">
+      <div style="font-size:14px;font-weight:500;color:var(--g800);margin-bottom:0.5rem">Wasiyyah bequest <span class="badge-optional" style="vertical-align:middle">optional — maximum one third</span></div>
+      <div class="bequest-warning"><i class="ti ti-alert-triangle" style="font-size:13px;vertical-align:-2px;margin-right:5px"></i>"A third, and a third is a lot." Narrated by Sa'd ibn Abi Waqqas رضي الله عنه, from the Prophet ﷺ. Sahih Bukhari 2742. A bequest may not exceed one third of the net estate, and may not be given to an heir who already inherits.</div>
+      <label style="font-size:13px;font-weight:500;color:var(--gr800);margin-bottom:6px;display:block">Bequest amount</label>
+      <input type="number" placeholder="Amount" min="0" id="bequestAmt" oninput="updateBequest();autoSave()" style="margin-bottom:6px">
+      <div style="font-size:12px;color:var(--gr600);margin-bottom:10px">Maximum: <span id="maxBequest" style="color:var(--g600);font-weight:500">0.00</span></div>
+      <label style="font-size:13px;font-weight:500;color:var(--gr800);margin-bottom:6px;display:block">Recipient and purpose</label>
+      <input type="text" id="bequestRecipient" placeholder="e.g. Masjid building fund, sadaqah jariyah project, specific charity..." oninput="autoSave()">
+      <div id="bequestSummary" style="display:none;margin-top:10px;background:var(--g50);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--g800);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"></div>
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn-back" onclick="goTo(2)"><i class="ti ti-arrow-left"></i> Back</button>
+    <button class="btn-next" id="sec3NextBtn" disabled onclick="goTo(4)">Continue <i class="ti ti-arrow-right"></i></button>
+  </div>
+</div>
+
+<!-- SECTION 5: FUNERAL -->
+<div class="section-card" id="sec4">
+  <div class="section-icon"><i class="ti ti-heart"></i></div>
+  <div class="section-title">Funeral and burial wishes</div>
+  <div class="section-sub">Your funeral instructions will be included in your wasiyyah document, protecting your family from making decisions that contradict the Sunnah at a time of grief.</div>
+  <div class="daleel-box">
+    <div class="daleel-text">"Hasten the funeral. If the deceased was righteous, you are sending him forward to good. And if other than that, you are removing evil from your necks."</div>
+    <div class="daleel-source">Narrated by Abu Hurairah رضي الله عنه, from the Prophet ﷺ. Sahih Bukhari 1315 and Sahih Muslim 944.</div>
+  </div>
+
+  <div class="funeral-notice">
+    <div style="font-size:13px;font-weight:500;color:var(--g800);margin-bottom:6px;display:flex;align-items:center;gap:6px"><i class="ti ti-info-circle" style="font-size:14px;color:var(--g600)"></i>Included automatically in every document</div>
+    <div style="font-size:13px;color:var(--gr600);line-height:1.7">The following binding instructions are part of every wasiyyah produced by this tool, because they reflect obligations established in the Quran and Sunnah. They are not optional, and they will appear in your document regardless of other choices:<br><br>
+    <strong style="color:var(--g800)">No wailing or loud lamenting.</strong> Patience and submission to Allah's decree is obligatory.<br>
+    <strong style="color:var(--g800)">No innovations (bid'ah)</strong> in the funeral proceedings. Follow the Sunnah only.<br>
+    <strong style="color:var(--g800)">No extravagance</strong> in burial. Simplicity is the Sunnah and the right of the deceased.<br>
+    <strong style="color:var(--g800)">No mixing of men and women</strong> at the funeral gathering.<br>
+    <strong style="color:var(--g800)">No photographs or videos</strong> of the deceased.</div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Who should perform the ghusl <span class="badge-recommended">recommended</span> <button class="help-btn" onclick="toggleHelp('h-ghusl')" aria-label="Help">?</button></div>
+    <div class="help-panel" id="h-ghusl"><div class="help-panel-title">About the ghusl</div><div class="help-panel-text">The ghusl (ritual washing of the body) must be performed by someone of the same gender as the deceased, except for spouses. Naming your preferences removes this burden from your family at a time of grief. List up to three people in order of preference.</div></div>
+    <div class="three-col">
+      <input type="text" id="ghusl1" placeholder="First preference" oninput="autoCapitalise(this);autoSave()">
+      <input type="text" id="ghusl2" placeholder="Second preference" oninput="autoCapitalise(this);autoSave()">
+      <input type="text" id="ghusl3" placeholder="Third preference" oninput="autoCapitalise(this);autoSave()">
+    </div>
+    <div class="field-hint" style="margin-top:6px">Must be of the same gender as you. Spouses are an exception.</div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Who should lead the Janazah prayer <span class="badge-recommended">recommended</span> <button class="help-btn" onclick="toggleHelp('h-janazah')" aria-label="Help">?</button></div>
+    <div class="help-panel" id="h-janazah"><div class="help-panel-title">About the Janazah prayer</div><div class="help-panel-text">Naming your preferred imam removes a potential source of dispute or confusion for your family. You may list up to three people in order of preference.</div></div>
+    <div class="three-col">
+      <input type="text" id="janazah1" placeholder="First preference" oninput="autoCapitalise(this);autoSave()">
+      <input type="text" id="janazah2" placeholder="Second preference" oninput="autoCapitalise(this);autoSave()">
+      <input type="text" id="janazah3" placeholder="Third preference" oninput="autoCapitalise(this);autoSave()">
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Preferred burial location <span class="badge-optional">optional</span></div>
+    <input type="text" id="burialLocation" placeholder="e.g. nearest Muslim cemetery, or a specific city and country" oninput="autoSave()">
+  </div>
+
+  <div class="field-group">
+    <div class="field-label">Sadaqah Jariyah <span class="badge-recommended">recommended</span> <button class="help-btn" onclick="toggleHelp('h-sadaqah')" aria-label="Help">?</button></div>
+    <div class="help-panel" id="h-sadaqah"><div class="help-panel-title">Give now, not just after death</div><div class="help-panel-text">The best sadaqah is the one you give while you are alive and healthy. Do not delay charity thinking your wasiyyah will cover it — give whatever you are able to now. What you record here is simply a request to your family for after your passing.</div></div>
+    <div class="daleel-box" style="margin-bottom:0.75rem">
+      <div class="daleel-text">"The best charity is that given when you are healthy and in need of it yourself, fearing poverty and hoping for wealth."</div>
+      <div class="daleel-source">Narrated by Abu Hurairah رضي الله عنه, from the Prophet ﷺ. Sahih Bukhari 1419.</div>
+    </div>
+    <div class="field-hint">Give in charity now while you are alive if you are able to. What you write below is a request to your family to continue charity on your behalf after your passing.</div>
+    <textarea id="sadaqahRequest" placeholder="e.g. Give sadaqah to a water well project, sponsor an orphan, donate to a Quran printing initiative..." oninput="autoSave()"></textarea>
+  </div>
+
+  <div class="field-group"><div class="field-label">Any other funeral wishes <span class="badge-optional">optional</span></div><textarea id="funeralOther" placeholder="Any additional instructions for your family regarding your funeral or burial..." oninput="autoSave()"></textarea></div>
+  <div class="nav-btns"><button class="btn-back" onclick="goTo(3)"><i class="ti ti-arrow-left"></i> Back</button><button class="btn-next" onclick="goTo(5)">Continue <i class="ti ti-arrow-right"></i></button></div>
+</div>
+
+<!-- SECTION 6: MESSAGES -->
+<div class="section-card" id="sec5">
+  <div class="section-icon"><i class="ti ti-mail"></i></div>
+  <div class="section-title">Messages to loved ones</div>
+  <div class="section-sub">Your final words to the people you love. These will be included in your wasiyyah document. Write from the heart. This is your last gift to them.</div>
+  <div class="daleel-box"><div class="daleel-text">"And enjoin prayer upon your family and be steadfast therein."</div><div class="daleel-source">Surah Ta-Ha 20:132.</div></div>
+  <div class="field-group"><div class="field-label">Message to your spouse</div><textarea id="msgSpouse" placeholder="Your words to your husband or wife..." style="min-height:100px" oninput="autoSave()"></textarea></div>
+  <div class="field-group"><div class="field-label">Message to your children</div><textarea id="msgChildren" placeholder="Your advice, dua and love for your children..." style="min-height:100px" oninput="autoSave()"></textarea></div>
+  <div class="field-group"><div class="field-label">Message to your parents</div><textarea id="msgParents" placeholder="Your words to your mother and father..." oninput="autoSave()"></textarea></div>
+  <div class="field-group"><div class="field-label">Message to your family and friends</div><textarea id="msgFamily" placeholder="Any final words to your wider family or close friends..." oninput="autoSave()"></textarea></div>
+  <div class="field-group"><div class="field-label">A final reminder to all who read this</div><div class="field-hint">Many people leave a reminder about the deen, about death, or about what truly matters</div><textarea id="msgFinal" placeholder="e.g. Remember death often. Hold fast to the Quran and Sunnah. Fear Allah as He deserves to be feared..." style="min-height:100px" oninput="autoSave()"></textarea></div>
+  <div class="nav-btns"><button class="btn-back" onclick="goTo(4)"><i class="ti ti-arrow-left"></i> Back</button><button class="btn-next" style="background:var(--a400)" onclick="showComplete()">Complete my wasiyyah <i class="ti ti-check"></i></button></div>
+</div>
+
+<!-- COMPLETION SCREEN -->
+<div id="completeScreen" style="display:none">
+  <div style="background:var(--white);border:0.5px solid var(--border);border-radius:14px;padding:2.5rem 2rem;text-align:center;margin-bottom:1rem">
+    <div style="width:64px;height:64px;background:var(--g50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--g600);margin:0 auto 1.5rem"><i class="ti ti-check"></i></div>
+    <div style="font-size:22px;font-weight:500;color:var(--g800);margin-bottom:0.75rem">Alhamdulillah — your wasiyyah is complete</div>
+    <div style="font-size:14px;color:var(--gr600);line-height:1.7;max-width:440px;margin:0 auto 1.25rem">May Allah accept this from you and make it a means of ease for your family when the time comes.</div>
+
+    <!-- ANNUAL REVIEW REMINDER AT TOP -->
+    <div style="background:var(--g800);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;text-align:left">
+      <div style="font-size:14px;font-weight:500;color:var(--a100);margin-bottom:6px;display:flex;align-items:center;gap:8px"><i class="ti ti-calendar" style="font-size:16px"></i>Important — review your wasiyyah every year</div>
+      <div style="font-size:13px;color:var(--g100);line-height:1.7">Your wasiyyah is saved on this device and can be updated at any time. You should return to review and update it after any major life change such as marriage, the birth of a child, a death in the family, or a significant change in your assets. Even without major changes, reviewing it once a year is a good habit and takes only a few minutes. A wasiyyah that no longer reflects your circumstances may not represent your true wishes.</div>
+    </div>
+
+    <!-- LOCATION -->
+    <div style="background:var(--g50);border:1px solid var(--g100);border-radius:10px;padding:1rem;margin-bottom:1.25rem;text-align:left">
+      <div style="font-size:13px;font-weight:500;color:var(--g800);margin-bottom:6px"><i class="ti ti-map-pin" style="font-size:13px;vertical-align:-2px;margin-right:5px;color:var(--g600)"></i>Add your location to the document <span class="badge-optional" style="vertical-align:middle">optional</span></div>
+      <div style="font-size:12px;color:var(--gr600);margin-bottom:10px;line-height:1.6">Adding your location serves as a security measure. It records the geographic coordinates of where your wasiyyah was written, which helps confirm its authenticity and makes it harder for anyone to forge or dispute the document later. Only your latitude and longitude coordinates are recorded — no street address or personal location information is stored or sent anywhere.</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <button onclick="getLocation()" id="locBtn" style="background:var(--g600);color:white;border:none;padding:7px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit">Add location</button>
+        <span id="locText" style="font-size:12px;color:var(--gr600)">No location added</span>
+      </div>
+    </div>
+
+    <!-- PDF OPTIONS -->
+    <div style="text-align:left;margin-bottom:1.5rem">
+      <div style="font-size:15px;font-weight:500;color:var(--g800);margin-bottom:4px">Download your wasiyyah</div>
+      <div style="font-size:12px;color:var(--gr600);margin-bottom:1rem;line-height:1.6">Both versions contain your complete wasiyyah in full. The premium adds a formal layout with cover page and letter to executor.</div>
+      <div class="pdf-options">
+        <div class="pdf-option">
+          <div style="font-size:12px;font-weight:500;margin-bottom:0.5rem"><span style="background:var(--g50);color:var(--g600);padding:2px 8px;border-radius:10px;font-size:11px">Free</span></div>
+          <div style="font-size:18px;font-weight:500;color:var(--g800);margin-bottom:0.75rem">$0 <span style="font-size:12px;color:var(--gr600);font-weight:400">always free</span></div>
+          <div class="pdf-feat-sm yes"><i class="ti ti-check" style="color:var(--g600);font-size:12px"></i>All content, complete</div>
+          <div class="pdf-feat-sm yes"><i class="ti ti-check" style="color:var(--g600);font-size:12px"></i>Clean, readable layout</div>
+          <div class="pdf-feat-sm yes"><i class="ti ti-check" style="color:var(--g600);font-size:12px"></i>Reference number</div>
+          <div class="pdf-feat-sm no"><i class="ti ti-x" style="color:var(--gr100);font-size:12px"></i>Islamic cover page</div>
+          <div class="pdf-feat-sm no"><i class="ti ti-x" style="color:var(--gr100);font-size:12px"></i>Numbered clauses</div>
+          <div class="pdf-feat-sm no"><i class="ti ti-x" style="color:var(--gr100);font-size:12px"></i>Letter to executor</div>
+          <button class="btn-pdf-free" id="btnFreePdf" onclick="generatePDF()"><i class="ti ti-download"></i> Download free PDF</button>
+        </div>
+        <div class="pdf-option premium">
+          <div style="font-size:12px;font-weight:500;margin-bottom:0.5rem"><span style="background:var(--g800);color:var(--a100);padding:2px 8px;border-radius:10px;font-size:11px;border:1px solid var(--a400)">Premium</span></div>
+          <div style="font-size:18px;font-weight:500;color:var(--g800);margin-bottom:0.75rem" id="premCompletionPrice">A$10 <span style="font-size:12px;color:var(--gr600);font-weight:400">one-time</span></div>
+          <div class="pdf-feat-sm yes"><i class="ti ti-check" style="color:var(--g600);font-size:12px"></i>All content, complete</div>
+          <div class="pdf-feat-sm yes"><i class="ti ti-check" style="color:var(--g600);font-size:12px"></i>Formal, well-presented layout</div>
+          <div class="pdf-feat-sm yes"><i class="ti ti-check" style="color:var(--g600);font-size:12px"></i>Reference number</div>
+          <div class="pdf-feat-sm yes"><i class="ti ti-check" style="color:var(--g600);font-size:12px"></i>Full Islamic cover page</div>
+          <div class="pdf-feat-sm yes"><i class="ti ti-check" style="color:var(--g600);font-size:12px"></i>Numbered legal clauses</div>
+          <div class="pdf-feat-sm yes"><i class="ti ti-check" style="color:var(--g600);font-size:12px"></i>Letter to executor</div>
+          <button class="btn-pdf-prem" onclick="payAndDownload()"><i class="ti ti-crown"></i> Pay A$10 and download</button>
+          <div style="font-size:11px;color:var(--gr600);margin-top:6px">Charged in AUD via Buy Me a Coffee. Your bank converts to your local currency.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEAVE A REVIEW -->
+    <div style="background:var(--gr50);border-radius:12px;padding:1.5rem;margin-bottom:1.25rem;text-align:left">
+      <div style="font-size:14px;font-weight:500;color:var(--g800);margin-bottom:4px"><i class="ti ti-star" style="color:var(--a200);margin-right:5px"></i>Leave a review</div>
+      <div style="font-size:13px;color:var(--gr600);margin-bottom:1rem;line-height:1.5">Your experience may encourage another Muslim to complete their wasiyyah. Reviews can be anonymous if you prefer.</div>
+      <div style="display:flex;gap:6px;margin-bottom:1rem">
+        <button class="star-btn" onclick="setCompletionRating(1,this)">★</button>
+        <button class="star-btn" onclick="setCompletionRating(2,this)">★</button>
+        <button class="star-btn" onclick="setCompletionRating(3,this)">★</button>
+        <button class="star-btn" onclick="setCompletionRating(4,this)">★</button>
+        <button class="star-btn" onclick="setCompletionRating(5,this)">★</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+        <input type="text" id="cReviewName" placeholder="First name (optional)" style="padding:8px 12px;border:1px solid var(--gr100);border-radius:8px;font-size:13px;outline:none;font-family:inherit">
+        <input type="text" id="cReviewCountry" placeholder="Country (optional)" style="padding:8px 12px;border:1px solid var(--gr100);border-radius:8px;font-size:13px;outline:none;font-family:inherit">
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--gr600)"><input type="checkbox" id="cAnonCheck" style="width:16px;height:16px;accent-color:var(--g600)"> Post anonymously</label>
+      <textarea id="cReviewText" placeholder="Share your experience..." style="width:100%;padding:8px 12px;border:1px solid var(--gr100);border-radius:8px;font-size:13px;min-height:70px;resize:vertical;outline:none;font-family:inherit;line-height:1.6;margin-bottom:8px"></textarea>
+      <button onclick="submitCompletionReview()" style="background:var(--g600);color:white;border:none;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;width:100%">Submit review</button>
+      <div id="cReviewSuccess" style="display:none;margin-top:8px;font-size:13px;color:var(--g600);text-align:center">JazakAllahu khayran. 🤲</div>
+    </div>
+
+    <!-- DONATE -->
+    <div style="background:var(--a50);border:1px solid var(--a100);border-radius:10px;padding:1.25rem;margin-bottom:1.25rem">
+      <div style="font-size:14px;font-weight:500;color:var(--g800);margin-bottom:0.4rem"><i class="ti ti-heart" style="color:var(--a400);margin-right:5px"></i>Support this work</div>
+      <div style="font-size:13px;color:var(--gr600);line-height:1.6;margin-bottom:0.875rem">This tool is free because it was built for the sake of Allah. If it helped you and you are able, a donation may become a sadaqah jariyah for you.</div>
+      <a href="https://buymeacoffee.com/YOUR_USERNAME" target="_blank" rel="noopener noreferrer" style="background:var(--a400);color:white;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:6px"><i class="ti ti-heart"></i> Donate</a>
+    </div>
+
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button onclick="returnToEdit()" style="background:var(--g600);color:white;border:none;padding:10px 24px;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px"><i class="ti ti-edit"></i>Edit my wasiyyah</button>
+      <a href="index.html" style="color:var(--gr600);font-size:14px;text-decoration:none;padding:10px 24px;border:1px solid var(--gr100);border-radius:8px;display:inline-flex;align-items:center;gap:6px"><i class="ti ti-home"></i>Return home</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- end form-wrap -->
+
+<!-- ACCESSIBILITY BAR -->
+<div class="a11y-bar">
+  <button class="a11y-btn" onclick="document.body.classList.toggle('large-text')" aria-label="Larger text"><span>A+</span><span class="a11y-tip">Larger text</span></button>
+  <button class="a11y-btn" onclick="document.body.classList.toggle('high-contrast')" aria-label="High contrast"><i class="ti ti-contrast"></i><span class="a11y-tip">High contrast</span></button>
+</div>
+
+<!-- AI ASSISTANT -->
+<div class="ai-bubble">
+  <div class="ai-chat" id="aiChat">
+    <div class="ai-chat-header"><i class="ti ti-message-circle"></i>Islamic guide</div>
+    <div class="ai-messages" id="aiMessages"><div class="ai-msg assistant">As-salamu alaykum. Ask me anything about your wasiyyah, inheritance rulings, or any Islamic question you have.</div></div>
+    <div class="ai-input-wrap">
+      <input class="ai-input" id="aiInput" type="text" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendAI()">
+      <button class="ai-send" onclick="sendAI()" aria-label="Send"><i class="ti ti-send"></i></button>
+    </div>
+  </div>
+  <button class="ai-btn" onclick="toggleAI()" aria-label="Open Islamic guide"><i class="ti ti-message-circle"></i></button>
+</div>
+
+<!-- Hidden PDF render container -->
+<div id="freePdfDoc" style="position:fixed;left:-9999px;top:0;width:794px;background:white;font-family:Georgia,serif;padding:48px 52px;font-size:12px"></div>
+
+<script>
+var current=0;
+var family={wives:0,husband:0,sons:0,daughters:0,father:0,mother:0,pgf:0,pgm:0,mgm:0,fb:0,fs:0,phb:0,phs:0,mhs:0,gs:0,gd:0};
+var madhab='salafi';
+var madhabNames={salafi:'Quran and Sunnah upon the understanding of the Salaf al-Salih',hanafi:'Hanafi madhab',maliki:'Maliki madhab',shafi:"Shafi'i madhab",hanbali:'Hanbali madhab'};
+var netEstate=0;
+var userLocation='';
+var calcShares=[];
+var calcDone=false;
+var skipCalc=false;
+var completionRating=0;
+var userGender='male';
+var refNum='WSY-'+new Date().getFullYear()+'-'+Math.random().toString(36).substr(2,4).toUpperCase();
+var labels=['Personal','Obligations','Rights','Assets','Funeral','Messages'];
+var pcts=[16,33,50,66,83,100];
+
+// NAVIGATION
+function goTo(n){
+  document.getElementById('sec'+current).classList.remove('active');
+  var dot=document.getElementById('dot'+current);
+  dot.classList.remove('active');dot.classList.add('done');
+  dot.innerHTML='<i class="ti ti-check" style="font-size:12px"></i>';
+  var lbl=document.getElementById('lbl'+current);lbl.classList.remove('active');lbl.style.display='none';
+  if(current<n)document.getElementById('line'+current).classList.add('done');
+  current=n;
+  document.getElementById('sec'+current).classList.add('active');
+  var nd=document.getElementById('dot'+current);nd.classList.remove('todo','done');nd.classList.add('active');nd.innerHTML=(current+1).toString();
+  var nl=document.getElementById('lbl'+current);nl.classList.add('active');nl.style.display='block';
+  document.getElementById('progressFill').style.width=pcts[current]+'%';
+  document.getElementById('progressText').textContent='Section '+(current+1)+' of 6';
+  window.scrollTo(0,0);
+  autoSave();
+}
+
+// VALIDATE SECTION 1 BEFORE PROCEEDING
+function validateAndGoTo(n){
+  var msgs=[];
+  var gender=rv('gender');if(!gender)msgs.push('Please select your gender.');
+  var name=v('fullName').trim();if(!name)msgs.push('Please enter your full name.');
+  var shahadah=rv('shahadah');if(!shahadah)msgs.push('Please confirm your shahadah to proceed.');
+  var mind=rv('soundmind');if(!mind)msgs.push('Please confirm you are writing this of sound mind and free will.');
+  var exec=v('executorName').trim();if(!exec)msgs.push('Please name at least one executor.');
+  var msgEl=document.getElementById('validationMsg0');
+  if(msgs.length>0){
+    msgEl.innerHTML='Please complete the following before continuing:<br><br>'+msgs.map(function(m){return '&bull; '+m;}).join('<br>');
+    msgEl.style.display='block';
+    msgEl.scrollIntoView({behavior:'smooth',block:'nearest'});
+    return;
+  }
+  msgEl.style.display='none';
+  goTo(n);
+}
+
+function showComplete(){
+  document.getElementById('sec5').classList.remove('active');
+  document.getElementById('completeScreen').style.display='block';
+  document.getElementById('progressFill').style.width='100%';
+  document.getElementById('progressText').textContent='Wasiyyah complete, alhamdulillah';
+  try{var c=parseInt(localStorage.getItem('w_count')||'0');localStorage.setItem('w_count',c+1);}catch(e){}
+  window.scrollTo(0,0);
+  autoSave();
+}
+
+function returnToEdit(){
+  document.getElementById('completeScreen').style.display='none';
+  current=5;goTo(0);
+}
+
+// GENDER
+function setGender(g){
+  userGender=g;
+  document.getElementById('rowWives').style.display=g==='male'?'flex':'none';
+  document.getElementById('rowHusband').style.display=g==='female'?'flex':'none';
+  if(g==='male'){family.husband=0;document.getElementById('husband-val').textContent=0;}
+  if(g==='female'){family.wives=0;document.getElementById('wives-val').textContent=0;}
+  autoSave();
+}
+
+// HELPERS
+function autoCapitalise(el){if(el.value.length>0)el.value=el.value.charAt(0).toUpperCase()+el.value.slice(1);}
+function fixText(text){if(!text)return text;text=text.trim();text=text.charAt(0).toUpperCase()+text.slice(1);if(text.length>0&&!'?.!'.includes(text[text.length-1]))text+='.';return text;}
+function toggleHelp(id){document.getElementById(id).classList.toggle('open');}
+function toggleField(id,show){document.getElementById(id).style.display=show?'block':'none';}
+function selectRadio(el){var name=el.querySelector('input').name;document.querySelectorAll('input[name="'+name+'"]').forEach(function(r){r.closest('.radio-opt').classList.remove('selected');});el.classList.add('selected');}
+function toggleAI(){document.getElementById('aiChat').classList.toggle('open');}
+function toggleSkipCalc(){skipCalc=document.getElementById('skipCalcCheck').checked;updateNextBtn();}
+function updateNextBtn(){var btn=document.getElementById('sec3NextBtn');btn.disabled=!(calcDone||skipCalc);}
+
+// SAVE
+function autoSave(){
+  try{
+    localStorage.setItem('wasiyyah_data',JSON.stringify(gatherData()));
+    localStorage.setItem('wasiyyah_ref',refNum);
+    var t=new Date();
+    document.getElementById('saveText').textContent='Saved at '+t.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
+  }catch(e){}
+}
+
+function gatherData(){
+  return{ref:refNum,saved:new Date().toISOString(),gender:rv('gender'),
+    fullName:v('fullName'),dob:v('dob'),nationality:v('nationality'),country:v('country'),
+    executorName:v('executorName'),executorContact:v('executorContact'),
+    executor2Name:v('executor2Name'),executor2Contact:v('executor2Contact'),
+    executor3Name:v('executor3Name'),executor3Contact:v('executor3Contact'),
+    shahadah:rv('shahadah'),soundmind:rv('soundmind'),madhab:rv('madhab'),
+    salahVal:rv('missedSalah'),salahText:v('salahText'),
+    sawmVal:rv('missedSawm'),sawmText:v('sawmText'),
+    zakatVal:rv('zakat'),zakatText:v('zakatText'),
+    hajjVal:rv('hajj'),hajjText:v('hajjText'),otherObligations:v('otherObligations'),
+    debtsVal:rv('debts'),debtsText:v('debtsText'),
+    owedVal:rv('owed'),owedText:v('owedText'),
+    amanahVal:rv('amanah'),amanahText:v('amanahText'),
+    wrongedVal:rv('wronged'),wrongText:v('wrongText'),
+    family:JSON.parse(JSON.stringify(family)),currency:v('currency')||'USD',
+    funeralCost:v('funeralCost'),debtTotal:v('debtTotal'),
+    bequestAmt:v('bequestAmt'),bequestRecipient:v('bequestRecipient'),
+    ghusl1:v('ghusl1'),ghusl2:v('ghusl2'),ghusl3:v('ghusl3'),
+    janazah1:v('janazah1'),janazah2:v('janazah2'),janazah3:v('janazah3'),
+    burialLocation:v('burialLocation'),sadaqahRequest:v('sadaqahRequest'),funeralOther:v('funeralOther'),
+    msgSpouse:v('msgSpouse'),msgChildren:v('msgChildren'),msgParents:v('msgParents'),msgFamily:v('msgFamily'),msgFinal:v('msgFinal'),
+    madhab_calc:madhab,location:userLocation,calcShares:calcShares,netEstate:netEstate,userGender:userGender};
+}
+
+function v(id){var el=document.getElementById(id);return el?el.value:'';}
+function rv(name){var el=document.querySelector('input[name="'+name+'"]:checked');return el?el.value:'';}
+
+function checkForSaved(){
+  try{if(localStorage.getItem('wasiyyah_data'))document.getElementById('editBanner').style.display='block';}catch(e){}
+}
+
+function loadSavedData(){
+  try{
+    var d=JSON.parse(localStorage.getItem('wasiyyah_data'));
+    if(!d)return;
+    document.getElementById('editBanner').style.display='none';
+    if(d.ref)refNum=d.ref;
+    if(d.gender){setRadio('gender',d.gender);setGender(d.gender);}
+    sv('fullName',d.fullName);sv('dob',d.dob);sv('nationality',d.nationality);sv('country',d.country);
+    sv('executorName',d.executorName);sv('executorContact',d.executorContact);
+    sv('executor2Name',d.executor2Name);sv('executor2Contact',d.executor2Contact);
+    sv('executor3Name',d.executor3Name);sv('executor3Contact',d.executor3Contact);
+    setRadio('shahadah',d.shahadah);setRadio('soundmind',d.soundmind);setRadio('madhab',d.madhab);
+    setRadio('missedSalah',d.salahVal);sv('salahText',d.salahText);if(d.salahVal==='yes')toggleField('salahDetail',true);
+    setRadio('missedSawm',d.sawmVal);sv('sawmText',d.sawmText);if(d.sawmVal==='yes')toggleField('sawmDetail',true);
+    setRadio('zakat',d.zakatVal);sv('zakatText',d.zakatText);if(d.zakatVal==='yes')toggleField('zakatDetail',true);
+    setRadio('hajj',d.hajjVal);sv('hajjText',d.hajjText);if(d.hajjVal==='pending')toggleField('hajjDetail',true);
+    sv('otherObligations',d.otherObligations);
+    setRadio('debts',d.debtsVal);sv('debtsText',d.debtsText);if(d.debtsVal==='yes')toggleField('debtsDetail',true);
+    setRadio('owed',d.owedVal);sv('owedText',d.owedText);if(d.owedVal==='yes')toggleField('owedDetail',true);
+    setRadio('amanah',d.amanahVal);sv('amanahText',d.amanahText);if(d.amanahVal==='yes')toggleField('amanahDetail',true);
+    setRadio('wronged',d.wrongedVal);sv('wrongText',d.wrongText);if(d.wrongedVal==='yes')toggleField('wrongDetail',true);
+    if(d.family)Object.assign(family,d.family);
+    Object.keys(family).forEach(function(k){var el=document.getElementById(k+'-val');if(el)el.textContent=family[k];});
+    if(d.currency){var sel=document.getElementById('currency');if(sel)sel.value=d.currency;}
+    sv('funeralCost',d.funeralCost);sv('debtTotal',d.debtTotal);
+    sv('bequestAmt',d.bequestAmt);sv('bequestRecipient',d.bequestRecipient);
+    sv('ghusl1',d.ghusl1);sv('ghusl2',d.ghusl2);sv('ghusl3',d.ghusl3);
+    sv('janazah1',d.janazah1);sv('janazah2',d.janazah2);sv('janazah3',d.janazah3);
+    sv('burialLocation',d.burialLocation);sv('sadaqahRequest',d.sadaqahRequest);sv('funeralOther',d.funeralOther);
+    sv('msgSpouse',d.msgSpouse);sv('msgChildren',d.msgChildren);sv('msgParents',d.msgParents);sv('msgFamily',d.msgFamily);sv('msgFinal',d.msgFinal);
+    if(d.madhab_calc){madhab=d.madhab_calc;document.getElementById('madhabLabel').textContent=madhabNames[madhab]||madhabNames.salafi;}
+    if(d.location)userLocation=d.location;
+    if(d.userGender)userGender=d.userGender;
+    updateTotal();
+  }catch(e){alert('Could not load saved data.');}
+}
+
+function clearAndStart(){if(confirm('Clear your saved wasiyyah and start fresh?')){try{localStorage.removeItem('wasiyyah_data');}catch(e){}document.getElementById('editBanner').style.display='none';}}
+function sv(id,val){var el=document.getElementById(id);if(el&&val!=null)el.value=val;}
+function setRadio(name,val){if(!val)return;var el=document.querySelector('input[name="'+name+'"][value="'+val+'"]');if(el){el.checked=true;el.closest('.radio-opt').classList.add('selected');}}
+
+function exportData(){
+  var blob=new Blob([JSON.stringify(gatherData(),null,2)],{type:'application/json'});
+  var url=URL.createObjectURL(blob);var a=document.createElement('a');
+  a.href=url;a.download='My-Wasiyyah-'+new Date().getFullYear()+'.json';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+
+function importData(event){
+  var file=event.target.files[0];if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(e){try{var d=JSON.parse(e.target.result);localStorage.setItem('wasiyyah_data',JSON.stringify(d));loadSavedData();}catch(err){alert('Could not read the file.');}};
+  reader.readAsText(file);
+}
+
+// CALCULATOR
+function change(key,delta){
+  var maxVals={wives:4,husband:1,father:1,mother:1,pgf:1,pgm:1,mgm:1};
+  family[key]=Math.max(0,family[key]+delta);
+  if(maxVals[key]!==undefined)family[key]=Math.min(maxVals[key],family[key]);
+  document.getElementById(key+'-val').textContent=family[key];
+  autoSave();
+}
+
+function toggleSwitcher(){document.getElementById('madhabSwitcher').classList.toggle('open');}
+function setMadhab(m,el){
+  madhab=m;
+  document.querySelectorAll('.madhab-opt').forEach(function(o){o.classList.remove('calc-active');});
+  el.classList.add('calc-active');
+  document.getElementById('madhabLabel').textContent=madhabNames[m];
+  document.getElementById('madhabSwitcher').classList.remove('open');
+  autoSave();
+}
+
+function addAsset(){
+  var list=document.getElementById('assetList');var row=document.createElement('div');row.className='asset-row';
+  row.innerHTML='<input type="text" placeholder="Asset description"><button class="remove-btn" onclick="removeAsset(this)" aria-label="Remove"><i class="ti ti-x" style="font-size:13px"></i></button><input type="number" placeholder="Value" min="0" oninput="updateTotal();autoSave()">';
+  list.appendChild(row);
+}
+function removeAsset(btn){btn.closest('.asset-row').remove();updateTotal();autoSave();}
+
+function updateTotal(){
+  var total=0;
+  document.querySelectorAll('#assetList input[type=number]').forEach(function(i){total+=parseFloat(i.value)||0;});
+  var funeral=parseFloat(document.getElementById('funeralCost').value)||0;
+  var debts=parseFloat(document.getElementById('debtTotal').value)||0;
+  netEstate=Math.max(0,total-funeral-debts);
+  var cur=document.getElementById('currency').value||'USD';
+  var fmt=function(n){return cur+' '+n.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  document.getElementById('totalDisplay').textContent=fmt(total);
+  document.getElementById('netDisplay').textContent=fmt(netEstate);
+  document.getElementById('maxBequest').textContent=fmt(netEstate/3);
+}
+
+function updateBequest(){
+  var max=netEstate/3;var amt=parseFloat(document.getElementById('bequestAmt').value)||0;
+  var cur=document.getElementById('currency').value||'USD';
+  var fmt=function(n){return cur+' '+n.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  if(amt>max){document.getElementById('bequestAmt').value=max.toFixed(2);amt=max;}
+  var el=document.getElementById('bequestSummary');el.style.display='flex';
+  el.innerHTML='<span>Bequest: '+fmt(amt)+'</span><span style="font-weight:500">Remaining for heirs: '+fmt(netEstate-amt)+'</span>';
+}
+
+function gcd(a,b){return b?gcd(b,a%b):a;}
+function fracStr(n,d){if(!d||!n)return'0';var g=gcd(n,d);return(n/g)+'/'+(d/g);}
+
+function calculate(){
+  var f=family;
+  var cur=document.getElementById('currency').value||'USD';
+  var fmt=function(n){return cur+' '+n.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  var bAmt=parseFloat(document.getElementById('bequestAmt').value)||0;
+  var distEstate=Math.max(0,netEstate-bAmt);
+  var hasChildren=(f.sons>0||f.daughters>0);
+  var hasGC=(f.gs>0||f.gd>0)&&!hasChildren;
+  var hasFather=f.father>0;var hasMother=f.mother>0;
+  var hasPGF=f.pgf>0&&!hasFather;
+  var hasMGM=f.mgm>0&&!hasMother;var hasPGM=f.pgm>0&&!hasMother;
+  var sibCount=f.fb+f.fs+f.phb+f.phs+f.mhs;
+  var hasFullSibs=(f.fb>0||f.fs>0)&&!hasFather&&!hasChildren&&!hasGC;
+  var hasPHSibs=(f.phb>0||f.phs>0)&&!hasFather&&!hasChildren&&!hasGC&&f.fb===0&&f.fs===0;
+  var hasMHSibs=f.mhs>0&&!hasFather&&!hasChildren&&!hasGC;
+  var shares=[];var fixedTotal=0;
+  function addFixed(name,num,den,daleel){shares.push({name:name,num:num,den:den,daleel:daleel,type:'fixed'});fixedTotal+=num/den;}
+  if(f.husband>0){if(hasChildren||hasGC)addFixed('Husband',1,4,'An-Nisa 4:12. One quarter with children.');else addFixed('Husband',1,2,'An-Nisa 4:12. One half without children.');}
+  if(f.wives>0){var wl=f.wives>1?'Wives ('+f.wives+', shared equally)':'Wife';if(hasChildren||hasGC)addFixed(wl,1,8,'An-Nisa 4:12. One eighth with children.');else addFixed(wl,1,4,'An-Nisa 4:12. One quarter without children.');}
+  if(hasMother){if(hasChildren||hasGC||sibCount>=2)addFixed('Mother',1,6,'An-Nisa 4:11. One sixth with children or two or more siblings.');else addFixed('Mother',1,3,'An-Nisa 4:11. One third without children.');}
+  if(hasFather&&(hasChildren||hasGC))addFixed('Father (fixed share)',1,6,'An-Nisa 4:11. One sixth with children.');
+  if(hasPGF&&(hasChildren||hasGC))addFixed('Paternal grandfather',1,6,'Scholarly consensus based on Sunnah.');
+  if(hasPGM)addFixed('Paternal grandmother',1,6,'Narrated from the Prophet ﷺ.');
+  if(hasMGM)addFixed('Maternal grandmother',1,6,'Narrated from the Prophet ﷺ.');
+  if(hasMHSibs){if(f.mhs===1)addFixed('Maternal half-sibling',1,6,'An-Nisa 4:12.');else addFixed('Maternal half-siblings ('+f.mhs+')',1,3,'An-Nisa 4:12. One third shared.');}
+  var residue=Math.max(0,1-fixedTotal);var residueAmt=residue*distEstate;
+  if(hasChildren||hasGC){
+    var cs=hasChildren?f.sons:f.gs;var cd=hasChildren?f.daughters:f.gd;var cl=hasChildren?['Son','Daughter']:['Grandson','Granddaughter'];
+    if(cs>0&&cd>0){var unit=residueAmt/(cs*2+cd);shares.push({name:cl[0]+'s ('+cs+') and '+cl[1]+'s ('+cd+')',type:'asaba',daleel:'An-Nisa 4:11. Male gets double the female share.',amt:residueAmt,detail:'Each '+cl[0].toLowerCase()+': '+fmt(unit*2)+' and each '+cl[1].toLowerCase()+': '+fmt(unit),sonAmt:unit*2,daughterAmt:unit,sons:cs,daughters:cd});}
+    else if(cs>0){shares.push({name:cl[0]+(cs>1?'s ('+cs+')':''),type:'asaba',daleel:'An-Nisa 4:11.',amt:residueAmt,detail:'Each: '+fmt(residueAmt/cs),sonAmt:residueAmt/cs,sons:cs,daughters:0});}
+    else{if(cd===1)addFixed(cl[1],1,2,'An-Nisa 4:11. One half for one daughter.');else addFixed(cl[1]+'s ('+cd+')',2,3,'An-Nisa 4:11. Two thirds for two or more daughters.');}
+  }else if(hasFather){var fr=Math.max(0,1-fixedTotal)*distEstate;if(fr>0)shares.push({name:'Father (residuary)',type:'asaba',daleel:'An-Nisa 4:11. Father takes the residue without children.',amt:fr,detail:'Residuary heir'});}
+  else if(hasPGF){var pgr=Math.max(0,1-fixedTotal)*distEstate;if(pgr>0)shares.push({name:'Paternal grandfather (residuary)',type:'asaba',daleel:'Scholarly consensus.',amt:pgr,detail:'Residuary heir'});}
+  else if(hasFullSibs){
+    var sr=Math.max(0,1-fixedTotal)*distEstate;
+    if(f.fb>0&&f.fs>0){var su=sr/(f.fb*2+f.fs);shares.push({name:'Full brothers ('+f.fb+') and sisters ('+f.fs+')',type:'asaba',daleel:'An-Nisa 4:176.',amt:sr,detail:'Each brother: '+fmt(su*2)+' and each sister: '+fmt(su)});}
+    else if(f.fb>0)shares.push({name:'Full brother'+(f.fb>1?'s ('+f.fb+')':''),type:'asaba',daleel:'An-Nisa 4:176.',amt:sr,detail:fmt(sr/f.fb)+' each'});
+    else if(f.fs===1)addFixed('Full sister',1,2,'An-Nisa 4:176.');
+    else addFixed('Full sisters ('+f.fs+')',2,3,'An-Nisa 4:176.');
+  }
+  calcShares=shares;calcDone=true;
+  updateNextBtn();
+  var rc=document.getElementById('resultsCard');rc.style.display='block';
+  document.getElementById('resultsMadhabNote').textContent='Calculated according to: '+madhabNames[madhab];
+  document.getElementById('estateSummary').innerHTML='<div class="estate-box"><div style="font-size:11px;color:var(--gr600);margin-bottom:4px">Net estate</div><div style="font-size:16px;font-weight:500;color:var(--g800)">'+fmt(netEstate)+'</div></div><div class="estate-box"><div style="font-size:11px;color:var(--gr600);margin-bottom:4px">Bequest</div><div style="font-size:16px;font-weight:500;color:var(--g800)">'+fmt(bAmt)+'</div></div><div class="estate-box"><div style="font-size:11px;color:var(--gr600);margin-bottom:4px">For heirs</div><div style="font-size:16px;font-weight:500;color:var(--g800)">'+fmt(distEstate)+'</div></div>';
+  var hr=document.getElementById('heirRows');hr.innerHTML='';
+  if(shares.length===0){document.getElementById('noHeirs').style.display='block';return;}
+  document.getElementById('noHeirs').style.display='none';
+  shares.forEach(function(s){
+    var amt=0,pct=0,fracLabel='',breakdown='';
+    if(s.type==='fixed'){amt=s.num/s.den*distEstate;pct=s.num/s.den*100;fracLabel=fracStr(s.num,s.den)+' of estate';}
+    else{amt=s.amt||0;pct=distEstate>0?amt/distEstate*100:0;fracLabel=s.detail||'Residuary';}
+    if(s.sons>0&&s.daughters>0)breakdown='<div style="font-size:11px;color:var(--gr600);margin-top:4px;line-height:1.6">Each son: '+fmt(s.sonAmt)+'<br>Each daughter: '+fmt(s.daughterAmt)+'</div>';
+    else if(s.sons>1)breakdown='<div style="font-size:11px;color:var(--gr600);margin-top:4px">Each son: '+fmt(s.sonAmt)+'</div>';
+    var barW=Math.min(100,Math.round(pct));
+    hr.innerHTML+='<div class="heir-row"><div style="flex:1"><div class="heir-name">'+s.name+'</div><div class="heir-fraction">'+fracLabel+'</div>'+breakdown+'<div class="heir-daleel">'+s.daleel+'</div></div><div class="heir-amount"><div class="heir-val">'+fmt(amt)+'</div><div class="heir-pct">'+pct.toFixed(1)+'%</div><div class="heir-bar-wrap"><div class="heir-bar" style="width:'+barW+'%"></div></div></div></div>';
+  });
+  rc.scrollIntoView({behavior:'smooth',block:'start'});autoSave();
+}
+
+// LOCATION
+function getLocation(){
+  var btn=document.getElementById('locBtn');btn.textContent='Getting location...';btn.disabled=true;
+  if(!navigator.geolocation){document.getElementById('locText').textContent='Geolocation not supported.';btn.textContent='Not available';return;}
+  navigator.geolocation.getCurrentPosition(
+    function(pos){
+      var lat=pos.coords.latitude.toFixed(5),lng=pos.coords.longitude.toFixed(5),acc=Math.round(pos.coords.accuracy);
+      userLocation='Lat: '+lat+', Lng: '+lng+' (accuracy: approx. '+acc+'m)';
+      document.getElementById('locText').textContent='Added: '+userLocation;
+      btn.textContent='Location added';btn.style.background='var(--g800)';autoSave();
+    },
+    function(){document.getElementById('locText').textContent='Access denied. You can continue without it.';btn.textContent='Add location';btn.disabled=false;},
+    {enableHighAccuracy:true,timeout:10000}
+  );
+}
+
+// PDF
+function pad(n){return n<10?'0'+n:n;}
+function nowStr(){var d=new Date();return d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+' at '+pad(d.getHours())+':'+pad(d.getMinutes());}
+
+function generatePDF(){
+  var btn=document.getElementById('btnFreePdf');var orig=btn.innerHTML;
+  btn.disabled=true;btn.innerHTML='Generating...';
+  var cur=document.getElementById('currency').value||'USD';
+  var fmt=function(n){return cur+' '+n.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  var bAmt=parseFloat(document.getElementById('bequestAmt').value)||0;
+  var distEstate=Math.max(0,netEstate-bAmt);
+  var g=function(id){var el=document.getElementById(id);return el?fixText(el.value):'';};
+  var heirRows='';
+  calcShares.forEach(function(s){
+    var amt=s.type==='fixed'?s.num/s.den*distEstate:s.amt||0;
+    var fracLabel=s.type==='fixed'?fracStr(s.num,s.den)+' of estate':s.detail||'Residuary';
+    var extra='';
+    if(s.sons>0&&s.daughters>0){extra='<tr style="background:#F7FAF3"><td colspan="2" style="padding:4px 8px;font-size:9px;font-style:italic;color:#5F5E5A;border:1px solid #EAF3DE;padding-left:16px">Each son: '+fmt(s.sonAmt)+'</td><td style="padding:4px 8px;border:1px solid #EAF3DE"></td><td style="padding:4px 8px;border:1px solid #EAF3DE"></td></tr><tr style="background:#F7FAF3"><td colspan="2" style="padding:4px 8px;font-size:9px;font-style:italic;color:#5F5E5A;border:1px solid #EAF3DE;padding-left:16px">Each daughter: '+fmt(s.daughterAmt)+'</td><td style="padding:4px 8px;border:1px solid #EAF3DE"></td><td style="padding:4px 8px;border:1px solid #EAF3DE"></td></tr>';}
+    heirRows+='<tr><td style="padding:5px 7px;border:1px solid #EAF3DE">'+s.name+'</td><td style="padding:5px 7px;border:1px solid #EAF3DE">'+fracLabel+'</td><td style="padding:5px 7px;border:1px solid #EAF3DE;font-weight:500">'+fmt(amt)+'</td><td style="padding:5px 7px;border:1px solid #EAF3DE;font-size:9px;color:#888">'+s.daleel+'</td></tr>'+extra;
+  });
+  var ghuslStr=[g('ghusl1'),g('ghusl2'),g('ghusl3')].filter(Boolean).join(', ')||'Not specified';
+  var janazahStr=[g('janazah1'),g('janazah2'),g('janazah3')].filter(Boolean).join(', ')||'Not specified';
+  var execStr=g('executorName')+(g('executorContact')?' ('+g('executorContact')+')':'');
+  if(g('executor2Name'))execStr+='<br>Backup: '+g('executor2Name')+(g('executor2Contact')?' ('+g('executor2Contact')+')':'');
+  if(g('executor3Name'))execStr+='<br>Third: '+g('executor3Name')+(g('executor3Contact')?' ('+g('executor3Contact')+')':'');
+
+  var html='<div style="font-family:-apple-system,sans-serif;font-size:12px;color:#333">'+
+  '<div style="text-align:center;border-bottom:2px solid #3B6D11;padding-bottom:20px;margin-bottom:24px">'+
+  '<div style="font-size:22px;color:#3B6D11;margin-bottom:8px;letter-spacing:2px;font-family:Georgia,serif">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>'+
+  '<div style="font-size:18px;font-weight:600;color:#27500A">Wasiyyah — Islamic Will and Testament</div>'+
+  '<div style="font-size:10px;color:#888;margin-top:5px">'+nowStr()+(userLocation?' &nbsp;|&nbsp; '+userLocation:'')+'</div>'+
+  '<div style="display:inline-block;margin-top:4px;background:#F1EFE8;border:1px solid #D3D1C7;border-radius:3px;padding:2px 8px;font-size:9px;color:#5F5E5A;font-family:monospace">'+refNum+'</div></div>'+
+  '<div style="margin-bottom:16px"><div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:9px">1. Personal Declaration</div>'+
+  '<div style="background:#EAF3DE;border-left:2px solid #3B6D11;padding:7px 10px;font-size:11px;color:#27500A;line-height:1.7;margin-bottom:8px">I, <strong>'+g('fullName')+'</strong>, testify that there is no god worthy of worship except Allah, and that Muhammad ﷺ is His messenger. I write this wasiyyah of my own free will, in a sound state of mind.</div>'+
+  '<table style="width:100%;font-size:10px;border-collapse:collapse">'+
+  '<tr><td style="padding:3px 7px;color:#888;min-width:130px">Date of birth</td><td style="padding:3px 7px">'+g('dob')+'</td><td style="padding:3px 7px;color:#888;min-width:110px">Nationality</td><td style="padding:3px 7px">'+g('nationality')+'</td></tr>'+
+  '<tr><td style="padding:3px 7px;color:#888">Country of residence</td><td style="padding:3px 7px">'+g('country')+'</td><td style="padding:3px 7px;color:#888">Calculation method</td><td style="padding:3px 7px">'+madhabNames[madhab]+'</td></tr>'+
+  '<tr><td style="padding:3px 7px;color:#888;vertical-align:top">Executor(s)</td><td colspan="3" style="padding:3px 7px">'+execStr+'</td></tr>'+
+  (userLocation?'<tr><td style="padding:3px 7px;color:#888">Location at signing</td><td colspan="3" style="padding:3px 7px">'+userLocation+'</td></tr>':'')+
+  '</table></div>'+
+  '<div style="margin-bottom:16px"><div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:9px">2. Religious Obligations</div>'+
+  (g('salahText')||g('sawmText')||g('zakatText')||g('hajjText')||g('otherObligations')?
+    '<table style="width:100%;font-size:10px;border-collapse:collapse">'+
+    (g('salahText')?'<tr><td style="padding:3px 7px;color:#888;vertical-align:top;min-width:130px">Missed prayers</td><td style="padding:3px 7px;line-height:1.6">'+g('salahText')+'</td></tr>':'')+
+    (g('sawmText')?'<tr><td style="padding:3px 7px;color:#888;vertical-align:top">Missed fasts</td><td style="padding:3px 7px;line-height:1.6">'+g('sawmText')+'</td></tr>':'')+
+    (g('zakatText')?'<tr><td style="padding:3px 7px;color:#888;vertical-align:top">Unpaid zakat</td><td style="padding:3px 7px;line-height:1.6">'+g('zakatText')+'</td></tr>':'')+
+    (g('hajjText')?'<tr><td style="padding:3px 7px;color:#888;vertical-align:top">Hajj</td><td style="padding:3px 7px;line-height:1.6">'+g('hajjText')+'</td></tr>':'')+
+    (g('otherObligations')?'<tr><td style="padding:3px 7px;color:#888;vertical-align:top">Other</td><td style="padding:3px 7px;line-height:1.6">'+g('otherObligations')+'</td></tr>':'')+
+    '</table>'
+  :'<div style="font-size:10px;color:#888;font-style:italic;padding:4px 0">The testator declares no outstanding religious obligations at the time of writing this wasiyyah.</div>')+
+  '</div>'+
+  '<div style="margin-bottom:16px"><div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:9px">3. Rights of People</div>'+
+  (g('debtsText')||g('owedText')||g('amanahText')||g('wrongText')?
+    '<table style="width:100%;font-size:10px;border-collapse:collapse">'+
+    (g('debtsText')?'<tr><td style="padding:3px 7px;color:#888;vertical-align:top;min-width:130px">Debts I owe</td><td style="padding:3px 7px;line-height:1.6">'+g('debtsText')+'</td></tr>':'')+
+    (g('owedText')?'<tr><td style="padding:3px 7px;color:#888;vertical-align:top">Owed to me</td><td style="padding:3px 7px;line-height:1.6">'+g('owedText')+'</td></tr>':'')+
+    (g('amanahText')?'<tr><td style="padding:3px 7px;color:#888;vertical-align:top">Amanah</td><td style="padding:3px 7px;line-height:1.6">'+g('amanahText')+'</td></tr>':'')+
+    (g('wrongText')?'<tr><td style="padding:3px 7px;color:#888;vertical-align:top">Forgiveness</td><td style="padding:3px 7px;line-height:1.6">'+g('wrongText')+'</td></tr>':'')+
+    '</table>'
+  :'<div style="font-size:10px;color:#888;font-style:italic;padding:4px 0">The testator declares no outstanding rights of people, debts, or amanah at the time of writing this wasiyyah.</div>')+
+  '</div>'+
+  '<div style="margin-bottom:16px"><div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:9px">4. Inheritance Distribution'+(netEstate>0?' — Net Estate: '+fmt(netEstate):'')+'</div>'+
+  (calcShares.length>0?'<table style="width:100%;border-collapse:collapse;font-size:10px"><thead><tr><th style="background:#EAF3DE;color:#27500A;padding:4px 7px;text-align:left;border:1px solid #C0DD97">Heir</th><th style="background:#EAF3DE;color:#27500A;padding:4px 7px;border:1px solid #C0DD97">Share</th><th style="background:#EAF3DE;color:#27500A;padding:4px 7px;border:1px solid #C0DD97">Amount</th><th style="background:#EAF3DE;color:#27500A;padding:4px 7px;border:1px solid #C0DD97">Evidence</th></tr></thead><tbody>'+heirRows+'</tbody></table>':'<div style="font-size:10px;color:#888">No inheritance distribution recorded.</div>')+
+  (bAmt>0?'<div style="font-size:10px;color:#444;margin-top:7px">Bequest: '+fmt(bAmt)+(g('bequestRecipient')?' to '+g('bequestRecipient'):'')+'</div>':'')+
+  '</div>'+
+  '<div style="margin-bottom:16px"><div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:9px">5. Funeral and Burial Instructions</div>'+
+  '<div style="background:#EAF3DE;border-radius:4px;padding:7px 10px;font-size:10px;color:#27500A;line-height:1.7;margin-bottom:7px">Binding instructions: No wailing or lamenting. No bid\'ah. No extravagance. No mixing of men and women. No photographs of the deceased. Hasten the janazah according to the Sunnah.</div>'+
+  '<table style="width:100%;font-size:10px;border-collapse:collapse">'+
+  '<tr><td style="padding:3px 7px;color:#888;min-width:130px;vertical-align:top">Ghusl (washing)</td><td style="padding:3px 7px;line-height:1.6">'+ghuslStr+'</td></tr>'+
+  '<tr><td style="padding:3px 7px;color:#888;vertical-align:top">Janazah prayer</td><td style="padding:3px 7px;line-height:1.6">'+janazahStr+'</td></tr>'+
+  (g('burialLocation')?'<tr><td style="padding:3px 7px;color:#888">Burial location</td><td style="padding:3px 7px">'+g('burialLocation')+'</td></tr>':'')+
+  (g('sadaqahRequest')?'<tr><td style="padding:3px 7px;color:#888;vertical-align:top">Sadaqah jariyah</td><td style="padding:3px 7px;line-height:1.6">'+g('sadaqahRequest')+'</td></tr>':'')+
+  (g('funeralOther')?'<tr><td style="padding:3px 7px;color:#888;vertical-align:top">Other wishes</td><td style="padding:3px 7px;line-height:1.6">'+g('funeralOther')+'</td></tr>':'')+
+  '</table></div>'+
+  ((g('msgSpouse')||g('msgChildren')||g('msgParents')||g('msgFamily')||g('msgFinal'))?
+  '<div style="margin-bottom:16px"><div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:9px">6. Messages to Loved Ones</div>'+
+  (g('msgSpouse')?'<div style="background:#FAFAFA;border:1px solid #EAF3DE;border-radius:3px;padding:6px 9px;margin-bottom:6px"><div style="font-size:8px;color:#3B6D11;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">To my spouse</div><div style="font-size:10px;font-style:italic;line-height:1.7">'+g('msgSpouse')+'</div></div>':'')+
+  (g('msgChildren')?'<div style="background:#FAFAFA;border:1px solid #EAF3DE;border-radius:3px;padding:6px 9px;margin-bottom:6px"><div style="font-size:8px;color:#3B6D11;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">To my children</div><div style="font-size:10px;font-style:italic;line-height:1.7">'+g('msgChildren')+'</div></div>':'')+
+  (g('msgParents')?'<div style="background:#FAFAFA;border:1px solid #EAF3DE;border-radius:3px;padding:6px 9px;margin-bottom:6px"><div style="font-size:8px;color:#3B6D11;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">To my parents</div><div style="font-size:10px;font-style:italic;line-height:1.7">'+g('msgParents')+'</div></div>':'')+
+  (g('msgFamily')?'<div style="background:#FAFAFA;border:1px solid #EAF3DE;border-radius:3px;padding:6px 9px;margin-bottom:6px"><div style="font-size:8px;color:#3B6D11;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">To my family</div><div style="font-size:10px;font-style:italic;line-height:1.7">'+g('msgFamily')+'</div></div>':'')+
+  (g('msgFinal')?'<div style="background:#FAFAFA;border:1px solid #EAF3DE;border-radius:3px;padding:6px 9px;margin-bottom:6px"><div style="font-size:8px;color:#3B6D11;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Final reminder</div><div style="font-size:10px;font-style:italic;line-height:1.7">'+g('msgFinal')+'</div></div>':'')+
+  '</div>':'')+''+
+  '<div style="margin-top:18px;padding-top:12px;border-top:1px solid #EAF3DE">'+
+  '<div style="font-size:8.5px;font-weight:600;color:#444;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:9px">Signatures and Witnesses</div>'+
+  '<div style="font-size:9px;color:#444;margin-bottom:12px">Testator: _________________________________ &nbsp;&nbsp; Date: _______________</div>'+
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">'+
+  '<div style="border-top:1px solid #888;padding-top:5px"><div style="font-size:8px;color:#888">Witness 1 full name: ___________________</div><div style="font-size:8px;color:#888;margin-top:7px">Signature: ___________________</div><div style="font-size:8px;color:#888;margin-top:7px">Date: ___________________</div></div>'+
+  '<div style="border-top:1px solid #888;padding-top:5px"><div style="font-size:8px;color:#888">Witness 2 full name: ___________________</div><div style="font-size:8px;color:#888;margin-top:7px">Signature: ___________________</div><div style="font-size:8px;color:#888;margin-top:7px">Date: ___________________</div></div>'+
+  '</div></div>'+
+  '<div style="font-size:8px;color:#D3D1C7;text-align:center;margin-top:12px;padding-top:9px;border-top:1px solid #EAF3DE;line-height:1.5">This document does not constitute legal advice. Have it witnessed and consult a local attorney if required. Wasiyyah.app — Built on the Quran and Sunnah upon the understanding of the Salaf al-Salih.</div>'+
+  '</div>';
+
+  var container=document.getElementById('freePdfDoc');container.innerHTML=html;container.style.left='0';container.style.zIndex='9999';
+  setTimeout(function(){
+    html2canvas(container,{scale:2,useCORS:true,backgroundColor:'#ffffff',logging:false}).then(function(canvas){
+      container.style.left='-9999px';container.style.zIndex='';
+      var img=canvas.toDataURL('image/png');
+      var pdf=new jspdf.jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+      var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+      var iw=pw-16,ih=canvas.height*(iw/canvas.width);
+      var pages=Math.ceil(ih/(ph-16));
+      for(var i=0;i<pages;i++){if(i>0)pdf.addPage();pdf.addImage(img,'PNG',8,8-(i*(ph-16)),iw,ih);}
+      pdf.save('My-Wasiyyah-'+new Date().getFullYear()+'.pdf');
+      btn.disabled=false;btn.innerHTML=orig;
+    }).catch(function(){container.style.left='-9999px';btn.disabled=false;btn.innerHTML=orig;alert('PDF generation failed. Please try again.');});
+  },200);
+}
+
+function payAndDownload(){
+  window.open('https://buymeacoffee.com/YOUR_USERNAME/extras','_blank','width=600,height=700');
+  setTimeout(function(){if(confirm('Once payment is complete, click OK to download your premium PDF.'))generatePDF();},2000);
+  try{var p=parseInt(localStorage.getItem('w_premium')||'0');localStorage.setItem('w_premium',p+1);}catch(e){}
+}
+
+// REVIEW
+function setCompletionRating(n){
+  completionRating=n;
+  document.querySelectorAll('.star-btn').forEach(function(s,i){s.classList.toggle('active',i<n);});
+}
+
+function submitCompletionReview(){
+  var text=document.getElementById('cReviewText').value.trim();
+  if(!completionRating){alert('Please select a star rating.');return;}
+  if(!text||text.length<10){alert('Please write a brief review.');return;}
+  var anon=document.getElementById('cAnonCheck').checked;
+  var name=anon?'Anonymous':document.getElementById('cReviewName').value.trim()||'Anonymous';
+  var country=anon?'':document.getElementById('cReviewCountry').value.trim();
+  var dateStr=new Date().toLocaleDateString('en-GB',{month:'long',year:'numeric'});
+  var review={name:name,country:country,rating:completionRating,text:text,date:dateStr,anon:anon};
+  try{var stored=JSON.parse(localStorage.getItem('wasiyyah_reviews')||'[]');stored.unshift(review);localStorage.setItem('wasiyyah_reviews',JSON.stringify(stored));}catch(e){}
+  document.getElementById('cReviewSuccess').style.display='block';document.getElementById('cReviewText').value='';
+}
+
+// AI
+function sendAI(){
+  var input=document.getElementById('aiInput');var q=input.value.trim();if(!q)return;
+  var msgs=document.getElementById('aiMessages');
+  msgs.innerHTML+='<div class="ai-msg user">'+q+'</div>';
+  msgs.innerHTML+='<div class="ai-msg assistant" id="aiTyping">Thinking...</div>';
+  msgs.scrollTop=msgs.scrollHeight;input.value='';
+  fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,
+      system:'You are a knowledgeable Islamic guide specialising in wasiyyah (Islamic wills), inheritance (fara\'id) and related fiqh. You follow the Quran and Sunnah upon the understanding of the Salaf al-Salih. Always provide evidence from Quran or authentic Sunnah. Be concise, warm and clear. Do not give legal advice. Remind users to consult a qualified attorney for legal matters. Keep responses to 2 to 4 sentences.',
+      messages:[{role:'user',content:q}]})
+  }).then(function(r){return r.json();}).then(function(d){
+    var reply=d.content&&d.content[0]?d.content[0].text:'Please consult a qualified Islamic scholar for detailed rulings.';
+    document.getElementById('aiTyping').textContent=reply;msgs.scrollTop=msgs.scrollHeight;
+  }).catch(function(){document.getElementById('aiTyping').textContent='Could not connect right now. Please try again.';});
+}
+
+// INIT
+window.addEventListener('load',function(){
+  checkForSaved();updateTotal();updateNextBtn();
+  var savedMadhab=rv('madhab');
+  if(savedMadhab&&madhabNames[savedMadhab]){madhab=savedMadhab;document.getElementById('madhabLabel').textContent=madhabNames[savedMadhab];}
+  // Gender-based spouse display default
+  document.getElementById('rowHusband').style.display='none';
+});
+</script>
+
+</body>
+</html>
