@@ -4,180 +4,436 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wasiyyah — Free Islamic Will Builder</title>
+<meta name="description" content="A free, guided Islamic will builder grounded in Quran and Sunnah. Complete your wasiyyah in about 15 minutes. Includes automatic Fara'id inheritance calculator.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2327500A'/><text x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-size='20' fill='%23C8B56A'>و</text></svg>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--g50:#EAF3DE;--g100:#C0DD97;--g200:#97C459;--g600:#3B6D11;--g800:#27500A;--a50:#FAEEDA;--a100:#FAC775;--a200:#EF9F27;--a400:#BA7517;--gr50:#F1EFE8;--gr100:#D3D1C7;--gr600:#5F5E5A;--gr800:#444441;--white:#fff;--border:rgba(0,0,0,0.1)}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--white);color:var(--gr800)}
-html.large-text{font-size:120%}
-html.high-contrast body{background:#000;color:#fff}html.high-contrast nav,html.high-contrast .step-card,html.high-contrast .feature-card{background:#111;border-color:#444}html.high-contrast .section-title,html.high-contrast .hero-title{color:#fff}html.high-contrast .hero{background:#000}
-.a11y-bar{position:fixed;bottom:1.5rem;left:1.5rem;z-index:300;display:flex;flex-direction:column;gap:8px}
-.a11y-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--g600);background:var(--white);color:var(--g600);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,0.12);font-weight:700;font-family:inherit;position:relative}
-.a11y-btn:hover{background:var(--g600);color:white}
-.a11y-tip{position:absolute;left:52px;background:var(--g800);color:white;padding:3px 8px;border-radius:4px;font-size:11px;white-space:nowrap;display:none;font-weight:400}
-.a11y-btn:hover .a11y-tip{display:block}
-nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:0.5px solid var(--border);background:var(--white);position:sticky;top:0;z-index:100}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-icon{width:36px;height:36px;background:var(--g600);border-radius:8px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:20px;height:20px;fill:white}
-.logo-name{font-size:17px;font-weight:500;color:var(--g800);display:block}
-.logo-arabic{font-size:11px;color:var(--gr600);display:block}
-.nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
-.nav-links a{font-size:14px;color:var(--gr600);text-decoration:none}.nav-links a:hover{color:var(--g600)}
-.nav-cta{background:var(--g600)!important;color:white!important;padding:8px 20px;border-radius:8px;font-weight:500}
-.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:5rem 2rem 4rem;background:linear-gradient(180deg,var(--g50) 0%,var(--white) 100%)}
-.hero-bismillah{font-size:28px;color:var(--g600);margin-bottom:1.25rem;letter-spacing:2px}
-.hero-hadith{font-size:14px;color:var(--gr600);font-style:italic;line-height:1.8;padding:0.75rem 1rem;border-left:2px solid var(--a200);text-align:left;max-width:540px;margin-bottom:0.4rem}
-.hero-hadith-source{font-size:12px;color:var(--a400);padding-left:1rem;font-weight:500;text-align:left;max-width:540px;margin-bottom:2.5rem}
-.hero-title{font-size:40px;font-weight:500;color:var(--g800);line-height:1.25;max-width:600px;margin-bottom:1.25rem}
-.hero-title span{color:var(--a400)}
-.hero-sub{font-size:16px;color:var(--gr600);max-width:500px;line-height:1.7;margin-bottom:0.75rem}
-.hero-cta-bridge{font-size:15px;color:var(--g600);font-weight:500;max-width:500px;line-height:1.7;margin-bottom:2rem;font-style:italic}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
-.btn-primary{background:var(--g600);color:white;padding:14px 32px;border-radius:10px;font-size:15px;font-weight:500;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s}.btn-primary:hover{background:var(--g800)}
-.btn-secondary{background:transparent;color:var(--g600);padding:14px 32px;border-radius:10px;font-size:15px;font-weight:500;border:1.5px solid var(--g100);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}.btn-secondary:hover{background:var(--g50)}
-.trust-bar{display:flex;align-items:center;gap:2rem;padding:1.25rem 2rem;border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);justify-content:center;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gr600)}
-.trust-dot{width:7px;height:7px;border-radius:50%;background:var(--g200);flex-shrink:0}
-.sections{padding:4rem 2rem;max-width:900px;margin:0 auto}
-.section-label{font-size:12px;font-weight:500;color:var(--a400);letter-spacing:1.5px;text-transform:uppercase;text-align:center;margin-bottom:0.75rem}
-.section-title{font-size:26px;font-weight:500;color:var(--g800);text-align:center;margin-bottom:0.75rem}
-.section-sub{font-size:15px;color:var(--gr600);text-align:center;max-width:520px;margin:0 auto 3rem;line-height:1.7}
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:4rem}
-.step-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem 1.25rem;display:flex;flex-direction:column;gap:12px}.step-card:hover{border-color:var(--g100)}
-.step-num{width:32px;height:32px;background:var(--g50);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--g600)}
-.step-title{font-size:14px;font-weight:500;color:var(--g800)}
-.step-desc{font-size:13px;color:var(--gr600);line-height:1.6}
-.quran-banner{background:var(--g800);border-radius:14px;padding:2rem 2.5rem;margin-bottom:4rem;text-align:center}
-.quran-arabic{font-size:20px;color:var(--a100);line-height:1.9;margin-bottom:0.75rem}
-.quran-trans{font-size:14px;color:var(--g100);font-style:italic;line-height:1.8;max-width:600px;margin:0 auto 0.5rem}
-.quran-ref{font-size:12px;color:var(--a200);font-weight:500}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:4rem}
-.feature-card{background:var(--gr50);border-radius:12px;padding:1.25rem;display:flex;align-items:flex-start;gap:12px}
-.feature-icon{width:36px;height:36px;background:var(--g600);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;color:white}
-.feature-title{font-size:14px;font-weight:500;color:var(--g800);margin-bottom:4px}
-.feature-desc{font-size:12px;color:var(--gr600);line-height:1.6}
-.counter-section{background:var(--g50);border:0.5px solid var(--g100);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:4rem}
-.counter-num{font-size:52px;font-weight:500;color:var(--g800);margin-bottom:0.4rem;letter-spacing:1px}
-.counter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
-.counter-box{background:var(--white);border:0.5px solid var(--border);border-radius:10px;padding:1.25rem;text-align:center}
-.counter-box-num{font-size:24px;font-weight:500;color:var(--g600);margin-bottom:4px}
-.counter-box-label{font-size:12px;color:var(--gr600)}
-.endorsed-box{background:var(--white);border:0.5px solid var(--border);border-radius:14px;padding:2rem;margin-bottom:4rem}
-.why-section{background:var(--g800);border-radius:16px;padding:3rem 2.5rem;margin-bottom:4rem}
-.why-title{font-size:24px;font-weight:500;color:white;line-height:1.35;margin-bottom:1.5rem}
-.why-body{font-size:14px;color:var(--g100);line-height:2}
-.why-body p{margin-bottom:1.25rem}.why-body p:last-child{margin-bottom:0}
-.why-quote{background:rgba(255,255,255,0.07);border-left:3px solid var(--a200);border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin-top:1.75rem}
-.pdf-compare{background:var(--gr50);border-radius:16px;padding:2.5rem;margin-bottom:4rem}
-.pdf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
-.pdf-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem}
-.badge-free{background:var(--g50);color:var(--g600);padding:3px 10px;border-radius:20px;font-size:11px}
-.badge-prem{background:var(--g800);color:var(--a100);padding:3px 10px;border-radius:20px;font-size:11px;border:1px solid var(--a400)}
-.pdf-feat{font-size:13px;padding:5px 0;border-bottom:0.5px solid var(--gr50);display:flex;align-items:center;gap:8px}.pdf-feat:last-child{border-bottom:none}
-.pdf-feat.yes{color:var(--g800)}.pdf-feat.no{color:var(--gr100);text-decoration:line-through}
-.sample-btn{font-size:12px;color:var(--g600);display:inline-flex;align-items:center;gap:4px;margin-top:0.75rem;border:1px solid var(--g100);padding:5px 12px;border-radius:6px;background:var(--g50);cursor:pointer;font-family:inherit}.sample-btn:hover{background:var(--g100)}
-.donate-section{background:var(--a50);border:1px solid var(--a100);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:4rem}
-.feedback-section{background:var(--gr50);border-radius:16px;padding:2.5rem;margin-bottom:4rem}
-.feedback-form{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem;max-width:500px;margin-left:auto;margin-right:auto}
-.feedback-form input,.feedback-form select,.feedback-form textarea{width:100%;padding:10px 14px;border:1px solid var(--gr100);border-radius:8px;font-size:14px;color:var(--gr800);background:var(--white);outline:none;font-family:inherit}
-.feedback-form textarea{min-height:100px;resize:vertical;line-height:1.6}
-.cta-section{text-align:center;padding:3.5rem 2rem;background:var(--g800);border-radius:16px;margin-bottom:1rem}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1.5rem}
-.modal-overlay.hidden{display:none}
-.modal{background:var(--white);border-radius:16px;padding:2rem;max-width:580px;width:100%;max-height:90vh;overflow-y:auto}
-.modal-block{border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;font-size:13px;line-height:1.8}
-.modal-block.green{background:var(--g50);border-left:3px solid var(--g200);color:var(--g800)}
-.modal-block.amber{background:var(--a50);border-left:3px solid var(--a200);color:#633806}
-.modal-check-row{display:flex;align-items:flex-start;gap:10px;background:var(--gr50);border-radius:8px;padding:0.875rem;margin-bottom:1.25rem;cursor:pointer}
-.modal-check-row input{width:18px;height:18px;accent-color:var(--g600);flex-shrink:0;margin-top:2px}
-.modal-btn{background:var(--g600);color:white;border:none;padding:12px 28px;border-radius:10px;font-size:15px;font-weight:500;width:100%;font-family:inherit;opacity:0.4;cursor:not-allowed;transition:all 0.2s}
-.modal-btn.enabled{opacity:1;cursor:pointer}.modal-btn.enabled:hover{background:var(--g800)}
-.sample-modal-inner{background:var(--white);border-radius:16px;padding:1.5rem;max-width:660px;width:100%;max-height:88vh;overflow-y:auto}
-footer{padding:2rem;text-align:center;font-size:13px;color:var(--gr600);border-top:0.5px solid var(--border);margin-top:2rem;line-height:1.8}
-.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-top:0.75rem;flex-wrap:wrap}
-.footer-links a{font-size:13px;color:var(--gr600);text-decoration:none}.footer-links a:hover{color:var(--g600)}
-@media(max-width:768px){
-  nav{padding:1rem}.nav-links{display:none}
-  .hero{padding:3rem 1.25rem 2.5rem}.hero-title{font-size:28px}
-  .sections{padding:3rem 1.25rem}
-  .steps-grid{grid-template-columns:1fr 1fr}
-  .pdf-grid{grid-template-columns:1fr}
-  .counter-grid{grid-template-columns:1fr}
-  .why-section{padding:2rem 1.5rem}
+/* ─────────────────────────────────────────────────────── */
+/* RESET AND TOKENS                                        */
+/* ─────────────────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+:root {
+  --g50: #EAF3DE; --g100: #C0DD97; --g200: #97C459; --g600: #3B6D11; --g800: #27500A;
+  --a50: #FAEEDA; --a100: #FAC775; --a200: #EF9F27; --a400: #BA7517;
+  --gr50: #F1EFE8; --gr100: #D3D1C7; --gr600: #5F5E5A; --gr800: #444441;
+  --white: #fff; --border: rgba(0,0,0,0.09);
+  --gold: #C8B56A; --darkgreen: #1C3A10;
 }
-@media(max-width:480px){.steps-grid{grid-template-columns:1fr}}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--white); color: var(--gr800); line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────────────────── */
+/* NAVIGATION                                              */
+/* ─────────────────────────────────────────────────────── */
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.875rem 2rem; border-bottom: 0.5px solid var(--border);
+  background: var(--white); position: sticky; top: 0; z-index: 200;
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-icon {
+  width: 36px; height: 36px; background: var(--g800); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: Georgia, serif; font-size: 18px; color: var(--gold); flex-shrink: 0;
+}
+.logo-text-name { font-size: 16px; font-weight: 600; color: var(--g800); display: block; }
+.logo-text-sub  { font-size: 10px; color: var(--gr600); display: block; }
+.nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+.nav-links a { font-size: 13px; color: var(--gr600); text-decoration: none; transition: color 0.15s; }
+.nav-links a:hover { color: var(--g600); }
+.nav-cta { background: var(--g600) !important; color: #fff !important; padding: 8px 18px; border-radius: 8px; font-weight: 600; }
+.nav-cta:hover { background: var(--g800) !important; }
+.hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--g800); font-size: 22px; padding: 4px; }
+/* Mobile menu */
+.mobile-nav {
+  display: none; flex-direction: column;
+  border-bottom: 0.5px solid var(--border); background: var(--white);
+  position: sticky; top: 57px; z-index: 190;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  padding: 0.875rem 2rem; font-size: 14px; color: var(--gr800);
+  text-decoration: none; border-bottom: 0.5px solid var(--border);
+}
+.mobile-nav a:hover { background: var(--g50); color: var(--g600); }
+.mobile-nav-cta { background: var(--g600) !important; color: #fff !important; font-weight: 600; }
+
+/* ─────────────────────────────────────────────────────── */
+/* HERO                                                    */
+/* ─────────────────────────────────────────────────────── */
+.hero {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 5rem 2rem 4rem;
+  background: linear-gradient(160deg, var(--g50) 0%, var(--white) 60%);
+}
+.hero-bismillah { font-size: 26px; color: var(--g600); margin-bottom: 1.5rem; letter-spacing: 2px; }
+.hadith-wrap {
+  max-width: 520px; border-left: 2px solid var(--a200);
+  padding: 0.75rem 1rem; margin-bottom: 2.5rem; text-align: left;
+}
+.hadith-wrap p { font-size: 14px; color: var(--gr600); font-style: italic; line-height: 1.85; margin-bottom: 5px; }
+.hadith-wrap cite { font-size: 12px; color: var(--a400); font-weight: 500; font-style: normal; }
+.hero-title { font-size: 42px; font-weight: 500; color: var(--g800); line-height: 1.2; max-width: 580px; margin-bottom: 1.25rem; }
+.hero-title em { color: var(--a400); font-style: normal; }
+.hero-sub { font-size: 15px; color: var(--gr600); max-width: 480px; line-height: 1.8; margin-bottom: 0.875rem; }
+.hero-bridge { font-size: 14px; color: var(--g600); font-style: italic; max-width: 480px; margin-bottom: 1.75rem; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.btn-primary {
+  background: var(--g600); color: #fff; padding: 14px 28px; border-radius: 10px;
+  font-size: 15px; font-weight: 500; border: none; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--g800); }
+.btn-secondary {
+  background: transparent; color: var(--g600); padding: 14px 28px; border-radius: 10px;
+  font-size: 15px; font-weight: 500; border: 1.5px solid var(--g100); cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover { background: var(--g50); }
+.hero-note { font-size: 12px; color: var(--gr600); margin-top: 1rem; display: flex; align-items: center; gap: 5px; }
+
+/* ─────────────────────────────────────────────────────── */
+/* TRUST BAR                                               */
+/* ─────────────────────────────────────────────────────── */
+.trust-bar {
+  display: flex; align-items: center; gap: 2rem;
+  padding: 1rem 2rem; flex-wrap: wrap; justify-content: center;
+  border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+}
+.trust-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--gr600); }
+.trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--g200); flex-shrink: 0; }
+
+
+
+/* ─────────────────────────────────────────────────────── */
+/* PAGE LAYOUT                                             */
+/* ─────────────────────────────────────────────────────── */
+.page { padding: 4rem 2rem; max-width: 920px; margin: 0 auto; }
+.gap { margin-bottom: 4rem; }
+.section-label {
+  font-size: 11px; font-weight: 600; color: var(--a400);
+  letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-bottom: 0.75rem;
+}
+.section-title { font-size: 26px; font-weight: 500; color: var(--g800); text-align: center; margin-bottom: 0.75rem; }
+.section-sub { font-size: 14px; color: var(--gr600); text-align: center; max-width: 520px; margin: 0 auto 3rem; line-height: 1.75; }
+
+/* ─────────────────────────────────────────────────────── */
+/* HOW IT WORKS — 6 STEPS 3x2 GRID                        */
+/* ─────────────────────────────────────────────────────── */
+.steps-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 4rem;
+}
+.step-card {
+  background: var(--white); border: 0.5px solid var(--border); border-radius: 12px;
+  padding: 1.5rem 1.25rem; display: flex; flex-direction: column; gap: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.step-card:hover { border-color: var(--g100); box-shadow: 0 2px 12px rgba(59,109,17,0.07); }
+.step-num { width: 32px; height: 32px; background: var(--g50); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--g600); }
+.step-title { font-size: 14px; font-weight: 600; color: var(--g800); }
+.step-desc { font-size: 13px; color: var(--gr600); line-height: 1.65; }
+
+/* ─────────────────────────────────────────────────────── */
+/* QURAN BANNER                                            */
+/* ─────────────────────────────────────────────────────── */
+.quran-banner { background: var(--g800); border-radius: 14px; padding: 2rem 2.5rem; margin-bottom: 4rem; text-align: center; }
+.quran-arabic { font-size: 20px; color: var(--a100); line-height: 2; margin-bottom: 0.75rem; }
+.quran-trans { font-size: 14px; color: var(--g100); font-style: italic; line-height: 1.8; max-width: 600px; margin: 0 auto 0.5rem; }
+.quran-ref { font-size: 12px; color: var(--a200); font-weight: 500; }
+
+/* ─────────────────────────────────────────────────────── */
+/* FEATURES GRID                                           */
+/* ─────────────────────────────────────────────────────── */
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 4rem; }
+.feature-card { background: var(--gr50); border-radius: 12px; padding: 1.25rem; display: flex; align-items: flex-start; gap: 12px; }
+.feature-icon { width: 36px; height: 36px; background: var(--g600); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; color: #fff; }
+.feature-title { font-size: 14px; font-weight: 500; color: var(--g800); margin-bottom: 4px; }
+.feature-desc { font-size: 12px; color: var(--gr600); line-height: 1.65; }
+
+
+
+/* ─────────────────────────────────────────────────────── */
+/* ROTATING QUOTE                                          */
+/* ─────────────────────────────────────────────────────── */
+.quote-card {
+  background: var(--gr50); border-radius: 14px; padding: 2.5rem;
+  text-align: center; margin-bottom: 4rem;
+  min-height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.quote-text { font-size: 16px; color: var(--g800); font-style: italic; line-height: 1.85; max-width: 600px; margin-bottom: 0.875rem; }
+.quote-src { font-size: 12px; color: var(--a400); font-weight: 500; }
+
+/* ─────────────────────────────────────────────────────── */
+/* COUNTER                                                 */
+/* ─────────────────────────────────────────────────────── */
+.counter-card { background: var(--g50); border: 0.5px solid var(--g100); border-radius: 16px; padding: 2.5rem; text-align: center; margin-bottom: 4rem; }
+.counter-main { font-size: 52px; font-weight: 500; color: var(--g800); letter-spacing: 1px; margin-bottom: 0.4rem; }
+.counter-sub-label { font-size: 15px; color: var(--gr600); margin-bottom: 0.4rem; }
+.counter-sub-note { font-size: 13px; color: var(--gr600); font-style: italic; }
+.counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+.counter-box { background: var(--white); border: 0.5px solid var(--border); border-radius: 10px; padding: 1.25rem; text-align: center; }
+.counter-box-num { font-size: 24px; font-weight: 500; color: var(--g600); margin-bottom: 4px; }
+.counter-box-lbl { font-size: 12px; color: var(--gr600); }
+
+/* ─────────────────────────────────────────────────────── */
+/* PDF COMPARE                                             */
+/* ─────────────────────────────────────────────────────── */
+.pdf-wrap { background: var(--gr50); border-radius: 16px; padding: 2.5rem; margin-bottom: 4rem; }
+.pdf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+.pdf-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+.pdf-card.prem { border: 1.5px solid var(--a400); }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-bottom: 0.75rem; }
+.badge.free { background: var(--g50); color: var(--g600); }
+.badge.prem { background: var(--g800); color: var(--a100); border: 1px solid var(--a400); }
+.pdf-price { font-size: 22px; font-weight: 500; color: var(--g800); margin-bottom: 4px; }
+.pdf-price span { font-size: 13px; color: var(--gr600); font-weight: 400; }
+.pdf-note { font-size: 11px; color: var(--g600); font-weight: 500; margin-bottom: 4px; min-height: 16px; }
+.pdf-desc { font-size: 12px; color: var(--gr600); margin-bottom: 1rem; line-height: 1.5; }
+.pdf-feat { font-size: 13px; padding: 5px 0; border-bottom: 0.5px solid var(--gr50); display: flex; align-items: center; gap: 8px; }
+.pdf-feat:last-of-type { border-bottom: none; }
+.pdf-feat.yes { color: var(--g800); }
+.pdf-feat.no { color: var(--gr100); text-decoration: line-through; }
+.pdf-actions { display: flex; gap: 8px; margin-top: 1.25rem; flex-wrap: wrap; }
+.preview-btn { font-size: 12px; color: var(--g600); display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--g100); padding: 5px 12px; border-radius: 6px; background: var(--g50); cursor: pointer; font-family: inherit; }
+.preview-btn:hover { background: var(--g100); }
+
+/* ─────────────────────────────────────────────────────── */
+/* WHO NEEDS ONE                                           */
+/* ─────────────────────────────────────────────────────── */
+.obj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-bottom: 4rem; }
+.obj-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: border-color 0.2s; }
+.obj-card:hover { border-color: var(--g100); }
+.obj-q { font-size: 15px; font-weight: 500; color: var(--a400); margin-bottom: 0.5rem; }
+.obj-a { font-size: 13px; color: var(--gr600); line-height: 1.7; }
+
+/* ─────────────────────────────────────────────────────── */
+/* FAQ                                                     */
+/* ─────────────────────────────────────────────────────── */
+.faq-list { margin-bottom: 4rem; }
+.faq-item { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; }
+.faq-item:hover { border-color: var(--g100); }
+.faq-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; cursor: pointer; background: none; border: none; text-align: left; font-family: inherit; }
+.faq-q { font-size: 14px; font-weight: 500; color: var(--g800); }
+.faq-icon { font-size: 16px; color: var(--gr600); flex-shrink: 0; transition: transform 0.25s; }
+.faq-item.open .faq-icon { transform: rotate(180deg); }
+.faq-body { font-size: 13px; color: var(--gr600); line-height: 1.75; padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+.faq-item.open .faq-body { max-height: 400px; padding: 0 1.5rem 1.25rem; }
+
+/* ─────────────────────────────────────────────────────── */
+/* WHY I BUILT THIS                                        */
+/* ─────────────────────────────────────────────────────── */
+.why-card { background: var(--g800); border-radius: 16px; padding: 3rem 2.5rem; margin-bottom: 4rem; }
+.why-overline { font-size: 11px; font-weight: 600; color: var(--g100); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.75rem; }
+.why-title { font-size: 24px; font-weight: 500; color: #fff; line-height: 1.35; margin-bottom: 1.5rem; }
+.why-body { font-size: 14px; color: var(--g100); line-height: 2; }
+.why-body p { margin-bottom: 1.25rem; }
+.why-body p:last-child { margin-bottom: 0; }
+.why-quote { background: rgba(255,255,255,0.07); border-left: 3px solid var(--a200); border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin-top: 1.75rem; }
+
+/* ─────────────────────────────────────────────────────── */
+/* ENDORSED BY                                             */
+/* ─────────────────────────────────────────────────────── */
+.endorsed-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 14px; padding: 2rem; margin-bottom: 4rem; }
+.endorsed-inner { background: var(--gr50); border: 1.5px dashed var(--gr100); border-radius: 10px; padding: 2.5rem; text-align: center; }
+
+/* ─────────────────────────────────────────────────────── */
+/* REVIEWS                                                 */
+/* ─────────────────────────────────────────────────────── */
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.review-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+.review-stars { color: var(--a200); font-size: 14px; margin-bottom: 0.5rem; letter-spacing: 2px; }
+.review-text { font-size: 13px; color: var(--gr800); line-height: 1.7; font-style: italic; margin-bottom: 0.75rem; }
+.review-author { font-size: 12px; color: var(--gr600); font-weight: 500; }
+.reviews-empty { background: var(--gr50); border: 1.5px dashed var(--gr100); border-radius: 12px; padding: 3rem; text-align: center; margin-bottom: 1.5rem; }
+
+/* ─────────────────────────────────────────────────────── */
+/* DONATE                                                  */
+/* ─────────────────────────────────────────────────────── */
+.donate-card { background: var(--a50); border: 1px solid var(--a100); border-radius: 16px; padding: 2.5rem; text-align: center; margin-bottom: 4rem; }
+
+/* ─────────────────────────────────────────────────────── */
+/* CONTACT FORM                                            */
+/* ─────────────────────────────────────────────────────── */
+.contact-card { background: var(--gr50); border-radius: 16px; padding: 2.5rem; margin-bottom: 4rem; }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: 1.5rem auto 0; }
+.contact-form select,
+.contact-form input,
+.contact-form textarea {
+  width: 100%; padding: 10px 14px; border: 1px solid var(--gr100); border-radius: 8px;
+  font-size: 14px; color: var(--gr800); background: var(--white); outline: none; font-family: inherit;
+}
+.contact-form select:focus,
+.contact-form input:focus,
+.contact-form textarea:focus { border-color: var(--g200); }
+.contact-form textarea { min-height: 100px; resize: vertical; line-height: 1.6; }
+.btn-send { background: var(--g600); color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; }
+.btn-send:hover { background: var(--g800); }
+
+/* ─────────────────────────────────────────────────────── */
+/* FINAL CTA                                               */
+/* ─────────────────────────────────────────────────────── */
+.cta-card { text-align: center; padding: 3.5rem 2rem; background: var(--g800); border-radius: 16px; margin-bottom: 1rem; }
+
+/* ─────────────────────────────────────────────────────── */
+/* MODALS                                                  */
+/* ─────────────────────────────────────────────────────── */
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+.overlay.hidden { display: none; }
+.modal { background: var(--white); border-radius: 16px; padding: 2rem; max-width: 580px; width: 100%; max-height: 90vh; overflow-y: auto; }
+.modal-green { background: var(--g50); border-left: 3px solid var(--g200); border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin-bottom: 1rem; font-size: 13px; color: var(--g800); line-height: 1.8; }
+.modal-amber { background: var(--a50); border-left: 3px solid var(--a200); border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin-bottom: 1rem; font-size: 13px; color: #633806; line-height: 1.8; }
+.modal-body-text { font-size: 13px; color: var(--gr600); line-height: 1.8; margin-bottom: 1rem; }
+.modal-hadith { font-size: 13px; color: var(--g800); font-style: italic; text-align: center; padding: 0.75rem; background: var(--g50); border-radius: 8px; margin-bottom: 1.25rem; }
+.modal-check { display: flex; align-items: flex-start; gap: 10px; background: var(--gr50); border-radius: 8px; padding: 0.875rem; margin-bottom: 1.25rem; cursor: pointer; }
+.modal-check input { width: 18px; height: 18px; accent-color: var(--g600); flex-shrink: 0; margin-top: 2px; }
+.modal-check-label { font-size: 13px; color: var(--gr800); line-height: 1.6; }
+.modal-proceed { background: var(--g600); color: #fff; border: none; padding: 12px 28px; border-radius: 10px; font-size: 15px; font-weight: 500; width: 100%; font-family: inherit; opacity: 0.4; cursor: not-allowed; transition: all 0.2s; }
+.modal-proceed.active { opacity: 1; cursor: pointer; }
+.modal-proceed.active:hover { background: var(--g800); }
+.sample-modal { background: var(--white); border-radius: 16px; padding: 1.5rem; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; }
+
+/* ─────────────────────────────────────────────────────── */
+/* FOOTER                                                  */
+/* ─────────────────────────────────────────────────────── */
+footer { padding: 2rem; text-align: center; font-size: 13px; color: var(--gr600); border-top: 0.5px solid var(--border); margin-top: 2rem; line-height: 1.8; }
+.footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
+.footer-links a { font-size: 12px; color: var(--gr600); text-decoration: none; }
+.footer-links a:hover { color: var(--g600); }
+
+/* ─────────────────────────────────────────────────────── */
+/* RESPONSIVE                                              */
+/* ─────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 0.875rem 1.25rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .hero { padding: 3rem 1.25rem 2.5rem; }
+  .hero-title { font-size: 30px; }
+  .page { padding: 3rem 1.25rem; }
+  .steps-grid { grid-template-columns: 1fr 1fr; }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .pdf-grid { grid-template-columns: 1fr; }
+  .counter-grid { grid-template-columns: 1fr 1fr; }
+  .why-card { padding: 2rem 1.5rem; }
+}
+@media (max-width: 480px) {
+  .hero-title { font-size: 26px; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .counter-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
-<!-- DISCLAIMER MODAL -->
-<div class="modal-overlay hidden" id="disclaimerModal">
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- DISCLAIMER MODAL                                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="overlay hidden" id="disclaimerOverlay">
   <div class="modal">
     <div style="text-align:center;margin-bottom:1.25rem">
-      <div style="width:52px;height:52px;background:var(--g50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--g600);margin:0 auto 1rem"><i class="ti ti-book"></i></div>
-      <div style="font-size:20px;font-weight:500;color:var(--g800);margin-bottom:0.5rem">Before you begin</div>
+      <div style="width:52px;height:52px;background:var(--g50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--g600);margin:0 auto 1rem">
+        <i class="ti ti-book"></i>
+      </div>
+      <div style="font-size:20px;font-weight:500;color:var(--g800)">Before you begin</div>
     </div>
-    <div class="modal-block green">
-      <strong>Islam comes first.</strong> Your wasiyyah is a command from the Prophet ﷺ. It is not a legal document first and a religious one second. It is an act of worship, and it is valid before Allah the moment you complete it with sincerity and have it witnessed. No law of any land changes that obligation.
+    <div class="modal-green">
+      <strong>Islam comes first.</strong> Your wasiyyah is a command from the Prophet ﷺ. It is an act of worship, valid before Allah the moment you complete it sincerely and have it witnessed. No civil law changes this obligation.
     </div>
-    <div style="font-size:14px;color:var(--gr600);line-height:1.8;margin-bottom:1rem">
-      We are Muslims living in a world whose systems were not built on our deen. Some countries have civil inheritance laws that may complicate how an Islamic will is applied. This is a reality we acknowledge, but it does not change our obligation to Allah. We do not bend our religion to fit their laws. We write our wasiyyah because the Prophet ﷺ told us to, and we deal with civil systems separately if we have to.
+    <p class="modal-body-text">
+      We are Muslims living in a world whose systems were not built on our deen. Some countries have civil inheritance laws that may affect how an Islamic will is applied. We acknowledge this reality, but it does not change our obligation. We write our wasiyyah because the Prophet ﷺ told us to, and we deal with civil systems separately if we must.
+    </p>
+    <div class="modal-amber">
+      <strong>A note on civil law:</strong> If you want your wasiyyah to be recognised legally in your country, you may choose to have it reviewed by a local attorney after completing it here. This is optional and entirely separate from your Islamic obligation. This tool provides Islamic guidance only. Its creator bears no legal responsibility for how any civil authority handles your document.
     </div>
-    <div class="modal-block amber">
-      <strong>A note on civil law:</strong> If you live in a country with strict inheritance regulations and you want to give your wasiyyah the best chance of being recognised legally, you may choose to have it reviewed by a local attorney after completing it here. This is entirely optional and separate from your Islamic obligation. This tool provides Islamic guidance only. Its creator bears no legal responsibility for how any civil authority handles the document you produce.
+    <div class="modal-hadith">
+      "It is not permissible for any Muslim who has something to bequeath to sleep for two nights without having his will written." — Do not delay.
     </div>
-    <div style="font-size:13px;color:var(--g800);font-style:italic;text-align:center;margin-bottom:1.25rem;padding:0.75rem;background:var(--g50);border-radius:8px">"It is not permissible for any Muslim who has something to bequeath to sleep for two nights without having his will written." — Narrated by Ibn Umar رضي الله عنه, from the Prophet ﷺ. Do not delay.</div>
-    <label class="modal-check-row">
-      <input type="checkbox" id="disclaimerCheck" onchange="toggleModalBtn()">
-      <span style="font-size:13px;color:var(--gr800);line-height:1.6">I understand that this tool provides Islamic guidance, not legal advice. As a Muslim, I hold my obligation to Allah above all else, and I may seek civil legal guidance separately if I choose to.</span>
+    <label class="modal-check">
+      <input type="checkbox" id="disclaimerCheck" onchange="onDisclaimerCheck()">
+      <span class="modal-check-label">I understand this tool provides Islamic guidance, not legal advice. As a Muslim, I hold my obligation to Allah above all else.</span>
     </label>
-    <button class="modal-btn" id="modalContinueBtn" onclick="proceedToWasiyyah()">Begin my wasiyyah <i class="ti ti-arrow-right"></i></button>
+    <button class="modal-proceed" id="disclaimerBtn" disabled onclick="proceedToWasiyyah()">
+      Begin my wasiyyah <i class="ti ti-arrow-right"></i>
+    </button>
   </div>
 </div>
 
-<!-- SAMPLE MODAL -->
-<div class="modal-overlay hidden" id="sampleModal">
-  <div class="sample-modal-inner">
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SAMPLE PREVIEW MODAL                                    -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="overlay hidden" id="sampleOverlay">
+  <div class="sample-modal">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
       <span style="font-size:16px;font-weight:500;color:var(--g800)" id="sampleTitle">Sample document</span>
-      <button onclick="document.getElementById('sampleModal').classList.add('hidden')" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--gr600);line-height:1">&times;</button>
+      <button onclick="closeSample()" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--gr600);line-height:1">&times;</button>
     </div>
     <div id="sampleContent"></div>
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- NAVIGATION                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
 <nav>
   <a class="logo" href="index.html">
-    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-    <div><span class="logo-name">Wasiyyah</span><span class="logo-arabic">وَصِيَّة — Your Islamic Will</span></div>
+    <div class="logo-icon">و</div>
+    <div>
+      <span class="logo-text-name">Wasiyyah</span>
+      <span class="logo-text-sub">وَصِيَّة — Islamic Will Builder</span>
+    </div>
   </a>
   <ul class="nav-links">
     <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#why">Our story</a></li>
-    <li><a href="#endorsed">Endorsed by</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#" class="nav-cta" onclick="showDisclaimer(event)">Begin my wasiyyah</a></li>
   </ul>
+  <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu">
+    <i class="ti ti-menu-2" id="hamburgerIcon"></i>
+  </button>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#how-it-works" onclick="closeMenu()">How it works</a>
+  <a href="#features" onclick="closeMenu()">Why Wasiyyah</a>
+  <a href="#pdf" onclick="closeMenu()">Free vs Premium</a>
+  <a href="#counter" onclick="closeMenu()">Impact</a>
+  <a href="#who-needs" onclick="closeMenu()">Do I need one?</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="#why" onclick="closeMenu()">Our story</a>
+  <a href="#endorsed" onclick="closeMenu()">Endorsed by</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <a href="#donate" onclick="closeMenu()">Donate</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="#" onclick="showDisclaimer(event);closeMenu()" style="background:var(--g600);color:#fff;font-weight:600">Begin my wasiyyah →</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- HERO                                                    -->
+<!-- ═══════════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-  <p class="hero-hadith">"It is not permissible for any Muslim who has something to bequeath to sleep for two nights without having his last will and testament written and kept ready with him."</p>
-  <p class="hero-hadith-source">Narrated by Ibn Umar رضي الله عنه, from the Prophet ﷺ. Sahih Bukhari 2738 and Sahih Muslim 1627.</p>
-  <h1 class="hero-title">Your <span>wasiyyah</span>,<br>written with care.</h1>
-  <p class="hero-sub">A free, guided tool for every Muslim to fulfil this obligation. Grounded in Quran and Sunnah upon the understanding of the Salaf al-Salih.</p>
-  <p style="font-size:13px;color:var(--gr600);margin-bottom:0.5rem"><i class="ti ti-clock" style="font-size:13px;vertical-align:-2px;margin-right:4px"></i>Takes about 15 minutes to complete</p>
-  <p class="hero-cta-bridge">Every Muslim who completes their wasiyyah has answered the call of the Prophet ﷺ. Will you answer it today?</p>
-  <div class="hero-btns">
+  <div class="hadith-wrap">
+    <p>"It is not permissible for any Muslim who has something to bequeath to sleep for two nights without having his last will and testament written and kept ready with him."</p>
+    <cite>Narrated by Ibn Umar رضي الله عنه, from the Prophet ﷺ. Sahih Bukhari 2738 and Sahih Muslim 1627.</cite>
+  </div>
+  <h1 class="hero-title">Your <em>wasiyyah</em>,<br>written with care.</h1>
+  <p class="hero-sub">A free, guided tool for every Muslim to fulfil their obligation. Grounded in Quran and Sunnah upon the understanding of the Salaf al-Salih.</p>
+  <p class="hero-bridge">Every Muslim who completes their wasiyyah has answered the call of the Prophet ﷺ. Will you answer it today?</p>
+<div class="hero-btns">
     <a href="#" class="btn-primary" onclick="showDisclaimer(event)">Begin my wasiyyah <i class="ti ti-arrow-right"></i></a>
     <a href="#how-it-works" class="btn-secondary">Learn more</a>
   </div>
+  <div class="hero-note"><i class="ti ti-clock" style="font-size:13px"></i> Takes about 15 minutes to complete</div>
 </section>
 
+<!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-item"><div class="trust-dot"></div>100% free, always</div>
   <div class="trust-item"><div class="trust-dot"></div>Your data never leaves your device</div>
@@ -186,90 +442,252 @@ footer{padding:2rem;text-align:center;font-size:13px;color:var(--gr600);border-t
   <div class="trust-item"><div class="trust-dot"></div>Available in multiple languages</div>
 </div>
 
-<div class="sections">
 
-  <div id="how-it-works" style="padding-top:1rem">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- MAIN CONTENT                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<main class="page">
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" style="padding-top:1rem">
     <p class="section-label">How it works</p>
     <h2 class="section-title">Guided from beginning to end.</h2>
     <p class="section-sub">Six sections covering every aspect of an Islamic will. Clear questions, Quranic evidence at every step, and a complete document when you are done.</p>
+  </section>
+  <div class="steps-grid gap">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Personal declaration</div>
+      <div class="step-desc">Begin with your shahadah and personal details. Confirm you are of sound mind. Name your executors in order of preference in case one is unavailable.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Religious obligations</div>
+      <div class="step-desc">Before any wealth is distributed, address what you owe to Allah. Missed prayers, fasts, unpaid zakat, and any pending Hajj. These debts to Allah come before all others.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">Rights of people</div>
+      <div class="step-desc">Debts you owe, money owed to you, things held in trust, and anyone you may have wronged. Leave this world with a clean slate before Allah and His creation.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-title">Inheritance distribution</div>
+      <div class="step-desc">List your assets and let the Fara'id calculator divide them according to Shariah. Every share is cited directly from Quran and Sunnah, with blocking rules applied automatically.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <div class="step-title">Funeral wishes</div>
+      <div class="step-desc">Name who performs the ghusl, who leads the janazah, and where you wish to be buried. Your family will have clear written instructions at the hardest moment.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">6</div>
+      <div class="step-title">Messages to loved ones</div>
+      <div class="step-desc">Your final words to your spouse, children, parents, and family. Words of love, advice, and dua that will remain with them long after you have returned to Allah.</div>
+    </div>
   </div>
 
-  <div class="steps-grid">
-    <div class="step-card"><div class="step-num">1</div><div class="step-title">Personal declaration</div><div class="step-desc">Begin with your shahadah, your details, and a declaration that you are of sound mind. This is the spiritual and legal foundation of your wasiyyah.</div></div>
-    <div class="step-card"><div class="step-num">2</div><div class="step-title">Religious obligations</div><div class="step-desc">Before anything else, address what you owe to Allah. Missed prayers, fasts, unpaid zakat, and any pending Hajj. These debts to Allah come before all others.</div></div>
-    <div class="step-card"><div class="step-num">3</div><div class="step-title">Rights of people</div><div class="step-desc">Debts you owe, money owed to you, things held in trust, and anyone you may have wronged. Leave this world with a clean slate before Allah and His creation.</div></div>
-    <div class="step-card"><div class="step-num">4</div><div class="step-title">Inheritance distribution</div><div class="step-desc">List your assets and let the Fara'id calculator divide them according to Shariah law, based on your family structure. Every share is cited from Quran and Sunnah.</div></div>
-    <div class="step-card"><div class="step-num">5</div><div class="step-title">Funeral wishes</div><div class="step-desc">Name who performs the ghusl, who leads the janazah prayer, and where you wish to be buried. Your body has rights over you, and the Sunnah shows exactly how they are fulfilled.</div></div>
-    <div class="step-card"><div class="step-num">6</div><div class="step-title">Messages to loved ones</div><div class="step-desc">Your final words to your spouse, children, parents, and family. Words of love, advice, and dua that will remain with them long after you have returned to Allah.</div></div>
-  </div>
-
-  <div class="quran-banner">
+  <!-- QURAN BANNER -->
+  <div class="quran-banner gap">
     <div class="quran-arabic" lang="ar">يُوصِيكُمُ اللَّهُ فِي أَوْلَادِكُمْ ۖ لِلذَّكَرِ مِثْلُ حَظِّ الْأُنثَيَيْنِ</div>
     <div class="quran-trans">"Allah instructs you regarding your children: for the male, what is equal to the share of two females. But if there are only daughters, two or more, for them is two thirds of one's estate."</div>
     <div class="quran-ref">Surah An-Nisa 4:11</div>
   </div>
 
   <!-- FEATURES -->
-  <div style="padding-top:1rem">
+  <section id="features" style="padding-top:1rem">
     <p class="section-label">Why Wasiyyah</p>
     <h2 class="section-title">Built differently.</h2>
-    <p class="section-sub">Every decision in this app traces back to Quran and Sunnah upon the understanding of the Salaf. No cultural additions, no guesswork, just the deen as it was given to us.</p>
+    <p class="section-sub">Every decision in this tool traces back to Quran and Sunnah upon the understanding of the Salaf. No cultural additions, no guesswork — just the deen as it was given to us.</p>
+  </section>
+  <div class="features-grid gap">
+    <div class="feature-card"><div class="feature-icon"><i class="ti ti-shield-check"></i></div><div><div class="feature-title">Completely private</div><div class="feature-desc">Nothing stored on any server, ever. Your wasiyyah lives only on your device.</div></div></div>
+    <div class="feature-card"><div class="feature-icon"><i class="ti ti-book"></i></div><div><div class="feature-title">Evidence with every ruling</div><div class="feature-desc">Every ruling includes its source from Quran or authentic Sunnah. Nothing is stated without evidence.</div></div></div>
+    <div class="feature-card"><div class="feature-icon"><i class="ti ti-calculator"></i></div><div><div class="feature-title">Fara'id calculator</div><div class="feature-desc">Enter your family structure and shares are calculated automatically with Quranic references for each heir.</div></div></div>
+    <div class="feature-card"><div class="feature-icon"><i class="ti ti-edit"></i></div><div><div class="feature-title">Edit anytime</div><div class="feature-desc">Saved to your device. Come back after any life change and update in minutes.</div></div></div>
+    <div class="feature-card"><div class="feature-icon"><i class="ti ti-file-download"></i></div><div><div class="feature-title">Free and premium PDF</div><div class="feature-desc">Both contain your complete wasiyyah. Premium adds a formal Islamic cover page and letter to executor.</div></div></div>
+    <div class="feature-card"><div class="feature-icon"><i class="ti ti-world"></i></div><div><div class="feature-title">Multiple languages</div><div class="feature-desc">Built for Muslims everywhere. More languages are being added over time.</div></div></div>
   </div>
 
-  <div class="features-grid">
-    <div class="feature-card"><div class="feature-icon"><i class="ti ti-shield-check"></i></div><div><div class="feature-title">Completely private</div><div class="feature-desc">Nothing is stored on any server, ever. Your wasiyyah stays only on your device.</div></div></div>
-    <div class="feature-card"><div class="feature-icon"><i class="ti ti-book"></i></div><div><div class="feature-title">Evidence with every ruling</div><div class="feature-desc">Every ruling includes its source from the Quran or authentic Sunnah. Nothing is added without evidence.</div></div></div>
-    <div class="feature-card"><div class="feature-icon"><i class="ti ti-calculator"></i></div><div><div class="feature-title">Automatic inheritance calculator</div><div class="feature-desc">Enter your family structure and the Fara'id shares are calculated for you, with Quranic references for each heir.</div></div></div>
-    <div class="feature-card"><div class="feature-icon"><i class="ti ti-edit"></i></div><div><div class="feature-title">Edit anytime</div><div class="feature-desc">Your progress is saved on your device. Come back after any life change and update your wasiyyah in minutes.</div></div></div>
-    <div class="feature-card"><div class="feature-icon"><i class="ti ti-file-download"></i></div><div><div class="feature-title">Two document versions</div><div class="feature-desc">Both the free and premium versions contain your complete wasiyyah in full. The premium adds a more formal layout for those who want it.</div></div></div>
-    <div class="feature-card"><div class="feature-icon"><i class="ti ti-world"></i></div><div><div class="feature-title">Available in multiple languages</div><div class="feature-desc">Built for Muslims everywhere. More languages are being added over time.</div></div></div>
+
+
+  <!-- ROTATING QUOTE -->
+  <section style="padding-top:1rem"><p class="section-label">Reminders</p></section>
+  <div class="quote-card gap">
+    <div class="quote-text" id="quoteText">&nbsp;</div>
+    <div class="quote-src" id="quoteSource"></div>
   </div>
 
-  <!-- COUNTER — starts at 0, real data only -->
-  <div id="stats" style="padding-top:1rem">
+  <!-- COUNTER -->
+  <section id="counter" style="padding-top:1rem">
     <p class="section-label">Impact</p>
     <h2 class="section-title">Muslims fulfilling their obligation.</h2>
     <p class="section-sub">Every wasiyyah completed is a Muslim who has answered the call of the Prophet ﷺ. Begin yours today and be among them.</p>
-  </div>
-
-  <div class="counter-section">
-    <div class="counter-num" id="mainCounter">0</div>
-    <div style="font-size:15px;color:var(--gr600);margin-bottom:0.5rem">Wasiyyahs completed worldwide</div>
-    <div style="font-size:13px;color:var(--gr600);font-style:italic">Updated in real time from completions worldwide</div>
+  </section>
+  <div class="counter-card gap">
+    <div class="counter-main" id="mainCounter">0</div>
+    <div class="counter-sub-label">Wasiyyahs completed worldwide</div>
+    <div class="counter-sub-note">Updated in real time from completions worldwide</div>
     <div class="counter-grid">
-      <div class="counter-box"><div class="counter-box-num" id="todayCounter">0</div><div class="counter-box-label">Completed today</div></div>
-      <div class="counter-box"><div class="counter-box-num" id="premiumCounter">0</div><div class="counter-box-label">Premium documents</div></div>
-      <div class="counter-box"><div class="counter-box-num" id="reviewCounter">0</div><div class="counter-box-label">Reviews submitted</div></div>
+      <div class="counter-box"><div class="counter-box-num" id="todayCounter">0</div><div class="counter-box-lbl">Completed today</div></div>
+      <div class="counter-box"><div class="counter-box-num" id="premiumCounter">0</div><div class="counter-box-lbl">Premium documents</div></div>
+      <div class="counter-box"><div class="counter-box-num" id="reviewCounter">0</div><div class="counter-box-lbl">Reviews submitted</div></div>
     </div>
   </div>
 
-  <!-- ENDORSED BY -->
-  <div id="endorsed" style="padding-top:1rem">
-    <p class="section-label">Endorsed by</p>
-    <h2 class="section-title">Trusted by scholars and Islamic bodies.</h2>
-    <p class="section-sub">This section will display endorsements from recognised scholars and Islamic organisations as they are received.</p>
-  </div>
-
-  <div class="endorsed-box">
-    <div style="background:var(--gr50);border:1.5px dashed var(--gr100);border-radius:10px;padding:2.5rem;text-align:center">
-      <div style="font-size:32px;color:var(--gr100);margin-bottom:1rem"><i class="ti ti-award"></i></div>
-      <div style="font-size:15px;font-weight:500;color:var(--gr800);margin-bottom:0.5rem">Scholarly endorsements coming soon</div>
-      <div style="font-size:13px;color:var(--gr600);line-height:1.7;max-width:480px;margin:0 auto">This tool is being submitted for review by qualified scholars who follow the Quran and Sunnah upon the understanding of the Salaf al-Salih. Their names, credentials, and endorsements will appear here once received. If you are a scholar or represent an Islamic organisation and would like to review this tool, please reach out through the contact section below.</div>
+  <!-- PDF COMPARE -->
+  <section id="pdf" style="padding-top:1rem">
+    <p class="section-label">Free vs Premium</p>
+    <h2 class="section-title">Two versions. One complete wasiyyah.</h2>
+    <p class="section-sub">Both versions contain your full wasiyyah across all six sections. Nothing is missing in the free version. The premium adds a formal layout for those who want it.</p>
+  </section>
+  <div class="pdf-wrap gap">
+    <div class="pdf-grid">
+      <!-- FREE -->
+      <div class="pdf-card">
+        <span class="badge free">Free</span>
+        <div class="pdf-price">$0 <span>always free</span></div>
+        <div class="pdf-note"></div>
+        <div class="pdf-desc">Everything you need in a clean, readable document. Fully functional, nothing missing.</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>All 6 sections, complete</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Fara'id inheritance calculator</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Clean, readable PDF</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Reference number and timestamp</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Witness signature page</div>
+        <div class="pdf-feat no"><i class="ti ti-x" style="color:var(--gr100);font-size:13px"></i>Islamic cover page</div>
+        <div class="pdf-feat no"><i class="ti ti-x" style="color:var(--gr100);font-size:13px"></i>Numbered legal clauses</div>
+        <div class="pdf-feat no"><i class="ti ti-x" style="color:var(--gr100);font-size:13px"></i>Letter to executor</div>
+        <div class="pdf-actions">
+          <a href="#" class="btn-primary" onclick="showDisclaimer(event)" style="flex:1;justify-content:center;font-size:14px">Begin free <i class="ti ti-arrow-right"></i></a>
+          <button class="preview-btn" onclick="showSample('free')"><i class="ti ti-eye"></i> Preview</button>
+        </div>
+      </div>
+      <!-- PREMIUM -->
+      <div class="pdf-card prem">
+        <span class="badge prem">Premium</span>
+        <div class="pdf-price">A$10 <span>one-time</span></div>
+        <div class="pdf-note" id="premiumEquiv"></div>
+        <div class="pdf-desc">The same complete wasiyyah in a more formal format, with an Islamic cover page and a letter to your executor.</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>All 6 sections, complete</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Fara'id inheritance calculator</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Formal, well-presented PDF</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Reference number and timestamp</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Witness signature page</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Full Islamic cover page</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Numbered legal clauses</div>
+        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Letter to executor</div>
+        <div class="pdf-actions">
+          <a href="#" class="btn-primary" onclick="showDisclaimer(event)" style="flex:1;justify-content:center;font-size:14px;background:var(--g800)">Begin <i class="ti ti-arrow-right"></i></a>
+          <button class="preview-btn" onclick="showSample('premium')"><i class="ti ti-eye"></i> Preview</button>
+        </div>
+      </div>
     </div>
+    <p style="font-size:11px;color:var(--gr600);text-align:center;margin-top:1rem" id="premiumPayNote">
+      Payment is charged in Australian Dollars (A$10) via Buy Me a Coffee. Your bank converts to your local currency.
+    </p>
   </div>
 
-  <!-- FOUNDER -->
-  <div id="why" style="padding-top:1rem">
+  <!-- WHO NEEDS ONE -->
+  <section id="who-needs" style="padding-top:1rem">
+    <p class="section-label">Common objections</p>
+    <h2 class="section-title">Do I really need one?</h2>
+    <p class="section-sub">Some common reasons Muslims delay writing their wasiyyah — and why none of them hold up.</p>
+  </section>
+  <div class="obj-grid gap">
+    <div class="obj-card"><div class="obj-q">"I'm too young."</div><div class="obj-a">Death has no minimum age. The Prophet ﷺ did not say write your will when you are old. He said not to let two nights pass. Youth is not a shield — it is an opportunity to prepare while you still have time and clarity.</div></div>
+    <div class="obj-card"><div class="obj-q">"I don't have much."</div><div class="obj-a">A wasiyyah is not only about wealth. It records your religious obligations, the rights of others upon you, your funeral wishes, and your final words to your family. These matter regardless of how much you own.</div></div>
+    <div class="obj-card"><div class="obj-q">"I'll do it later."</div><div class="obj-a">Later is not guaranteed. The Prophet ﷺ specifically warned against delay. We plan for everything except the one certainty in life. It takes 15 minutes. Do it today.</div></div>
+    <div class="obj-card"><div class="obj-q">"It's too complicated."</div><div class="obj-a">That is exactly why this tool exists. Every field is explained, every ruling is evidenced, and the inheritance calculator handles everything automatically. Start and you will see how simple it is.</div></div>
+    <div class="obj-card"><div class="obj-q">"My family already knows."</div><div class="obj-a">Grief changes people. Verbal agreements are forgotten, disputed, or misremembered. A written, witnessed wasiyyah removes ambiguity and protects your family from disputes at the worst possible moment.</div></div>
+    <div class="obj-card"><div class="obj-q">"I'm not sure of the rulings."</div><div class="obj-a">Every ruling includes its evidence from Quran and authentic Sunnah. You do not need prior knowledge. The tool guides you through everything step by step with explanations at every point.</div></div>
+  </div>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding-top:1rem">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-sub" style="margin-bottom:2rem">Answers to the questions we receive most often.</p>
+  </section>
+  <div class="faq-list gap">
+
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this)">
+        <span class="faq-q">Is a wasiyyah legally binding?</span>
+        <i class="ti ti-chevron-down faq-icon"></i>
+      </button>
+      <div class="faq-body">Islamically, yes — a wasiyyah witnessed by two Muslim adults is fully valid in the sight of Allah. Legally, it depends on your country. In many countries a handwritten and witnessed document carries legal weight. We recommend checking with a local attorney if you want to ensure full civil recognition. Your Islamic obligation exists regardless.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this)">
+        <span class="faq-q">Is my data safe? Who can see it?</span>
+        <i class="ti ti-chevron-down faq-icon"></i>
+      </button>
+      <div class="faq-body">Nobody. Your wasiyyah is stored only in your browser's local storage on your own device. Nothing is sent to any server, ever. We do not have access to it and it cannot be intercepted. The only person who can access it is whoever has physical access to your device.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this)">
+        <span class="faq-q">Can I update my wasiyyah later?</span>
+        <i class="ti ti-chevron-down faq-icon"></i>
+      </button>
+      <div class="faq-body">Yes, and you should. Your wasiyyah is saved on your device and can be updated at any time. Return to this site, load your saved data, make your changes, and download a new version. Review it after any major life change — marriage, a new child, a death in the family, or a change in your assets — and at minimum once a year.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this)">
+        <span class="faq-q">Who should witness my wasiyyah?</span>
+        <i class="ti ti-chevron-down faq-icon"></i>
+      </button>
+      <div class="faq-body">Two witnesses, both Muslim, both adult, and both of sound mind. Neither witness should be named as a beneficiary in your wasiyyah — they must be independent. Your executor can be present but should not serve as a witness.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this)">
+        <span class="faq-q">What is the maximum I can leave as a bequest?</span>
+        <i class="ti ti-chevron-down faq-icon"></i>
+      </button>
+      <div class="faq-body">One third of your net estate, after debts and funeral expenses are deducted. The Prophet ﷺ said "a third, and a third is a lot" when a companion wanted to leave half. A bequest also cannot be made to an existing heir who already inherits under Fara'id law.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this)">
+        <span class="faq-q">What is the difference between the free and premium PDF?</span>
+        <i class="ti ti-chevron-down faq-icon"></i>
+      </button>
+      <div class="faq-body">Both versions contain your complete wasiyyah across all six sections — nothing is missing in the free version. The premium adds a formal Islamic cover page in dark green and gold, numbered legal clauses, a personal letter to your executor, and a more formal overall presentation. The Islamic content is identical in both.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this)">
+        <span class="faq-q">Does this follow a specific madhab?</span>
+        <i class="ti ti-chevron-down faq-icon"></i>
+      </button>
+      <div class="faq-body">The tool is built upon the Quran and Sunnah upon the understanding of the Salaf al-Salih. For the inheritance calculator, you can select which method you follow — Salaf, Hanafi, Maliki, Shafi'i, or Hanbali. The differences between the four madhabs on inheritance are minor in most cases.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this)">
+        <span class="faq-q">What if I don't have assets to distribute?</span>
+        <i class="ti ti-chevron-down faq-icon"></i>
+      </button>
+      <div class="faq-body">You can skip the inheritance calculator entirely. A wasiyyah is still valuable for recording your religious obligations, the rights of others upon you, your funeral wishes, and your messages to your family — none of which require significant assets.</div>
+    </div>
+
+  </div>
+
+  <!-- WHY I BUILT THIS -->
+  <section id="why" style="padding-top:1rem">
     <p class="section-label">A message from the founder</p>
     <h2 class="section-title">Why I built this.</h2>
-  </div>
-
-  <div class="why-section">
-    <div style="font-size:11px;font-weight:500;color:var(--g100);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:0.75rem">Personal</div>
+  </section>
+  <div class="why-card gap">
+    <div class="why-overline">Personal</div>
     <div class="why-title">I built this because I was scared.</div>
     <div class="why-body">
       <p>Not scared of death itself. As Muslims we know that death is a beginning, not an end. What scared me was the thought of leaving this world without my affairs in order. Without my family knowing what I wanted. Without having written down what the Prophet ﷺ told every one of us to write.</p>
-      <p>I am not a scholar. I am not a lawyer. I am an ordinary Muslim, travelling the world, sitting far from my family one evening, and asking myself what would happen if I died that night. And when I looked around, I saw that most Muslims I knew had never written a wasiyyah. Not because they didn't care, but because no one had made it simple enough. And I had never written one either.</p>
+      <p>I am not a scholar. I am not a lawyer. I am an ordinary Muslim, travelling the world, sitting far from my family one evening, and asking myself what would happen if I died that night. And when I looked around, I saw that most Muslims I knew had never written a wasiyyah. Not because they did not care, but because no one had made it simple enough. And I had never written one either.</p>
       <p>So I built this. With my own hands, one late night at a time, asking Allah to put barakah in it and accept it as an act of worship. It is free because the deen is not a product. It is private because your wasiyyah is between you and Allah. And it is built on Quran and Sunnah because that is the only foundation worth building on.</p>
       <p>If this helps even one Muslim leave this world with their affairs in order, their family protected, and their obligations recorded, then every hour I gave to build it was worth it. That is my only intention, and I ask Allah to accept it from me and from you.</p>
     </div>
@@ -279,308 +697,388 @@ footer{padding:2rem;text-align:center;font-size:13px;color:var(--gr600);border-t
     </div>
   </div>
 
-  <!-- PDF COMPARE -->
-  <div id="pdf" style="padding-top:1rem">
-    <p class="section-label">Free vs Premium</p>
-    <h2 class="section-title">Two versions. One complete wasiyyah.</h2>
-    <p class="section-sub">Both versions contain your full wasiyyah across all six sections. Nothing is missing in the free version. The premium offers a more formal layout for those who want it.</p>
-  </div>
-
-  <div class="pdf-compare">
-    <div class="pdf-grid">
-      <div class="pdf-card">
-        <div style="margin-bottom:0.5rem"><span class="badge-free">Free</span></div>
-        <div style="font-size:22px;font-weight:500;color:var(--g800);margin:0.75rem 0 0.25rem">$0 <span style="font-size:13px;color:var(--gr600);font-weight:400">always free</span></div>
-        <div style="font-size:12px;color:var(--gr600);margin-bottom:1rem;line-height:1.5">Everything you need in a clean, readable document. Fully functional, nothing missing.</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>All 6 sections, complete</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Fara'id inheritance calculator</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Clean, readable PDF layout</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Unique reference number</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Witness signature page</div>
-        <div class="pdf-feat no"><i class="ti ti-x" style="color:var(--gr100);font-size:13px"></i>Formal Islamic cover page</div>
-        <div class="pdf-feat no"><i class="ti ti-x" style="color:var(--gr100);font-size:13px"></i>Numbered legal clauses</div>
-        <div class="pdf-feat no"><i class="ti ti-x" style="color:var(--gr100);font-size:13px"></i>Letter to executor</div>
-        <div style="display:flex;gap:8px;margin-top:1.25rem;flex-wrap:wrap">
-          <a href="#" class="btn-primary" onclick="showDisclaimer(event)" style="flex:1;justify-content:center;font-size:14px">Begin free <i class="ti ti-arrow-right"></i></a>
-          <button class="sample-btn" onclick="showSample('free')"><i class="ti ti-eye"></i> Preview</button>
-        </div>
-      </div>
-      <div class="pdf-card" style="border:1.5px solid var(--a400)">
-        <div style="margin-bottom:0.5rem"><span class="badge-prem">Premium</span></div>
-        <div style="font-size:22px;font-weight:500;color:var(--g800);margin:0.75rem 0 0" id="premiumPrice">Loading...</div>
-        <div style="font-size:11px;color:var(--gr600);margin-bottom:0.25rem" id="premiumLocalNote"></div>
-        <div style="font-size:12px;color:var(--gr600);margin-bottom:1rem;line-height:1.5">The same complete wasiyyah in a more formal format, with an Islamic cover page and a letter to your executor.</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>All 6 sections, complete</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Fara'id inheritance calculator</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Formal, well-presented PDF</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Unique reference number</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Witness signature page</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Formal Islamic cover page</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Numbered legal clauses</div>
-        <div class="pdf-feat yes"><i class="ti ti-check" style="color:var(--g600);font-size:13px"></i>Letter to executor</div>
-        <div style="display:flex;gap:8px;margin-top:1.25rem;flex-wrap:wrap">
-          <a href="#" class="btn-primary" onclick="showDisclaimer(event)" style="flex:1;justify-content:center;font-size:14px;background:var(--g800)">Begin <i class="ti ti-arrow-right"></i></a>
-          <button class="sample-btn" onclick="showSample('premium')"><i class="ti ti-eye"></i> Preview</button>
-        </div>
-      </div>
+  <!-- ENDORSED BY -->
+  <section id="endorsed" style="padding-top:1rem">
+    <p class="section-label">Endorsed by</p>
+    <h2 class="section-title">Trusted by scholars and Islamic bodies.</h2>
+    <p class="section-sub">This section will display endorsements from recognised scholars and Islamic organisations as they are received.</p>
+  </section>
+  <div class="endorsed-card gap">
+    <div class="endorsed-inner">
+      <div style="font-size:32px;color:var(--gr100);margin-bottom:1rem"><i class="ti ti-award"></i></div>
+      <div style="font-size:15px;font-weight:500;color:var(--gr800);margin-bottom:0.5rem">Scholarly endorsements coming soon</div>
+      <div style="font-size:13px;color:var(--gr600);line-height:1.7;max-width:480px;margin:0 auto">This tool is being submitted for review by qualified scholars who follow the Quran and Sunnah upon the understanding of the Salaf al-Salih. Their names, credentials, and endorsements will appear here once received. If you are a scholar or represent an Islamic organisation and would like to review this tool, please reach out through the contact section below.</div>
     </div>
-    <p style="font-size:11px;color:var(--gr600);text-align:center;margin-top:1rem" id="premiumNote">Premium payment is charged in Australian Dollars (A$10) via Buy Me a Coffee. Your bank will show the equivalent in your local currency at the time of payment.</p>
   </div>
 
-  <!-- REVIEWS — real only -->
-  <div id="reviews" style="padding-top:1rem">
+  <!-- REVIEWS -->
+  <section id="reviews" style="padding-top:1rem">
     <p class="section-label">Reviews</p>
     <h2 class="section-title">What Muslims are saying.</h2>
-    <p class="section-sub">Real feedback from Muslims who have used this tool. All reviews are submitted by actual users. No fabricated reviews — we are Muslims and we must be honest.</p>
-  </div>
-
-  <div id="reviewsContainer" style="margin-bottom:1.5rem">
-    <div style="background:var(--gr50);border:1.5px dashed var(--gr100);border-radius:12px;padding:3rem;text-align:center">
+    <p class="section-sub">Real feedback from Muslims who have used this tool. All reviews are submitted by actual users — we are Muslims and we must always be honest.</p>
+  </section>
+  <div id="reviewsArea">
+    <div class="reviews-empty">
       <div style="font-size:28px;color:var(--gr100);margin-bottom:1rem"><i class="ti ti-star"></i></div>
       <div style="font-size:15px;font-weight:500;color:var(--gr800);margin-bottom:0.5rem">No reviews yet</div>
       <div style="font-size:13px;color:var(--gr600);line-height:1.7;max-width:380px;margin:0 auto">Be among the first to complete your wasiyyah and share your experience. Your honest review may be the reason another Muslim finally fulfils this obligation.</div>
     </div>
   </div>
-  <div style="text-align:center;margin-bottom:4rem">
+  <div style="text-align:center;margin-bottom:4rem;margin-top:1.5rem">
     <a href="reviews.html" style="color:var(--g600);font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:6px">View all reviews and leave yours <i class="ti ti-arrow-right"></i></a>
   </div>
 
   <!-- DONATE -->
-  <div id="donate">
-    <div class="donate-section">
+  <section id="donate">
+    <div class="donate-card">
       <div style="font-size:32px;color:var(--a400);margin-bottom:1rem"><i class="ti ti-heart"></i></div>
       <div style="font-size:22px;font-weight:500;color:var(--g800);margin-bottom:0.75rem">Support this work</div>
-      <div style="font-size:14px;color:var(--gr600);line-height:1.8;max-width:500px;margin:0 auto 2rem">This tool is free because it was built for the sake of Allah, not for profit. There is no company, no investors, no team. If it has benefited you and you are able to give, it may become a sadaqah jariyah for you.</div>
-      <a href="https://buymeacoffee.com/wasiyyah" target="_blank" rel="noopener noreferrer" style="background:var(--a400);color:white;padding:14px 36px;border-radius:10px;font-size:15px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:8px"><i class="ti ti-heart"></i> Support with a donation</a>
+      <div style="font-size:14px;color:var(--gr600);line-height:1.8;max-width:500px;margin:0 auto 2rem">This tool is completely free because it was built for the sake of Allah, not for profit. If it benefited you and you are able to give, your donation keeps it running and may become a sadaqah jariyah for you.</div>
+      <a href="https://buymeacoffee.com/wasiyyah" target="_blank" rel="noopener noreferrer" style="background:var(--a400);color:#fff;padding:14px 36px;border-radius:10px;font-size:15px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:8px">
+        <i class="ti ti-heart"></i> Support with a donation
+      </a>
       <p style="font-size:12px;color:var(--gr600);margin-top:1rem">JazakAllahu khayran. May Allah accept it from you. 🤲</p>
     </div>
-  </div>
+  </section>
 
   <!-- CONTACT -->
-  <div id="contact" style="padding-top:1rem">
+  <section id="contact" style="padding-top:1rem">
     <p class="section-label">Contact</p>
     <h2 class="section-title">Get in touch.</h2>
     <p class="section-sub">Send feedback, report an issue, or make an inquiry. Every message is read.</p>
-  </div>
-
-  <div class="feedback-section">
-    <div class="feedback-form">
-      <select id="feedbackType"><option value="">Select type of message</option><option value="feedback">General feedback</option><option value="bug">Report an issue</option><option value="scholar">Scholar or organisation inquiry</option><option value="question">Question about the tool</option><option value="other">Other</option></select>
+  </section>
+  <div class="contact-card gap">
+    <div class="contact-form">
+      <select id="feedbackType">
+        <option value="">Select type of message</option>
+        <option value="Feedback">General feedback</option>
+        <option value="Bug">Report an issue</option>
+        <option value="Scholar inquiry">Scholar or organisation inquiry</option>
+        <option value="Question">Question about the tool</option>
+        <option value="Other">Other</option>
+      </select>
       <input type="text" id="feedbackName" placeholder="Your name (optional)">
       <input type="text" id="feedbackCountry" placeholder="Your country (optional)">
       <textarea id="feedbackMessage" placeholder="Your message..."></textarea>
-      <button onclick="submitFeedback()" style="background:var(--g600);color:white;border:none;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;width:100%">Send message</button>
-      <div id="feedbackSuccess" style="display:none;background:var(--g50);border:1px solid var(--g100);border-radius:8px;padding:1rem;text-align:center;font-size:14px;color:var(--g800)">JazakAllahu khayran. Your message has been received.</div>
+      <button class="btn-send" onclick="submitFeedback()">Send message</button>
+      <div id="feedbackSuccess" style="display:none;background:var(--g50);border:1px solid var(--g100);border-radius:8px;padding:1rem;text-align:center;font-size:14px;color:var(--g800)">
+        JazakAllahu khayran. Your message has been received.
+      </div>
     </div>
   </div>
 
-  <div class="cta-section">
-    <h2 style="font-size:26px;font-weight:500;color:white;margin-bottom:0.75rem">Do not let another night pass.</h2>
+  <!-- FINAL CTA -->
+  <div class="cta-card">
+    <h2 style="font-size:26px;font-weight:500;color:#fff;margin-bottom:0.75rem">Do not let another night pass.</h2>
     <p style="font-size:15px;color:var(--g100);margin-bottom:0.5rem;line-height:1.7">The Prophet ﷺ said not to let two nights pass without your will written.</p>
     <p style="font-size:15px;color:var(--a100);margin-bottom:2rem;font-style:italic">Every wasiyyah completed is a Muslim who has answered that call.</p>
-    <a href="#" onclick="showDisclaimer(event)" style="background:var(--a200);color:var(--g800);padding:14px 36px;border-radius:10px;font-size:15px;font-weight:500;text-decoration:none;display:inline-block">Begin my wasiyyah — it is free <i class="ti ti-arrow-right"></i></a>
+    <a href="#" onclick="showDisclaimer(event)" style="background:var(--a200);color:var(--g800);padding:14px 36px;border-radius:10px;font-size:15px;font-weight:500;text-decoration:none;display:inline-block">
+      Begin my wasiyyah — it is free <i class="ti ti-arrow-right"></i>
+    </a>
   </div>
-</div>
 
+</main>
+
+<!-- FOOTER -->
 <footer>
   <p>Wasiyyah — A free Islamic will builder for Muslims worldwide.</p>
-  <p style="font-size:12px;margin-top:4px;color:#999">Built upon the Quran and Sunnah upon the understanding of the Salaf al-Salih.</p>
+  <p style="font-size:12px;margin-top:4px;color:#bbb">Built upon the Quran and Sunnah upon the understanding of the Salaf al-Salih.</p>
   <div class="footer-links">
-    <a href="#how-it-works">How it works</a><a href="#why">Our story</a><a href="#endorsed">Endorsed by</a>
-    <a href="#reviews">Reviews</a><a href="#donate">Support</a><a href="#contact">Contact</a><a href="reviews.html">All reviews</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#features">Why Wasiyyah</a>
+    <a href="#pdf">Free vs Premium</a>
+    <a href="#faq">FAQ</a>
+    <a href="#why">Our story</a>
+    <a href="#endorsed">Endorsed by</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#donate">Support</a>
+    <a href="#contact">Contact</a>
+    <a href="reviews.html">All reviews</a>
   </div>
   <p style="font-size:11px;margin-top:1rem;color:#bbb">This tool does not constitute legal advice. The creator bears no legal responsibility for how documents are treated by any civil or governmental authority.</p>
 </footer>
 
-<!-- ACCESSIBILITY BAR -->
-<div class="a11y-bar">
-  <button class="a11y-btn" onclick="toggleA11yLarge()" aria-label="Larger text"><span>A+</span><span class="a11y-tip">Larger text</span></button>
-  <button class="a11y-btn" onclick="toggleA11yContrast()" aria-label="High contrast"><i class="ti ti-contrast"></i><span class="a11y-tip">High contrast</span></button>
-</div>
-
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
 <script>
-// DISCLAIMER MODAL
-function toggleA11yLarge(){
-  document.documentElement.classList.toggle('large-text');
-  try{localStorage.setItem('w_a11y_large',document.documentElement.classList.contains('large-text')?'1':'0');}catch(e){}
-}
-function toggleA11yContrast(){
-  document.documentElement.classList.toggle('high-contrast');
-  try{localStorage.setItem('w_a11y_contrast',document.documentElement.classList.contains('high-contrast')?'1':'0');}catch(e){}
-}
-// Restore accessibility preferences
-(function(){
-  try{
-    if(localStorage.getItem('w_a11y_large')==='1')document.documentElement.classList.add('large-text');
-    if(localStorage.getItem('w_a11y_contrast')==='1')document.documentElement.classList.add('high-contrast');
-  }catch(e){}
-})();
+'use strict';
 
-function showDisclaimer(e){
-  if(e)e.preventDefault();
-  document.getElementById('disclaimerModal').classList.remove('hidden');
-  document.getElementById('disclaimerCheck').checked=false;
-  var b=document.getElementById('modalContinueBtn');b.classList.remove('enabled');b.disabled=true;
-}
-function toggleModalBtn(){
-  var c=document.getElementById('disclaimerCheck').checked;
-  var b=document.getElementById('modalContinueBtn');
-  b.disabled=!c;if(c)b.classList.add('enabled');else b.classList.remove('enabled');
-}
-function proceedToWasiyyah(){if(document.getElementById('disclaimerCheck').checked)window.location.href='wasiyyah.html';}
-document.getElementById('disclaimerModal').addEventListener('click',function(e){if(e.target===this)this.classList.add('hidden');});
-document.getElementById('sampleModal').addEventListener('click',function(e){if(e.target===this)this.classList.add('hidden');});
+/* ── CONFIG ──────────────────────────────────────────────── */
+var SUPABASE_URL  = 'https://ubrijniaoffswuxhyzyw.supabase.co';
+var SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVicmlqbmlhb2Zmc3d1eGh5enl3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwMDg4MjQsImV4cCI6MjA5NDU4NDgyNH0.t8Y8dsjGLeM1hHB3T2IeAhD_qqzq8CsAmsRj2MnG8Rc';
 
-// COUNTER — reads from Supabase for global total
-(function(){
-  var SUPABASE_URL = 'https://ubrijniaoffswuxhyzyw.supabase.co';
-  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVicmlqbmlhb2Zmc3d1eGh5enl3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwMDg4MjQsImV4cCI6MjA5NDU4NDgyNH0.t8Y8dsjGLeM1hHB3T2IeAhD_qqzq8CsAmsRj2MnG8Rc';
-  var mainEl=document.getElementById('mainCounter');
-  var todayEl=document.getElementById('todayCounter');
-  var premEl=document.getElementById('premiumCounter');
-  var revEl=document.getElementById('reviewCounter');
-  function animateCount(el,target){
-    if(target===0){el.textContent='0';return;}
-    var start=0,step=Math.ceil(target/60);
-    var timer=setInterval(function(){start+=step;if(start>=target){start=target;clearInterval(timer);}el.textContent=start.toLocaleString();},20);
+/* ── MOBILE MENU ─────────────────────────────────────────── */
+function toggleMenu() {
+  var nav  = document.getElementById('mobileNav');
+  var icon = document.getElementById('hamburgerIcon');
+  var open = nav.classList.toggle('open');
+  icon.className = open ? 'ti ti-x' : 'ti ti-menu-2';
+}
+function closeMenu() {
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburgerIcon').className = 'ti ti-menu-2';
+}
+
+/* ── DISCLAIMER MODAL ────────────────────────────────────── */
+function showDisclaimer(e) {
+  if (e) e.preventDefault();
+  document.getElementById('disclaimerCheck').checked = false;
+  var btn = document.getElementById('disclaimerBtn');
+  btn.disabled = true;
+  btn.classList.remove('active');
+  document.getElementById('disclaimerOverlay').classList.remove('hidden');
+}
+function onDisclaimerCheck() {
+  var checked = document.getElementById('disclaimerCheck').checked;
+  var btn = document.getElementById('disclaimerBtn');
+  btn.disabled = !checked;
+  btn.classList.toggle('active', checked);
+}
+function proceedToWasiyyah() {
+  if (document.getElementById('disclaimerCheck').checked) {
+    window.location.href = 'wasiyyah.html';
   }
-  if(!SUPABASE_URL||!SUPABASE_ANON_KEY){
-    mainEl.textContent='0';todayEl.textContent='0';premEl.textContent='0';revEl.textContent='0';return;
-  }
-  fetch(SUPABASE_URL+'/rest/v1/wasiyyah_counter?select=count,today_count,premium_count,review_count&limit=1',{
-    headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+SUPABASE_ANON_KEY}
-  }).then(function(r){return r.json();}).then(function(data){
-    if(data&&data[0]){
-      animateCount(mainEl,data[0].count||0);
-      animateCount(todayEl,data[0].today_count||0);
-      animateCount(premEl,data[0].premium_count||0);
-      animateCount(revEl,data[0].review_count||0);
+}
+document.getElementById('disclaimerOverlay').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.add('hidden');
+});
+document.getElementById('sampleOverlay').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.add('hidden');
+});
+function closeSample() {
+  document.getElementById('sampleOverlay').classList.add('hidden');
+}
+
+/* ── FAQ ─────────────────────────────────────────────────── */
+function toggleFaq(btn) {
+  var item   = btn.closest('.faq-item');
+  var isOpen = item.classList.contains('open');
+  // Close all open items
+  document.querySelectorAll('.faq-item.open').forEach(function(el) {
+    el.classList.remove('open');
+  });
+  // Open this one if it was closed
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ── CLOCK ───────────────────────────────────────────────── */
+
+/* ── QUOTES ──────────────────────────────────────────────── */
+var QUOTES = [
+  { t: 'Every soul shall taste death, and you will only be given your full reward on the Day of Resurrection.',
+    s: 'Surah Ali Imran 3:185' },
+  { t: 'Be in this world as though you were a stranger or a traveller passing through.',
+    s: 'Narrated by Ibn Umar \u0631\u0636\u064a \u0627\u0644\u0644\u0647 \u0639\u0646\u0647, from the Prophet \uFDFA. Sahih Bukhari 6416' },
+  { t: 'Remember often the destroyer of pleasures — death.',
+    s: 'Narrated by Abu Hurairah \u0631\u0636\u064a \u0627\u0644\u0644\u0647 \u0639\u0646\u0647, from the Prophet \uFDFA. Sunan Ibn Majah 4258' },
+  { t: 'It is not permissible for any Muslim who has something to bequeath to sleep for two nights without having his will written.',
+    s: 'Narrated by Ibn Umar \u0631\u0636\u064a \u0627\u0644\u0644\u0647 \u0639\u0646\u0647, from the Prophet \uFDFA. Sahih Bukhari 2738' },
+  { t: 'Indeed, Allah commands you to render trusts to whom they are due.',
+    s: 'Surah An-Nisa 4:58' },
+  { t: 'The intelligent person is the one who subdues his soul and works for what comes after death.',
+    s: 'Narrated by Shaddad ibn Aws \u0631\u0636\u064a \u0627\u0644\u0644\u0647 \u0639\u0646\u0647, from the Prophet \uFDFA. Sunan al-Tirmidhi 2459' },
+  { t: 'Wherever you may be, death will overtake you, even if you should be within towers of lofty construction.',
+    s: 'Surah An-Nisa 4:78' }
+];
+function setQuote() {
+  var q  = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+  var tEl = document.getElementById('quoteText');
+  var sEl = document.getElementById('quoteSource');
+  if (tEl) tEl.textContent = '\u201c' + q.t + '\u201d';
+  if (sEl) sEl.textContent = q.s;
+}
+
+/* ── COUNTER ─────────────────────────────────────────────── */
+function animateNum(id, target) {
+  var el = document.getElementById(id);
+  if (!el || !target) return;
+  var n = 0, step = Math.max(1, Math.ceil(target / 60));
+  var timer = setInterval(function() {
+    n = Math.min(n + step, target);
+    el.textContent = n.toLocaleString();
+    if (n >= target) clearInterval(timer);
+  }, 20);
+}
+function loadCounter() {
+  fetch(SUPABASE_URL + '/rest/v1/wasiyyah_counter?select=count,today_count,premium_count,review_count&limit=1', {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data && data[0]) {
+      animateNum('mainCounter',   data[0].count         || 0);
+      animateNum('todayCounter',  data[0].today_count   || 0);
+      animateNum('premiumCounter',data[0].premium_count || 0);
+      animateNum('reviewCounter', data[0].review_count  || 0);
     }
-  }).catch(function(){mainEl.textContent='0';todayEl.textContent='0';premEl.textContent='0';revEl.textContent='0';});
-})();
+  })
+  .catch(function() {}); // Silently fail — zeros are honest
+}
 
-// PREMIUM PRICE — live exchange rate A$10 AUD base
-(function(){
-  var BASE_AUD=10;
-  var priceEl=document.getElementById('premiumPrice');
-  var noteEl=document.getElementById('premiumLocalNote');
-  var noteBottom=document.getElementById('premiumNote');
-  // Try to get local currency from timezone
-  var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';
-  var tzCurrencyMap={'Australia':'AUD','America':'USD','Europe':'EUR','Asia/Karachi':'PKR','Asia/Riyadh':'SAR','Asia/Dubai':'AED','Asia/Cairo':'EGP','Asia/Dhaka':'BDT','Africa':'USD','Pacific':'USD'};
-  var cur='USD';
-  Object.keys(tzCurrencyMap).forEach(function(k){if(tz.indexOf(k)>-1)cur=tzCurrencyMap[k];});
-  if(cur==='AUD'){priceEl.innerHTML='A$10 <span style="font-size:13px;color:var(--gr600);font-weight:400">one-time</span>';noteEl.textContent='';return;}
+/* ── PREMIUM PRICE ───────────────────────────────────────── */
+function loadPremiumPrice() {
+  var tz  = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+  var map = {
+    'Australia':          'AUD', 'Africa/Cairo':        'EGP',
+    'Asia/Riyadh':        'SAR', 'Asia/Dubai':          'AED',
+    'Asia/Karachi':       'PKR', 'Asia/Dhaka':          'BDT',
+    'Asia/Kuala_Lumpur':  'MYR', 'Asia/Jakarta':        'IDR',
+    'Asia/Kolkata':       'INR', 'Europe/London':       'GBP',
+    'America':            'USD', 'Europe':              'EUR',
+    'Africa/Lagos':       'NGN', 'Africa/Nairobi':      'KES',
+    'Africa/Johannesburg':'ZAR'
+  };
+  var cur = 'USD';
+  Object.keys(map).forEach(function(k) {
+    if (tz === k || tz.startsWith(k)) cur = map[k];
+  });
+  if (cur === 'AUD') return; // Already shows A$10
+
   fetch('https://open.er-api.com/v6/latest/AUD')
-    .then(function(r){return r.json();})
-    .then(function(d){
-      if(d&&d.rates&&d.rates[cur]){
-        var amt=(BASE_AUD*d.rates[cur]);
-        var sym={'USD':'$','EUR':'€','GBP':'£','PKR':'₨','SAR':'﷼','AED':'د.إ','EGP':'£E','BDT':'৳'};
-        var s=sym[cur]||cur+' ';
-        var formatted=s+(amt<100?amt.toFixed(2):Math.round(amt).toLocaleString());
-        priceEl.innerHTML='A$10 <span style="font-size:13px;color:var(--gr600);font-weight:400">one-time</span>';
-        noteEl.textContent='Approximately '+formatted+' '+cur+' at today\'s rate';
-        noteBottom.textContent='Payment is charged in Australian Dollars (A$10) via Buy Me a Coffee. Your bank converts this at the current rate — the equivalent in your currency is shown above as a guide.';
-      }else{
-        priceEl.innerHTML='A$10 <span style="font-size:13px;color:var(--gr600);font-weight:400">one-time</span>';
-        noteEl.textContent='';
-      }
-    }).catch(function(){
-      priceEl.innerHTML='A$10 <span style="font-size:13px;color:var(--gr600);font-weight:400">one-time</span>';
-      noteEl.textContent='';
-    });
-})();
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (!d || !d.rates || !d.rates[cur]) return;
+      var amt  = 10 * d.rates[cur];
+      var syms = { USD:'$', EUR:'€', GBP:'£', PKR:'₨', SAR:'﷼', AED:'د.إ', EGP:'£E', BDT:'৳', MYR:'RM', IDR:'Rp', NGN:'₦', KES:'KSh', ZAR:'R' };
+      var sym  = syms[cur] || (cur + ' ');
+      var fmt  = sym + (amt < 100 ? amt.toFixed(2) : Math.round(amt).toLocaleString());
+      var eqEl = document.getElementById('premiumEquiv');
+      var nEl  = document.getElementById('premiumPayNote');
+      if (eqEl) eqEl.textContent = 'Approximately ' + fmt + ' ' + cur + ' at today\'s rate';
+      if (nEl)  nEl.textContent  = 'Payment is charged in Australian Dollars (A$10) via Buy Me a Coffee. Your bank converts at the current rate — the ' + cur + ' equivalent above is a guide only.';
+    })
+    .catch(function() {}); // Silently fail — A$10 still displayed
+}
 
-// LOAD REAL REVIEWS FROM LOCALSTORAGE
-(function(){
-  try{
-    var reviews=JSON.parse(localStorage.getItem('wasiyyah_reviews')||'[]');
-    if(reviews.length===0)return;
-    var grid=document.createElement('div');
-    grid.style.cssText='display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem';
-    var shown=reviews.slice(0,3);
-    shown.forEach(function(r){
-      var stars='★'.repeat(r.rating)+'☆'.repeat(5-r.rating);
-      var author=r.anon?'Anonymous':(r.name+(r.country?' — '+r.country:''));
-      var card=document.createElement('div');
-      card.style.cssText='background:white;border:0.5px solid rgba(0,0,0,0.1);border-radius:12px;padding:1.25rem';
-      card.innerHTML='<div style="color:#EF9F27;font-size:14px;margin-bottom:0.5rem">'+stars+'</div><div style="font-size:13px;color:#444441;line-height:1.7;font-style:italic;margin-bottom:0.75rem">"'+r.text+'"</div><div style="font-size:12px;color:#5F5E5A;font-weight:500">'+author+'</div>';
+/* ── REVIEWS ─────────────────────────────────────────────── */
+function loadReviews() {
+  try {
+    var reviews = JSON.parse(localStorage.getItem('wasiyyah_reviews') || '[]');
+    if (!reviews.length) return;
+    var area = document.getElementById('reviewsArea');
+    var grid = document.createElement('div');
+    grid.className = 'reviews-grid';
+    reviews.slice(0, 3).forEach(function(r) {
+      var stars  = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+      var author = r.anon ? 'Anonymous' : (r.name + (r.country ? ' \u2014 ' + r.country : ''));
+      var card   = document.createElement('div');
+      card.className = 'review-card';
+      card.innerHTML =
+        '<div class="review-stars">' + stars + '</div>' +
+        '<div class="review-text">\u201c' + r.text + '\u201d</div>' +
+        '<div class="review-author">' + author + '</div>';
       grid.appendChild(card);
     });
-    document.getElementById('reviewsContainer').innerHTML='';
-    document.getElementById('reviewsContainer').appendChild(grid);
-  }catch(e){}
-})();
-
-// SAMPLE PREVIEW
-function showSample(type){
-  var title=document.getElementById('sampleTitle');
-  var content=document.getElementById('sampleContent');
-  if(type==='free'){
-    title.textContent='Free version — sample document';
-    content.innerHTML='<div style="border:1px solid #ddd;border-radius:8px;padding:1.5rem;font-family:Georgia,serif;font-size:11.5px;line-height:1.8;color:#333;max-height:420px;overflow-y:auto">'+
-    '<div style="text-align:center;border-bottom:2px solid #3B6D11;padding-bottom:14px;margin-bottom:16px"><div style="font-size:18px;color:#3B6D11;letter-spacing:2px;margin-bottom:6px">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div><div style="font-size:15px;font-weight:bold;color:#27500A">Wasiyyah — Islamic Will and Testament</div><div style="font-size:10px;color:#888;margin-top:4px">Sample Document — WSY-2026-DEMO — Generated 16 May 2026</div></div>'+
-    '<div style="font-size:9px;font-weight:bold;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:8px">1. Personal Declaration</div>'+
-    '<div style="background:#EAF3DE;border-left:2px solid #3B6D11;padding:8px 10px;font-size:11px;margin-bottom:8px;color:#27500A">I, <strong>Abdullah ibn Yusuf Al-Farsi</strong>, testify that there is no god worthy of worship except Allah, and that Muhammad ﷺ is His messenger. I write this wasiyyah of my own free will and in a sound state of mind, on 16 May 2026.</div>'+
-    '<div style="font-size:9px;color:#888;margin-bottom:12px">Date of birth: 01/01/1985 &nbsp;|&nbsp; Nationality: Australian &nbsp;|&nbsp; Country: Egypt &nbsp;|&nbsp; Executor: Yusuf Al-Farsi (+61 400 000 000)</div>'+
-    '<div style="font-size:9px;font-weight:bold;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:8px">2. Religious Obligations</div>'+
-    '<div style="font-size:10px;color:#444;margin-bottom:12px">Missed fasts: I estimate approximately 14 missed Ramadan fasts from illness in earlier years. I request that my executor arrange fidyah of one meal per day for a poor person, from my estate.</div>'+
-    '<div style="font-size:9px;font-weight:bold;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:8px">4. Inheritance Distribution — Net Estate: AUD 250,000.00</div>'+
-    '<table style="width:100%;border-collapse:collapse;font-size:10px;margin-bottom:10px"><tr style="background:#EAF3DE"><th style="padding:4px 6px;text-align:left;border:1px solid #C0DD97">Heir</th><th style="padding:4px 6px;border:1px solid #C0DD97">Share</th><th style="padding:4px 6px;border:1px solid #C0DD97">Amount</th><th style="padding:4px 6px;border:1px solid #C0DD97;font-size:9px">Evidence</th></tr><tr><td style="padding:4px 6px;border:1px solid #EAF3DE">Wife</td><td style="padding:4px 6px;border:1px solid #EAF3DE">1/8</td><td style="padding:4px 6px;border:1px solid #EAF3DE">AUD 31,250.00</td><td style="padding:4px 6px;border:1px solid #EAF3DE;font-size:9px;color:#888">An-Nisa 4:12</td></tr><tr><td style="padding:4px 6px;border:1px solid #EAF3DE">Sons (1) and Daughters (1)</td><td style="padding:4px 6px;border:1px solid #EAF3DE">7/8 residue</td><td style="padding:4px 6px;border:1px solid #EAF3DE">AUD 218,750.00</td><td style="padding:4px 6px;border:1px solid #EAF3DE;font-size:9px;color:#888">An-Nisa 4:11</td></tr></table>'+
-    '<div style="font-size:9px;font-weight:bold;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:8px">5. Funeral Instructions</div>'+
-    '<div style="font-size:10px;color:#444;margin-bottom:10px;background:#EAF3DE;padding:7px 9px">Binding instructions: No wailing. No bid\'ah. No extravagance. No mixing of men and women. No photographs of the deceased. Hasten the janazah. Ghusl: Yusuf Al-Farsi (first preference). Janazah: Shaykh Ibrahim (first preference).</div>'+
-    '<div style="font-size:9px;font-weight:bold;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:8px">6. Messages</div>'+
-    '<div style="font-size:10px;color:#444;font-style:italic;border:1px solid #EAF3DE;padding:7px 9px;border-radius:4px">"To my children: Fear Allah in all things. Hold fast to the Quran and Sunnah. Treat your mother with the utmost kindness. Remember me in your dua."</div>'+
-    '<div style="margin-top:14px;border-top:1px solid #EAF3DE;padding-top:10px;font-size:9px;color:#888">Testator: _________________________ &nbsp; Date: ___________ &nbsp;|&nbsp; Witness 1: _________________ &nbsp;|&nbsp; Witness 2: _________________</div>'+
-    '</div><p style="font-size:12px;color:var(--gr600);margin-top:1rem;text-align:center">Sample only. Your actual document will contain your own information across all six sections.</p>';
-  }else{
-    title.textContent='Premium version — sample document';
-    // Premium sample - white, gold, dark green, cream - professional and Islamic
-    content.innerHTML='<div style="border:1px solid #C8B56A;border-radius:4px;overflow:hidden;max-height:440px;overflow-y:auto;box-shadow:0 2px 12px rgba(28,58,16,0.12)">'+
-    // Cover page
-    '<div style="background:#1C3A10;padding:3.5rem 2.5rem;text-align:center;border-bottom:3px solid #C8B56A">'+
-    '<div style="font-size:26px;color:#C8B56A;letter-spacing:3px;margin-bottom:16px;font-family:Georgia,serif">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>'+
-    '<div style="width:100px;height:1px;background:linear-gradient(to right,transparent,#C8B56A,transparent);margin:0 auto 20px"></div>'+
-    '<div style="font-size:13px;color:#C8B56A;letter-spacing:4px;text-transform:uppercase;font-family:Georgia,serif;margin-bottom:6px">Wasiyyah</div>'+
-    '<div style="font-size:11px;color:#9DB88A;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px">Islamic Will and Testament</div>'+
-    '<div style="width:100px;height:1px;background:linear-gradient(to right,transparent,#C8B56A,transparent);margin:0 auto 20px"></div>'+
-    '<div style="font-size:13px;color:#F5ECD0;font-family:Georgia,serif;margin-bottom:4px">Abdullah ibn Yusuf Al-Farsi</div>'+
-    '<div style="font-size:10px;color:#9DB88A;margin-bottom:16px">Nationality: Australian &nbsp;|&nbsp; Country of residence: Egypt</div>'+
-    '<div style="font-size:10px;color:#7A9970;font-style:italic;margin-bottom:14px">Prepared in accordance with the Quran and Sunnah upon the understanding of the Salaf al-Salih</div>'+
-    '<div style="display:inline-block;border:1px solid #C8B56A;padding:3px 16px;border-radius:2px;font-size:9px;color:#C8B56A;letter-spacing:2px;font-family:monospace">WSY-2026-DEMO</div>'+
-    '<div style="font-size:9px;color:#5A7050;margin-top:8px">Dated: 16 May 2026</div>'+
-    '</div>'+
-    // Body
-    '<div style="background:#FEFCF5;padding:1.5rem;font-family:Georgia,serif">'+
-    '<div style="font-size:8px;font-weight:bold;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1px solid #C8B56A;padding-bottom:5px;margin-bottom:10px">Clause 1 — Personal Declaration</div>'+
-    '<div style="background:#F2EDD5;border-left:2px solid #C8B56A;padding:8px 12px;font-size:10px;margin-bottom:12px;color:#1C3A10;line-height:1.8">I, <strong>Abdullah ibn Yusuf Al-Farsi</strong>, testify that there is no god worthy of worship except Allah, and that Muhammad ﷺ is His messenger. This wasiyyah is written of my own free will, in a sound state of mind.</div>'+
-    '<div style="font-size:8px;font-weight:bold;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1px solid #C8B56A;padding-bottom:5px;margin-bottom:10px">Clause 4 — Inheritance Distribution</div>'+
-    '<table style="width:100%;border-collapse:collapse;font-size:10px;margin-bottom:12px"><tr style="background:#1C3A10"><th style="padding:5px 8px;text-align:left;border:1px solid #C8B56A;color:#C8B56A;font-weight:500;letter-spacing:0.5px">Heir</th><th style="padding:5px 8px;color:#C8B56A;border:1px solid #C8B56A;font-weight:500">Share</th><th style="padding:5px 8px;color:#C8B56A;border:1px solid #C8B56A;font-weight:500">Amount</th><th style="padding:5px 8px;color:#C8B56A;border:1px solid #C8B56A;font-weight:500">Evidence</th></tr><tr><td style="padding:5px 8px;border:1px solid #E8DDB5;color:#333">Wife</td><td style="padding:5px 8px;border:1px solid #E8DDB5;color:#333">1/8</td><td style="padding:5px 8px;border:1px solid #E8DDB5;color:#333;font-weight:500">AUD 31,250</td><td style="padding:5px 8px;border:1px solid #E8DDB5;color:#888;font-size:9px">An-Nisa 4:12</td></tr><tr style="background:#FEFAF0"><td style="padding:5px 8px;border:1px solid #E8DDB5;color:#333">Sons (1) and Daughters (1)</td><td style="padding:5px 8px;border:1px solid #E8DDB5;color:#333">7/8</td><td style="padding:5px 8px;border:1px solid #E8DDB5;color:#333;font-weight:500">AUD 218,750</td><td style="padding:5px 8px;border:1px solid #E8DDB5;color:#888;font-size:9px">An-Nisa 4:11</td></tr></table>'+
-    '<div style="font-size:8px;font-weight:bold;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1px solid #C8B56A;padding-bottom:5px;margin-bottom:10px">Letter to Executor</div>'+
-    '<div style="font-size:10px;color:#444;line-height:1.8;font-style:italic;padding:8px 12px;border:1px solid #E8DDB5;border-radius:3px;background:#FEFCF5">Dear Yusuf — I have appointed you as the executor of this wasiyyah because I trust your character and your commitment to the deen. I ask you to carry out what is written here with sincerity, as an act of worship to Allah, with patience and fairness to all who are named herein...</div>'+
-    '<div style="margin-top:14px;padding-top:12px;border-top:1px solid #C8B56A">'+
-    '<div style="font-size:8px;color:#888;margin-bottom:10px">Testator signature: _________________________________ &nbsp;&nbsp; Date: _______________</div>'+
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px"><div style="border-top:1px solid #C8B56A;padding-top:6px"><div style="font-size:8px;color:#888">Witness 1 full name: ____________________</div><div style="font-size:8px;color:#888;margin-top:7px">Signature: ____________________</div><div style="font-size:8px;color:#888;margin-top:7px">Date: ____________________</div></div><div style="border-top:1px solid #C8B56A;padding-top:6px"><div style="font-size:8px;color:#888">Witness 2 full name: ____________________</div><div style="font-size:8px;color:#888;margin-top:7px">Signature: ____________________</div><div style="font-size:8px;color:#888;margin-top:7px">Date: ____________________</div></div></div>'+
-    '</div></div>'+
-    '</div><p style="font-size:12px;color:var(--gr600);margin-top:1rem;text-align:center">Sample only. Your actual document will contain all your real information across all six sections.</p>';
-  }
-  document.getElementById('sampleModal').classList.remove('hidden');
+    area.innerHTML = '';
+    area.appendChild(grid);
+  } catch(e) {}
 }
 
-function submitFeedback(){
-  var msg=document.getElementById('feedbackMessage').value.trim();
-  if(!msg){alert('Please enter a message before sending.');return;}
-  var type=document.getElementById('feedbackType').value||'General';
-  var name=document.getElementById('feedbackName').value||'Anonymous';
-  var country=document.getElementById('feedbackCountry').value||'Not provided';
-  var subject=encodeURIComponent('Wasiyyah.app — '+type+' from '+name);
-  var body=encodeURIComponent('Type: '+type+'\nName: '+name+'\nCountry: '+country+'\n\nMessage:\n'+msg);
-  window.location.href='mailto:esslambarhoum@gmail.com?subject='+subject+'&body='+body;
-  document.getElementById('feedbackSuccess').style.display='block';
-  ['feedbackMessage','feedbackName','feedbackCountry'].forEach(function(id){document.getElementById(id).value='';});
-  document.getElementById('feedbackType').value='';
+/* ── SAMPLE PREVIEWS ─────────────────────────────────────── */
+var FREE_SAMPLE =
+  '<div style="border:1px solid #ddd;border-radius:8px;padding:1.5rem;font-family:sans-serif;font-size:11.5px;line-height:1.8;color:#333;max-height:440px;overflow-y:auto">' +
+  '<div style="text-align:center;border-bottom:2px solid #3B6D11;padding-bottom:12px;margin-bottom:14px">' +
+  '<div style="font-size:18px;color:#3B6D11;margin-bottom:6px;font-family:Georgia,serif">&#x628;&#x650;&#x633;&#x652;&#x645;&#x650; &#x627;&#x644;&#x644;&#x651;&#x647;&#x650; &#x627;&#x644;&#x631;&#x651;&#x62D;&#x652;&#x645;&#x670;&#x646;&#x650; &#x627;&#x644;&#x631;&#x651;&#x62D;&#x650;&#x64A;&#x645;&#x650;</div>' +
+  '<div style="font-size:15px;font-weight:600;color:#27500A">Wasiyyah \u2014 Islamic Will and Testament</div>' +
+  '<div style="font-size:10px;color:#888;margin-top:3px">Sample \u2014 WSY-2026-DEMO \u2014 16 May 2026</div></div>' +
+  '<div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:8px">1. Personal Declaration</div>' +
+  '<div style="background:#EAF3DE;border-left:2px solid #3B6D11;padding:7px 10px;font-size:11px;color:#27500A;line-height:1.7;margin-bottom:10px">I, <strong>Abdullah ibn Yusuf Al-Farsi</strong>, testify that there is no god worthy of worship except Allah, and that Muhammad \uFDFA is His messenger. I write this wasiyyah of my own free will, in a sound state of mind.</div>' +
+  '<div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:8px">2. Religious Obligations</div>' +
+  '<div style="font-size:10px;color:#888;font-style:italic;margin-bottom:10px">The testator declares no outstanding religious obligations at the time of writing this wasiyyah.</div>' +
+  '<div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:8px">3. Rights of People</div>' +
+  '<div style="font-size:10px;color:#888;font-style:italic;margin-bottom:10px">The testator declares no outstanding rights of people, debts, or amanah at the time of writing this wasiyyah.</div>' +
+  '<div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:8px">4. Inheritance \u2014 Net Estate: AUD 250,000</div>' +
+  '<table style="width:100%;border-collapse:collapse;font-size:10px;margin-bottom:10px">' +
+  '<tr style="background:#EAF3DE"><th style="padding:4px 6px;text-align:left;border:1px solid #C0DD97;color:#27500A">Heir</th><th style="padding:4px 6px;border:1px solid #C0DD97;color:#27500A">Share</th><th style="padding:4px 6px;border:1px solid #C0DD97;color:#27500A">Amount</th><th style="padding:4px 6px;border:1px solid #C0DD97;color:#27500A">Evidence</th></tr>' +
+  '<tr><td style="padding:4px 6px;border:1px solid #EAF3DE">Wife</td><td style="padding:4px 6px;border:1px solid #EAF3DE">1/8</td><td style="padding:4px 6px;border:1px solid #EAF3DE">AUD 31,250</td><td style="padding:4px 6px;border:1px solid #EAF3DE;font-size:9px;color:#888">An-Nisa 4:12</td></tr>' +
+  '<tr><td style="padding:4px 6px;border:1px solid #EAF3DE">Sons (1) and Daughters (1)</td><td style="padding:4px 6px;border:1px solid #EAF3DE">7/8 residue</td><td style="padding:4px 6px;border:1px solid #EAF3DE">AUD 218,750</td><td style="padding:4px 6px;border:1px solid #EAF3DE;font-size:9px;color:#888">An-Nisa 4:11</td></tr></table>' +
+  '<div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:8px">5. Funeral Instructions</div>' +
+  '<div style="background:#EAF3DE;padding:7px 10px;font-size:10px;color:#27500A;line-height:1.7;margin-bottom:10px">No wailing. No bid\u02bfah. No extravagance. No mixing. No photographs. Hasten the janazah. Ghusl: Yusuf Al-Farsi. Jana\u1e93ah: Shaykh Ibrahim.</div>' +
+  '<div style="font-size:9px;font-weight:600;color:#3B6D11;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #EAF3DE;padding-bottom:3px;margin-bottom:8px">6. Messages</div>' +
+  '<div style="font-size:10px;color:#444;font-style:italic;border:1px solid #EAF3DE;padding:7px 9px;border-radius:4px">\u201cTo my children: Fear Allah in all things. Hold fast to the Quran and Sunnah. Remember me in your dua.\u201d</div>' +
+  '<div style="margin-top:12px;border-top:1px solid #EAF3DE;padding-top:10px;font-size:9px;color:#888">Testator: _________________________ &nbsp; Date: ___________ &nbsp;|&nbsp; Witness 1: _________________ &nbsp;|&nbsp; Witness 2: _________________</div>' +
+  '</div>' +
+  '<p style="font-size:12px;color:#5F5E5A;margin-top:1rem;text-align:center">Sample only. Your document will contain your own information across all six sections.</p>';
+
+var PREMIUM_SAMPLE =
+  '<div style="border:1px solid #C8B56A;border-radius:4px;overflow:hidden;max-height:460px;overflow-y:auto;box-shadow:0 2px 16px rgba(28,58,16,0.15)">' +
+  '<div style="background:#1C3A10;padding:3rem 2.5rem;text-align:center">' +
+  '<div style="font-size:24px;color:#C8B56A;letter-spacing:3px;margin-bottom:14px;font-family:Georgia,serif">&#x628;&#x650;&#x633;&#x652;&#x645;&#x650; &#x627;&#x644;&#x644;&#x651;&#x647;&#x650; &#x627;&#x644;&#x631;&#x651;&#x62D;&#x652;&#x645;&#x670;&#x646;&#x650; &#x627;&#x644;&#x631;&#x651;&#x62D;&#x650;&#x64A;&#x645;&#x650;</div>' +
+  '<div style="width:120px;height:1px;background:linear-gradient(to right,transparent,#C8B56A,transparent);margin:0 auto 16px"></div>' +
+  '<div style="font-size:12px;color:#C8B56A;letter-spacing:5px;text-transform:uppercase;margin-bottom:5px">Wasiyyah</div>' +
+  '<div style="font-size:10px;color:#9DB88A;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px">Islamic Will and Testament</div>' +
+  '<div style="width:120px;height:1px;background:linear-gradient(to right,transparent,#C8B56A,transparent);margin:0 auto 18px"></div>' +
+  '<div style="font-size:14px;color:#F5ECD0;margin-bottom:5px">Abdullah ibn Yusuf Al-Farsi</div>' +
+  '<div style="font-size:10px;color:#9DB88A;margin-bottom:14px">Australian \u2014 Egypt</div>' +
+  '<div style="font-size:9px;color:#6A8A60;font-style:italic;margin-bottom:12px">Prepared in accordance with the Quran and Sunnah upon the understanding of the Salaf al-Salih</div>' +
+  '<div style="font-family:monospace;font-size:8px;color:#C8B56A;letter-spacing:2px;border:1px solid #C8B56A;padding:3px 12px;display:inline-block;margin-bottom:8px">WSY-2026-DEMO</div>' +
+  '<div style="font-size:9px;color:#4A6A40">Signed on the sixteenth day of May, two thousand and twenty-six</div>' +
+  '</div>' +
+  '<div style="background:#FEFCF5;padding:1.5rem;font-family:sans-serif">' +
+  '<div style="font-size:8px;font-weight:600;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1.5px solid #C8B56A;padding-bottom:4px;margin-bottom:10px">Clause 1 \u2014 Personal Declaration</div>' +
+  '<div style="background:#F2EDD5;border-left:2px solid #C8B56A;padding:8px 12px;font-size:10px;color:#1C3A10;line-height:1.8;margin-bottom:12px">I, <strong>Abdullah ibn Yusuf Al-Farsi</strong>, testify that there is no god worthy of worship except Allah, and that Muhammad \uFDFA is His messenger. This wasiyyah is written of my own free will, in a sound state of mind.</div>' +
+  '<div style="font-size:8px;font-weight:600;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1.5px solid #C8B56A;padding-bottom:4px;margin-bottom:10px">Clause 4 \u2014 Inheritance Distribution</div>' +
+  '<table style="width:100%;border-collapse:collapse;font-size:10px;margin-bottom:12px">' +
+  '<tr style="background:#1C3A10"><th style="padding:5px 8px;text-align:left;border:1px solid #C8B56A;color:#C8B56A;font-weight:500">Heir</th><th style="padding:5px 8px;color:#C8B56A;border:1px solid #C8B56A;font-weight:500">Share</th><th style="padding:5px 8px;color:#C8B56A;border:1px solid #C8B56A;font-weight:500">Amount</th><th style="padding:5px 8px;color:#C8B56A;border:1px solid #C8B56A;font-weight:500">Evidence</th></tr>' +
+  '<tr><td style="padding:5px 8px;border:1px solid #E8DDB5">Wife</td><td style="padding:5px 8px;border:1px solid #E8DDB5">1/8</td><td style="padding:5px 8px;border:1px solid #E8DDB5;font-weight:500">AUD 31,250</td><td style="padding:5px 8px;border:1px solid #E8DDB5;font-size:9px;color:#888">An-Nisa 4:12</td></tr>' +
+  '<tr style="background:#FEFAF0"><td style="padding:5px 8px;border:1px solid #E8DDB5">Sons (1) and Daughters (1)</td><td style="padding:5px 8px;border:1px solid #E8DDB5">7/8</td><td style="padding:5px 8px;border:1px solid #E8DDB5;font-weight:500">AUD 218,750</td><td style="padding:5px 8px;border:1px solid #E8DDB5;font-size:9px;color:#888">An-Nisa 4:11</td></tr></table>' +
+  '<div style="font-size:8px;font-weight:600;color:#1C3A10;text-transform:uppercase;letter-spacing:2px;border-bottom:1.5px solid #C8B56A;padding-bottom:4px;margin-bottom:10px">Letter to Executor</div>' +
+  '<div style="font-size:10px;color:#2A1F0A;line-height:1.8;font-style:italic;padding:8px 12px;border:1px solid #E8DDB5;background:#FEFCF5">Dear Yusuf \u2014 I have appointed you as the executor of this wasiyyah because I trust your character and your commitment to the deen. I ask you to carry out what is written here with sincerity, as an act of worship to Allah\u2026</div>' +
+  '<div style="margin-top:12px;padding-top:10px;border-top:1px solid #C8B56A;font-size:8px;color:#888">' +
+  'Testator: _______________________________ &nbsp; Date: _______________<br><br>' +
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">' +
+  '<div style="border-top:1px solid #C8B56A;padding-top:6px">Witness 1: ____________________<br><br>Signature: ____________________<br><br>Date: ____________________</div>' +
+  '<div style="border-top:1px solid #C8B56A;padding-top:6px">Witness 2: ____________________<br><br>Signature: ____________________<br><br>Date: ____________________</div>' +
+  '</div></div></div></div>' +
+  '<p style="font-size:12px;color:#5F5E5A;margin-top:1rem;text-align:center">Sample only. Your document will contain all your real information across all six sections.</p>';
+
+function showSample(type) {
+  document.getElementById('sampleTitle').textContent =
+    type === 'free' ? 'Free version \u2014 sample document' : 'Premium version \u2014 sample document';
+  document.getElementById('sampleContent').innerHTML =
+    type === 'free' ? FREE_SAMPLE : PREMIUM_SAMPLE;
+  document.getElementById('sampleOverlay').classList.remove('hidden');
 }
+
+/* ── CONTACT FORM ────────────────────────────────────────── */
+function submitFeedback() {
+  var msg = document.getElementById('feedbackMessage').value.trim();
+  if (!msg) { alert('Please enter a message before sending.'); return; }
+  var type    = document.getElementById('feedbackType').value    || 'General';
+  var name    = document.getElementById('feedbackName').value    || 'Anonymous';
+  var country = document.getElementById('feedbackCountry').value || 'Not provided';
+  var subject = encodeURIComponent('Wasiyyah \u2014 ' + type + ' from ' + name);
+  var body    = encodeURIComponent('Type: ' + type + '\nName: ' + name + '\nCountry: ' + country + '\n\nMessage:\n' + msg);
+  window.location.href = 'mailto:esslambarhoum@gmail.com?subject=' + subject + '&body=' + body;
+  document.getElementById('feedbackSuccess').style.display = 'block';
+  ['feedbackMessage', 'feedbackName', 'feedbackCountry'].forEach(function(id) {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('feedbackType').value = '';
+}
+
+/* ── INIT ────────────────────────────────────────────────── */
+function getClockMsg(h) {
+  if (h >= 22 || h < 4) return 'It is late. Do not let another night pass without your wasiyyah written. The Prophet ﷺ commanded us not to delay.';
+  if (h >= 4 && h < 12) return 'A new day has begun. Make it the day you fulfil this obligation. The Prophet ﷺ said not to let two nights pass.';
+  return 'The Prophet ﷺ said not to let two nights pass without your will written. Begin yours today — it takes about 15 minutes.';
+}
+
+function updateClock() {
+  var now = new Date(), h = now.getHours(), m = now.getMinutes();
+  var h12 = h % 12 || 12, mm = (m < 10 ? '0' : '') + m, ampm = h >= 12 ? 'PM' : 'AM';
+  var t = h12 + ':' + mm + ' ' + ampm;
+}
+
+window.addEventListener('load', function() {
+  updateClock();
+  setInterval(updateClock, 30000);
+  setQuote();
+  loadCounter();
+  loadPremiumPrice();
+  loadReviews();
+});
 </script>
 </body>
 </html>
