@@ -952,27 +952,53 @@ function loadPremiumPrice() {
 }
 
 /* ── REVIEWS ─────────────────────────────────────────────── */
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function renderHomeReviews(reviews) {
+  var area = document.getElementById('reviewsArea');
+  if (!reviews || !reviews.length) return; /* keep the empty-state markup */
+  var grid = document.createElement('div');
+  grid.className = 'reviews-grid';
+  reviews.slice(0, 3).forEach(function(r) {
+    var ratingVal = r.rating || 0;
+    var stars  = '★'.repeat(ratingVal) + '☆'.repeat(5 - ratingVal);
+    var author = r.anon ? 'Anonymous' : (r.name + (r.country ? ' \u2014 ' + r.country : ''));
+    var bodyText = r.review_text || r.text || '';
+    var card = document.createElement('div');
+    card.className = 'review-card';
+    card.innerHTML =
+      '<div class="review-stars">' + stars + '</div>' +
+      '<div class="review-text">\u201c' + escapeHtml(bodyText) + '\u201d</div>' +
+      '<div class="review-author">' + escapeHtml(author) + '</div>';
+    grid.appendChild(card);
+  });
+  area.innerHTML = '';
+  area.appendChild(grid);
+}
+
 function loadReviews() {
-  try {
-    var reviews = JSON.parse(localStorage.getItem('wasiyyah_reviews') || '[]');
-    if (!reviews.length) return;
-    var area = document.getElementById('reviewsArea');
-    var grid = document.createElement('div');
-    grid.className = 'reviews-grid';
-    reviews.slice(0, 3).forEach(function(r) {
-      var stars  = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
-      var author = r.anon ? 'Anonymous' : (r.name + (r.country ? ' \u2014 ' + r.country : ''));
-      var card   = document.createElement('div');
-      card.className = 'review-card';
-      card.innerHTML =
-        '<div class="review-stars">' + stars + '</div>' +
-        '<div class="review-text">\u201c' + r.text + '\u201d</div>' +
-        '<div class="review-author">' + author + '</div>';
-      grid.appendChild(card);
-    });
-    area.innerHTML = '';
-    area.appendChild(grid);
-  } catch(e) {}
+  /* Try Supabase first */
+  fetch(SUPABASE_URL + '/rest/v1/reviews?select=name,country,rating,review_text,anon&order=created_at.desc&limit=3', {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+  })
+  .then(function(res) {
+    if (!res.ok) throw new Error('Supabase ' + res.status);
+    return res.json();
+  })
+  .then(function(data) {
+    renderHomeReviews(data);
+  })
+  .catch(function() {
+    /* Fallback: localStorage reviews */
+    try {
+      var reviews = JSON.parse(localStorage.getItem('wasiyyah_reviews') || '[]');
+      renderHomeReviews(reviews);
+    } catch(e) {}
+  });
 }
 
 /* ── SAMPLE PREVIEWS ─────────────────────────────────────── */

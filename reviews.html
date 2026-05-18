@@ -94,6 +94,18 @@ textarea{min-height:90px;resize:vertical;line-height:1.6}
 
 <script>
 'use strict';
+
+/* ── Supabase config ──────────────────────────────────────── */
+var SB_URL = 'https://ubrijniaoffswuxhyzyw.supabase.co';
+var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVicmlqbmlhb2Zmc3d1eGh5enl3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwMDg4MjQsImV4cCI6MjA5NDU4NDgyNH0.t8Y8dsjGLeM1hHB3T2IeAhD_qqzq8CsAmsRj2MnG8Rc';
+
+var SB_HEADERS = {
+  'Content-Type': 'application/json',
+  'apikey': SB_KEY,
+  'Authorization': 'Bearer ' + SB_KEY
+};
+
+/* ── Star rating ──────────────────────────────────────────── */
 var rating = 0;
 
 function setRating(n) {
@@ -103,54 +115,126 @@ function setRating(n) {
   });
 }
 
+/* ── Submit a review ──────────────────────────────────────── */
 function submitReview() {
   var text = document.getElementById('rText').value.trim();
   if (!rating) { alert('Please select a star rating.'); return; }
   if (!text || text.length < 10) { alert('Please write a brief review (at least 10 characters).'); return; }
-  var anon = document.getElementById('rAnon').checked;
-  var name = anon ? 'Anonymous' : (document.getElementById('rName').value.trim() || 'Anonymous');
+
+  var anon    = document.getElementById('rAnon').checked;
+  var name    = anon ? 'Anonymous' : (document.getElementById('rName').value.trim() || 'Anonymous');
   var country = anon ? '' : document.getElementById('rCountry').value.trim();
-  var review = {
-    name: name, country: country, rating: rating, text: text,
-    date: new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }), anon: anon
-  };
-  try {
-    var stored = JSON.parse(localStorage.getItem('wasiyyah_reviews') || '[]');
-    stored.unshift(review);
-    localStorage.setItem('wasiyyah_reviews', JSON.stringify(stored));
-  } catch(e) {}
+
+  var payload = { name: name, country: country, rating: rating, review_text: text, anon: anon };
+
+  /* Try Supabase first */
+  fetch(SB_URL + '/rest/v1/reviews', {
+    method: 'POST',
+    headers: Object.assign({}, SB_HEADERS, { 'Prefer': 'return=minimal' }),
+    body: JSON.stringify(payload)
+  })
+  .then(function(res) {
+    if (!res.ok) throw new Error('Supabase error ' + res.status);
+    afterSubmit(name, country, rating, text, anon, true);
+  })
+  .catch(function() {
+    /* Fallback: save to localStorage so the review is not lost */
+    var dateStr = new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+    var review  = { name: name, country: country, rating: rating, text: text, date: dateStr, anon: anon };
+    try {
+      var stored = JSON.parse(localStorage.getItem('wasiyyah_reviews') || '[]');
+      stored.unshift(review);
+      localStorage.setItem('wasiyyah_reviews', JSON.stringify(stored));
+    } catch(e) {}
+    afterSubmit(name, country, rating, text, anon, false);
+  });
+}
+
+function afterSubmit(name, country, ratingVal, text, anon, online) {
   document.getElementById('successMsg').style.display = 'block';
-  document.getElementById('rText').value = '';
-  document.getElementById('rName').value = '';
+  document.getElementById('rText').value    = '';
+  document.getElementById('rName').value    = '';
   document.getElementById('rCountry').value = '';
-  document.getElementById('rAnon').checked = false;
+  document.getElementById('rAnon').checked  = false;
   rating = 0;
   document.querySelectorAll('.star-btn').forEach(function(s) { s.classList.remove('active'); });
-  loadReviews();
+  /* Reload from canonical source */
+  if (online) {
+    loadReviewsFromSupabase();
+  } else {
+    loadReviewsFromLocalStorage();
+  }
 }
 
-function loadReviews() {
+/* ── Render helpers ───────────────────────────────────────── */
+function renderReviews(reviews) {
+  var area = document.getElementById('reviewsArea');
+  if (!reviews || !reviews.length) {
+    area.innerHTML =
+      '<div class="empty-state">' +
+        '<div style="font-size:28px;color:var(--gr100);margin-bottom:1rem"><i class="ti ti-star"></i></div>' +
+        '<div style="font-size:15px;font-weight:500;color:var(--gr800);margin-bottom:.5rem">No reviews yet</div>' +
+        '<div style="font-size:13px;color:var(--gr600);line-height:1.7;max-width:380px;margin:0 auto">Be the first to complete your wasiyyah and share your experience below. Your review may be the reason another Muslim finally fulfils this obligation.</div>' +
+      '</div>';
+    return;
+  }
+  var html = '<div class="reviews-grid">';
+  reviews.forEach(function(r) {
+    /* Support both Supabase shape (review_text, created_at) and localStorage shape (text, date) */
+    var ratingVal = r.rating || 0;
+    var stars     = '★'.repeat(ratingVal) + '☆'.repeat(5 - ratingVal);
+    var author    = r.anon ? 'Anonymous' : (r.name + (r.country ? ' \u2014 ' + r.country : ''));
+    var bodyText  = r.review_text || r.text || '';
+    var dateStr   = r.created_at
+      ? new Date(r.created_at).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })
+      : (r.date || '');
+    html += '<div class="review-card">';
+    html += '<div class="review-stars">' + stars + '</div>';
+    html += '<div class="review-text">\u201c' + escapeHtml(bodyText) + '\u201d</div>';
+    html += '<div class="review-author">' + escapeHtml(author) + '</div>';
+    html += '<div class="review-date">' + escapeHtml(dateStr) + '</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+  area.innerHTML = html;
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+/* ── Load from Supabase (primary) ────────────────────────── */
+function loadReviewsFromSupabase() {
+  fetch(SB_URL + '/rest/v1/reviews?select=name,country,rating,review_text,anon,created_at&order=created_at.desc', {
+    headers: SB_HEADERS
+  })
+  .then(function(res) {
+    if (!res.ok) throw new Error('Supabase ' + res.status);
+    return res.json();
+  })
+  .then(function(data) {
+    renderReviews(data);
+  })
+  .catch(function() {
+    /* Supabase unavailable — fall back to localStorage */
+    loadReviewsFromLocalStorage();
+  });
+}
+
+/* ── Load from localStorage (fallback) ───────────────────── */
+function loadReviewsFromLocalStorage() {
   try {
     var reviews = JSON.parse(localStorage.getItem('wasiyyah_reviews') || '[]');
-    var area = document.getElementById('reviewsArea');
-    if (!reviews.length) return;
-    var html = '<div class="reviews-grid">';
-    reviews.forEach(function(r) {
-      var stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
-      var author = r.anon ? 'Anonymous' : (r.name + (r.country ? ' \u2014 ' + r.country : ''));
-      html += '<div class="review-card">';
-      html += '<div class="review-stars">' + stars + '</div>';
-      html += '<div class="review-text">\u201c' + r.text + '\u201d</div>';
-      html += '<div class="review-author">' + author + '</div>';
-      html += '<div class="review-date">' + (r.date || '') + '</div>';
-      html += '</div>';
-    });
-    html += '</div>';
-    area.innerHTML = html;
-  } catch(e) {}
+    renderReviews(reviews);
+  } catch(e) {
+    renderReviews([]);
+  }
 }
 
-window.addEventListener('load', loadReviews);
+/* ── Init ─────────────────────────────────────────────────── */
+window.addEventListener('load', loadReviewsFromSupabase);
 </script>
 </body>
 </html>
