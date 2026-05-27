@@ -901,16 +901,19 @@ function animateNum(id, target) {
   }, 20);
 }
 function loadCounter() {
-  fetch(SUPABASE_URL + '/rest/v1/wasiyyah_counter?select=count,today_count,premium_count,review_count&limit=1', {
-    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+  fetch(SUPABASE_URL + '/rest/v1/rpc/get_wasiyyah_counter', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY },
+    body: JSON.stringify({})
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
-    if (data && data[0]) {
-      animateNum('mainCounter',   data[0].count         || 0);
-      animateNum('todayCounter',  data[0].today_count   || 0);
-      animateNum('premiumCounter',data[0].premium_count || 0);
-      animateNum('reviewCounter', data[0].review_count  || 0);
+    var d = Array.isArray(data) ? data[0] : data;
+    if (d) {
+      animateNum('mainCounter',   d.count         || 0);
+      animateNum('todayCounter',  d.today_count   || 0);
+      animateNum('premiumCounter',d.premium_count || 0);
+      animateNum('reviewCounter', d.review_count  || 0);
     }
   })
   .catch(function() {}); // Silently fail — zeros are honest
