@@ -4,56 +4,150 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reviews — Wasiyyah</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2327500A'/><text x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-size='20' fill='%23C8B56A'>و</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23080D1A'/><circle cx='16' cy='16' r='9' fill='none' stroke='%23D4AF5F' stroke-width='1.4'/><circle cx='19' cy='13' r='5.5' fill='%23080D1A'/></svg>">
+<meta name="theme-color" content="#080D1A">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<script>try{if(localStorage.getItem('wasiyyah_theme')==='day')document.documentElement.setAttribute('data-theme','day');}catch(e){}
+/* Starfield */
+(function(){
+  var field=document.getElementById('starfield');
+  if(!field)return;
+  var count=Math.min(80,Math.floor(window.innerWidth/15));
+  for(var i=0;i<count;i++){
+    var st=document.createElement('div');
+    st.className='star-dot'+(Math.random()<0.12?' gold':'');
+    var size=Math.random()<0.82?1:2;
+    st.style.width=size+'px';st.style.height=size+'px';
+    st.style.left=Math.random()*100+'%';
+    st.style.top=Math.random()*100+'%';
+    st.style.setProperty('--base',(0.2+Math.random()*0.55).toFixed(2));
+    st.style.setProperty('--dur',(2.5+Math.random()*4.5).toFixed(1)+'s');
+    st.style.animationDelay=(Math.random()*5).toFixed(1)+'s';
+    field.appendChild(st);
+  }
+})();
+
+/* Theme toggle (night default) */
+function applyTheme(t){
+  if(t==='day'){document.documentElement.setAttribute('data-theme','day');}
+  else{document.documentElement.removeAttribute('data-theme');}
+  var ic=document.getElementById('themeIcon');
+  if(ic)ic.className=t==='day'?'ti ti-moon':'ti ti-sun';
+}
+function toggleTheme(){
+  var next=document.documentElement.getAttribute('data-theme')==='day'?'night':'day';
+  try{localStorage.setItem('wasiyyah_theme',next);}catch(e){}
+  applyTheme(next);
+}
+applyTheme((function(){try{return localStorage.getItem('wasiyyah_theme')||'night';}catch(e){return 'night';}})());
+
+/* PWA service worker */
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet"><rect width='32' height='32' rx='7' fill='%2327500A'/><text x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-size='20' fill='%23C8B56A'>و</text></svg>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--g50:#EAF3DE;--g100:#C0DD97;--g200:#97C459;--g600:#3B6D11;--g800:#27500A;--a50:#FAEEDA;--a100:#FAC775;--a200:#EF9F27;--a400:#BA7517;--gr50:#F1EFE8;--gr100:#D3D1C7;--gr600:#5F5E5A;--gr800:#444441;--white:#fff;--border:rgba(0,0,0,0.09)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--white);color:var(--gr800);line-height:1.6}
-nav{display:flex;align-items:center;justify-content:space-between;padding:.875rem 2rem;border-bottom:.5px solid var(--border);background:var(--white);position:sticky;top:0;z-index:100}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-icon{width:36px;height:36px;background:var(--g800);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:18px;color:#C8B56A}
-.logo-name{font-size:16px;font-weight:600;color:var(--g800)}
-.page{max-width:820px;margin:0 auto;padding:3rem 2rem}
-.page-title{font-size:28px;font-weight:500;color:var(--g800);margin-bottom:.5rem}
-.page-sub{font-size:14px;color:var(--gr600);line-height:1.7;margin-bottom:3rem;max-width:560px}
-.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:3rem}
-.review-card{background:var(--white);border:.5px solid var(--border);border-radius:12px;padding:1.25rem;transition:border-color .2s}
-.review-card:hover{border-color:var(--g100)}
-.review-stars{color:var(--a200);font-size:16px;margin-bottom:.5rem;letter-spacing:2px}
-.review-text{font-size:13px;color:var(--gr800);line-height:1.7;font-style:italic;margin-bottom:.75rem}
-.review-author{font-size:12px;color:var(--gr600);font-weight:500}
-.review-date{font-size:11px;color:var(--gr100);margin-top:2px}
-.empty-state{background:var(--gr50);border:1.5px dashed var(--gr100);border-radius:12px;padding:3rem;text-align:center;margin-bottom:3rem}
-.submit-card{background:var(--gr50);border-radius:16px;padding:2.5rem;margin-bottom:3rem}
-.star-wrap{display:flex;gap:6px;margin-bottom:1rem}
-.star-btn{font-size:32px;color:var(--gr100);cursor:pointer;transition:color .15s;background:none;border:none;padding:0}
-.star-btn.active{color:var(--a200)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
-input[type=text],textarea{width:100%;padding:10px 14px;border:1px solid var(--gr100);border-radius:8px;font-size:14px;color:var(--gr800);background:var(--white);outline:none;font-family:inherit;transition:border-color .2s}
-input[type=text]:focus,textarea:focus{border-color:var(--g200)}
-textarea{min-height:90px;resize:vertical;line-height:1.6}
-.anon-label{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--gr600);margin-bottom:.75rem}
-.anon-label input{width:16px;height:16px;accent-color:var(--g600)}
-.btn-submit{background:var(--g600);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;width:100%;transition:background .2s}
-.btn-submit:hover{background:var(--g800)}
-.success-msg{display:none;background:var(--g50);border:1px solid var(--g100);border-radius:8px;padding:1rem;text-align:center;font-size:14px;color:var(--g800);margin-top:.75rem}
-@media(max-width:600px){nav{padding:.875rem 1.25rem}.page{padding:2rem 1.25rem}.form-row{grid-template-columns:1fr}}
+:root{
+  --night:#080D1A;--night2:#0D1426;--night3:#131C33;
+  --star:#D4AF5F;--star-dim:rgba(212,175,95,.45);--star-faint:rgba(212,175,95,.18);
+  --moon:#F4EFE3;--moon-dim:rgba(244,239,227,.55);--moon-faint:rgba(244,239,227,.3);
+  --line:rgba(212,175,95,.14);--line2:rgba(212,175,95,.3);
+  --g50:rgba(212,175,95,.07);--g100:rgba(212,175,95,.3);--g200:rgba(212,175,95,.45);
+  --g600:#B8913C;--g800:#F4EFE3;
+  --a50:rgba(212,175,95,.1);--a100:rgba(212,175,95,.4);--a200:#D4AF5F;--a400:#D4AF5F;
+  --gr50:#0D1426;--gr100:rgba(244,239,227,.22);--gr600:rgba(244,239,227,.55);--gr800:#F4EFE3;
+  --white:#0D1426;--border:rgba(212,175,95,.14)
+}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--night);color:var(--moon);line-height:1.7;-webkit-font-smoothing:antialiased}
+::selection{background:var(--star);color:var(--night)}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+.star-dot{position:absolute;background:var(--moon);border-radius:50%;animation:twinkle var(--dur) ease-in-out infinite}
+.star-dot.gold{background:var(--star)}
+@keyframes twinkle{0%,100%{opacity:var(--base);transform:scale(1)}50%{opacity:calc(var(--base)*0.1);transform:scale(0.6)}}
+nav{display:flex;align-items:center;justify-content:space-between;padding:.875rem 2rem;border-bottom:1px solid var(--line);background:rgba(8,13,26,.88);backdrop-filter:blur(10px);position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:34px;height:34px;background:var(--night2);border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;color:var(--moon);letter-spacing:.5px}
+.nav-right{display:flex;align-items:center;gap:12px}
+.back-link{font-size:13px;font-weight:300;color:var(--moon-dim);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .25s;letter-spacing:.3px}
+.back-link:hover{color:var(--star)}
+.theme-toggle{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--star);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .25s;flex-shrink:0}
+.theme-toggle:hover{border-color:var(--star-dim);box-shadow:0 0 14px rgba(212,175,95,.2)}
+.page{max-width:820px;margin:0 auto;padding:3.5rem 2rem;position:relative;z-index:1}
+.page-label{font-size:10px;font-weight:400;letter-spacing:5px;text-transform:uppercase;color:var(--star-dim);display:block;margin-bottom:1rem}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4.5vw,46px);font-weight:400;color:var(--moon);margin-bottom:.75rem;line-height:1.12}
+.page-sub{font-size:14.5px;font-weight:300;color:var(--moon-dim);line-height:1.9;margin-bottom:3rem;max-width:540px}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;margin-bottom:3rem}
+.review-card{background:var(--night2);border:1px solid var(--line);border-radius:16px;padding:1.5rem;transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .4s}
+.review-card:hover{transform:translateY(-4px);border-color:rgba(212,175,95,.3)}
+.review-stars{color:var(--star);font-size:15px;margin-bottom:.625rem;letter-spacing:3px}
+.review-text{font-family:'Cormorant Garamond',serif;font-size:15.5px;color:var(--moon-dim);line-height:1.85;font-style:italic;margin-bottom:.875rem}
+.review-author{font-size:12px;font-weight:300;color:var(--moon-faint);letter-spacing:.5px}
+.review-date{font-size:11px;font-weight:300;color:var(--moon-faint);opacity:.6;margin-top:3px}
+.empty-state{background:var(--night2);border:1px dashed rgba(212,175,95,.25);border-radius:16px;padding:3.5rem;text-align:center;margin-bottom:3rem}
+.submit-card{background:var(--night2);border:1px solid var(--line2);border-radius:20px;padding:2.5rem;margin-bottom:3rem;box-shadow:0 0 50px rgba(212,175,95,.04)}
+.star-wrap{display:flex;gap:8px;margin-bottom:1.25rem}
+.star-btn{font-size:32px;color:var(--night3);cursor:pointer;transition:color .2s,transform .2s;background:none;border:none;padding:0}
+.star-btn:hover{transform:scale(1.15)}
+.star-btn.active{color:var(--star)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.875rem;margin-bottom:.875rem}
+input[type=text],textarea{width:100%;padding:12px 16px;border:1px solid var(--line);border-radius:12px;font-size:14px;font-weight:300;color:var(--moon);background:var(--night3);outline:none;font-family:inherit;transition:border-color .25s,box-shadow .25s}
+input[type=text]:focus,textarea:focus{border-color:var(--star-dim);box-shadow:0 0 0 3px rgba(212,175,95,.08)}
+input::placeholder,textarea::placeholder{color:var(--moon-faint)}
+textarea{min-height:90px;resize:vertical;line-height:1.7}
+.anon-label{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;font-weight:300;color:var(--moon-dim);margin-bottom:.875rem}
+.anon-label input{width:16px;height:16px;accent-color:var(--star)}
+.btn-submit{background:var(--star);color:var(--night);border:none;padding:13px 28px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;width:100%;transition:box-shadow .3s;letter-spacing:.3px}
+.btn-submit:hover{box-shadow:0 0 26px rgba(212,175,95,.4)}
+.success-msg{display:none;background:rgba(212,175,95,.07);border:1px solid var(--line2);border-radius:12px;padding:1rem;text-align:center;font-size:14px;font-weight:300;color:var(--moon-dim);margin-top:.875rem}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:translateY(0)}
+
+/* ─── DAY MODE ─── */
+html[data-theme="day"]{
+  --night:#F7F3EC;--night2:#FDFAF5;--night3:#EFE9DC;
+  --star:#9A7830;--star-dim:rgba(154,120,48,.65);--star-faint:rgba(154,120,48,.22);
+  --moon:#1E1810;--moon-dim:rgba(30,24,16,.68);--moon-faint:rgba(30,24,16,.45);
+  --line:rgba(154,120,48,.24);--line2:rgba(154,120,48,.45);
+  --g50:rgba(154,120,48,.08);--g100:rgba(154,120,48,.3);--g200:rgba(154,120,48,.45);
+  --g600:#9A7830;--g800:#1E1810;
+  --a50:rgba(154,120,48,.1);--a100:rgba(154,120,48,.5);--a200:#9A7830;--a400:#9A7830;
+  --gr50:#FDFAF5;--gr100:rgba(30,24,16,.22);--gr600:rgba(30,24,16,.62);--gr800:#1E1810;
+  --white:#FDFAF5;--border:rgba(154,120,48,.2)
+}
+html[data-theme="day"] .stars{display:none}
+html[data-theme="day"] nav{background:rgba(247,243,236,.92)}
+html[data-theme="day"] input,html[data-theme="day"] textarea{color-scheme:light}
+html[data-theme="day"] svg circle[fill="#080D1A"]{fill:#FDFAF5}
+html[data-theme="day"] .btn-submit:hover{box-shadow:0 4px 18px rgba(154,120,48,.3)}
+html[data-theme="day"] .review-card:hover{box-shadow:0 12px 30px rgba(30,24,16,.08)}
+
+@media(max-width:600px){nav{padding:.875rem 1.25rem}.page{padding:2.5rem 1.25rem}.form-row{grid-template-columns:1fr}.submit-card{padding:1.75rem 1.5rem}}
 </style>
 </head>
 <body>
 
+<div class="stars" id="starfield"></div>
+
 <nav>
   <a class="logo" href="index.html">
-    <div class="logo-icon">و</div>
+    <div class="logo-icon"><svg width="18" height="18" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="11" stroke="#D4AF5F" stroke-width="1.6" fill="none"/><circle cx="21" cy="13.5" r="7.5" fill="#080D1A"/></svg></div>
     <span class="logo-name">Wasiyyah</span>
   </a>
-  <a href="index.html" style="font-size:13px;color:var(--gr600);text-decoration:none;display:flex;align-items:center;gap:5px"><i class="ti ti-arrow-left"></i> Back to homepage</a>
+  <div class="nav-right">
+    <a href="index.html" class="back-link"><i class="ti ti-arrow-left"></i> Back to homepage</a>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Switch between night and day mode"><i class="ti ti-sun" id="themeIcon"></i></button>
+  </div>
 </nav>
 
 <div class="page">
-  <div class="page-title">Reviews</div>
+  <span class="page-label">Reviews</span>
+  <div class="page-title">What Muslims are saying.</div>
   <div class="page-sub">Real feedback from Muslims who have used this tool. All reviews are submitted by actual users — we are Muslims and we must always be honest.</div>
 
   <div id="reviewsArea">
@@ -88,7 +182,7 @@ textarea{min-height:90px;resize:vertical;line-height:1.6}
   <div style="background:var(--g50);border:1px solid var(--g100);border-radius:12px;padding:1.5rem;text-align:center">
     <div style="font-size:15px;font-weight:500;color:var(--g800);margin-bottom:.5rem">Ready to write your wasiyyah?</div>
     <div style="font-size:13px;color:var(--gr600);margin-bottom:1rem;line-height:1.6">It is free, private, guided, and takes about 15 minutes.</div>
-    <a href="index.html" style="background:var(--g600);color:#fff;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:7px">Begin my wasiyyah <i class="ti ti-arrow-right"></i></a>
+    <a href="index.html" style="background:var(--star);color:var(--night);padding:13px 30px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px">Begin my wasiyyah <i class="ti ti-arrow-right"></i></a>
   </div>
 </div>
 
