@@ -3,11 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reviews — Wasiyyah</title>
+<title>Reviews — What Muslims Are Saying About Wasiyyah</title>
+<link rel="canonical" href="https://buildmywasiyyah.com/reviews.html">
+<meta name="description" content="Real feedback from Muslims who have completed their wasiyyah using our free Islamic will builder.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Reviews — What Muslims Are Saying About Wasiyyah">
+<meta property="og:description" content="Real feedback from Muslims who have completed their wasiyyah using our free Islamic will builder.">
+<meta property="og:url" content="https://buildmywasiyyah.com/reviews.html">
+<meta property="og:image" content="https://buildmywasiyyah.com/assets/og-share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Wasiyyah">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reviews — What Muslims Are Saying About Wasiyyah">
+<meta name="twitter:description" content="Real feedback from Muslims who have completed their wasiyyah using our free Islamic will builder.">
+<meta name="twitter:image" content="https://buildmywasiyyah.com/assets/og-share.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23080D1A'/><circle cx='16' cy='16' r='9' fill='none' stroke='%23D4AF5F' stroke-width='1.4'/><circle cx='19' cy='13' r='5.5' fill='%23080D1A'/></svg>">
 <meta name="theme-color" content="#080D1A">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <script>try{if(localStorage.getItem('wasiyyah_theme')==='day')document.documentElement.setAttribute('data-theme','day');}catch(e){}
 /* Starfield */
 (function(){
@@ -45,10 +62,11 @@ applyTheme((function(){try{return localStorage.getItem('wasiyyah_theme')||'night
 /* PWA service worker */
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
 </script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet"><rect width='32' height='32' rx='7' fill='%2327500A'/><text x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-size='20' fill='%23C8B56A'>و</text></svg>">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/tabler-icons.min.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -64,6 +82,10 @@ html{scroll-behavior:smooth}
   --white:#0D1426;--border:rgba(212,175,95,.14)
 }
 body{font-family:'Outfit',system-ui,sans-serif;background:var(--night);color:var(--moon);line-height:1.7;-webkit-font-smoothing:antialiased}
+.skip-link{position:absolute;top:-100px;left:1rem;background:var(--star);color:var(--night);padding:12px 22px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;z-index:9999;transition:top .25s}
+.skip-link:focus{top:1rem}
+:focus-visible{outline:2px solid var(--star);outline-offset:3px;border-radius:4px}
+
 ::selection{background:var(--star);color:var(--night)}
 .stars{position:fixed;inset:0;pointer-events:none;z-index:0}
 .star-dot{position:absolute;background:var(--moon);border-radius:50%;animation:twinkle var(--dur) ease-in-out infinite}
@@ -127,10 +149,43 @@ html[data-theme="day"] svg circle[fill="#080D1A"]{fill:#FDFAF5}
 html[data-theme="day"] .btn-submit:hover{box-shadow:0 4px 18px rgba(154,120,48,.3)}
 html[data-theme="day"] .review-card:hover{box-shadow:0 12px 30px rgba(30,24,16,.08)}
 
+.mini-footer{border-top:1px solid var(--line);padding:1.75rem 2rem;text-align:center;font-size:11.5px;font-weight:300;color:var(--moon-faint);margin-top:2rem}
+.mini-footer a{color:var(--star-dim);text-decoration:none}
+.mini-footer a:hover{color:var(--star)}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .star-dot, .shooting-star { display: none !important; }
+}
 @media(max-width:600px){nav{padding:.875rem 1.25rem}.page{padding:2.5rem 1.25rem}.form-row{grid-template-columns:1fr}.submit-card{padding:1.75rem 1.5rem}}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Wasiyyah",
+  "url": "https://buildmywasiyyah.com/",
+  "logo": "https://buildmywasiyyah.com/assets/favicon-192.png",
+  "description": "A free Islamic will builder built for the sake of Allah."
+}
+</script>
+<!-- Google Analytics (GA4) — replace G-XXXXXXXXXX with your real Measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+</script>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
 
 <div class="stars" id="starfield"></div>
 
@@ -145,9 +200,9 @@ html[data-theme="day"] .review-card:hover{box-shadow:0 12px 30px rgba(30,24,16,.
   </div>
 </nav>
 
-<div class="page">
+<div class="page" id="main">
   <span class="page-label">Reviews</span>
-  <div class="page-title">What Muslims are saying.</div>
+  <h1 class="page-title">What Muslims are saying.</h1>
   <div class="page-sub">Real feedback from Muslims who have used this tool. All reviews are submitted by actual users — we are Muslims and we must always be honest.</div>
 
   <div id="reviewsArea">
@@ -185,6 +240,10 @@ html[data-theme="day"] .review-card:hover{box-shadow:0 12px 30px rgba(30,24,16,.
     <a href="index.html" style="background:var(--star);color:var(--night);padding:13px 30px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px">Begin my wasiyyah <i class="ti ti-arrow-right"></i></a>
   </div>
 </div>
+
+<footer class="mini-footer">
+  <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="disclaimer.html">Disclaimer</a> · <a href="index.html">Home</a>
+</footer>
 
 <script>
 'use strict';
