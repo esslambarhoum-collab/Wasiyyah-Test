@@ -1,6 +1,6 @@
 'use strict';
 
-var CACHE = 'wasiyyah-v3';
+var CACHE = 'wasiyyah-v5';
 
 var CORE = [
   '/index.html',

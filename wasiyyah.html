@@ -18,7 +18,7 @@
 <meta name="twitter:title" content="Begin Your Wasiyyah | buildmywasiyyah.com">
 <meta name="twitter:description" content="Write your Islamic will step by step. Fara’id inheritance calculator, funeral wishes, and final messages. Free, private, and evidenced from Quran and Sunnah.">
 <meta name="twitter:image" content="https://buildmywasiyyah.com/assets/og-share.png">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23080D1A'/><circle cx='16' cy='16' r='9' fill='none' stroke='%23D4AF5F' stroke-width='1.4'/><circle cx='19' cy='13' r='5.5' fill='%23080D1A'/></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23B08D45'/><path d='M16 6L18 12H24L19 15.5L21 21.5L16 18L11 21.5L13 15.5L8 12H14L16 6Z' fill='white'/></svg>">
 <meta name="theme-color" content="#080D1A">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.46.0/dist/tabler-icons.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
@@ -61,7 +61,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(
 }
 .top-bar{background:rgba(250,246,238,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:.875rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.logo-icon{width:36px;height:36px;background:linear-gradient(155deg,var(--gold),var(--gold-deep));border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-sm)}
+
 .logo-name{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:var(--ink)}
 .save-indicator{font-size:11.5px;font-weight:500;color:var(--gold-deep);display:flex;align-items:center;gap:6px;background:var(--gold-soft);border:1px solid var(--line);padding:5px 13px;border-radius:20px;transition:all .4s}
 .progress-wrap{background:var(--white);border-bottom:1px solid var(--line);padding:1.25rem 2rem}
@@ -182,7 +182,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.7}
 .star-btn:hover{transform:scale(1.15)}
 .star-btn.active{color:var(--gold)}
 .section-privacy{font-size:11px;font-weight:400;color:var(--ink-faint);text-align:center;padding-top:1.5rem;border-top:1px solid var(--line);margin-top:1.5rem}
-.mini-footer{border-top:1px solid var(--line);padding:1.75rem 2rem;text-align:center;font-size:11.5px;font-weight:400;color:var(--ink-faint);margin-top:2rem}
+.mini-footer{background:var(--cream2);border-top:1px solid var(--line);padding:1.75rem 2rem;text-align:center;font-size:11.5px;font-weight:400;color:var(--ink-faint);margin-top:2rem}
 .mini-footer a{color:var(--gold-deep);text-decoration:none}
 .mini-footer a:hover{color:var(--ink)}
 .cdet{border:1px solid var(--line);border-radius:14px;background:var(--white);margin-bottom:.75rem;overflow:hidden;box-shadow:var(--shadow-sm)}
@@ -237,7 +237,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.7}
 <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Write Your Islamic Wasiyyah: Free Will Builder</h1>
 <div class="top-bar">
   <a class="logo" href="index.html">
-    <div class="logo-icon"><img src="assets/logo-mark.png" alt="" width="18" height="18" style="filter:brightness(0) invert(1)"></div>
+  <img src="assets/logo-mark.png" alt="" width="28" height="28" class="nav-logo-img">
     <span class="logo-name">Wasiyyah</span>
   </a>
   <div class="save-indicator" id="saveIndicator">
@@ -315,9 +315,9 @@ textarea{resize:vertical;min-height:80px;line-height:1.7}
   <div class="field-group"><div class="field-label">Country of residence</div><input type="text" id="country" placeholder="e.g. Egypt" oninput="autoCapitalise(this);autoSave()"></div>
   <div class="field-group">
     <div class="field-label">Declaration of faith <span class="badge-req">required</span></div>
-    <div style="background:var(--g50);border:1px solid var(--g100);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;text-align:center">
-      <div style="font-size:22px;color:var(--g600);margin-bottom:6px;letter-spacing:1px">أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ</div>
-      <div style="font-size:13px;color:var(--g800);font-style:italic">I testify that there is no god worthy of worship except Allah, and I testify that Muhammad is the messenger of Allah.</div>
+    <div style="background:linear-gradient(160deg,var(--g50),var(--white));border:1.5px solid var(--gold);border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:1rem;text-align:center;box-shadow:var(--shadow-sm)">
+      <div style="font-family:'Amiri',serif;font-size:26px;color:var(--g600);margin-bottom:10px;letter-spacing:.5px;line-height:1.9" lang="ar" dir="rtl">أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ</div>
+      <div style="font-size:13.5px;color:var(--g800);font-style:italic;max-width:420px;margin:0 auto">I testify that there is no god worthy of worship except Allah, and I testify that Muhammad is the messenger of Allah.</div>
     </div>
     <div class="radio-group">
       <label class="radio-opt" onclick="selectRadio(this);autoSave()"><input type="radio" name="shahadah" value="yes"><span style="font-size:14px;color:var(--gr800)">I declare this shahadah and begin my wasiyyah as a Muslim upon tawheed</span></label>
