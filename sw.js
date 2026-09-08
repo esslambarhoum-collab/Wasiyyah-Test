@@ -1,14 +1,14 @@
-/* Wasiyyah Service Worker — offline support
-   Strategy: network-first for pages (so updates arrive),
-   cache fallback when offline. Fonts/icons cached on first use. */
-
 'use strict';
 
-var CACHE = 'wasiyyah-v2';
+var CACHE = 'wasiyyah-v3';
 
 var CORE = [
   '/index.html',
   '/wasiyyah.html',
+  '/journey.html',
+  '/document.html',
+  '/story.html',
+  '/faq.html',
   '/reviews.html',
   '/privacy.html',
   '/terms.html',
@@ -22,8 +22,6 @@ var CORE = [
 self.addEventListener('install', function (e) {
   e.waitUntil(
     caches.open(CACHE).then(function (c) {
-      /* Cache core files individually so one missing file
-         does not break the whole install */
       return Promise.all(CORE.map(function (url) {
         return c.add(url).catch(function () {});
       }));
@@ -44,14 +42,13 @@ self.addEventListener('activate', function (e) {
 self.addEventListener('fetch', function (e) {
   var req = e.request;
   if (req.method !== 'GET') return;
-
   var url = new URL(req.url);
 
-  /* Never cache Supabase or other API calls — always live */
   if (url.hostname.indexOf('supabase.co') !== -1 ||
-      url.hostname.indexOf('er-api.com') !== -1) return;
+      url.hostname.indexOf('er-api.com') !== -1 ||
+      url.hostname.indexOf('google-analytics.com') !== -1 ||
+      url.hostname.indexOf('googletagmanager.com') !== -1) return;
 
-  /* Pages: network first, cache fallback (offline) */
   if (req.mode === 'navigate' || req.destination === 'document') {
     e.respondWith(
       fetch(req).then(function (res) {
@@ -60,14 +57,13 @@ self.addEventListener('fetch', function (e) {
         return res;
       }).catch(function () {
         return caches.match(req).then(function (cached) {
-          return cached || caches.match('/index.html');
+          return cached || caches.match('/404.html');
         });
       })
     );
     return;
   }
 
-  /* Everything else (fonts, icons, css): cache first, then network */
   e.respondWith(
     caches.match(req).then(function (cached) {
       if (cached) return cached;
